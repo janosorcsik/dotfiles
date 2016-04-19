@@ -2,25 +2,28 @@
 
 echo 'Start installing...'
 
-variable=`xcode-select -v 2> /dev/null`
-rc=$?
+echo "Installing XCode..."
+xcode-select --install
 
-if [[ $rc != 0 ]]
-then
-		echo -e "Installing XCode..."
-		xcode-select --install
-else
-		echo -e "XCode already installed."
-fi
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
-variable=`brew -v 2> /dev/null`
-rc=$?
+echo "Installing HomeBrew and apps..."
+curl -fsSL https://raw.github.com/rcmdnk/homebrew-file/install/install.sh |sh
+mkdir ~/.brewfile/
+ln -s $PWD/Brewfile ~/.brewfile/
+brew-file install
 
-if [[ $rc != 0 ]]
-then
-		echo -e "Installing Homebrew..."
-		ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-		brew doctor
-else
-		echo -e "Homebrew already installed."
-fi
+# Reload QuickLook
+qlmanage -r
+
+echo "Installing config.."
+mkdir ~/.config
+ln -s $PWD/.config/* ~/.config/
+
+mkdir ~/.nvm
+
+echo "Zsh"
+chsh -s /usr/local/bin/zsh
+ln -s $PWD/.zshrc ~/
+
+source ~/.zshrc
