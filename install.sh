@@ -24,6 +24,7 @@ mkdir ~/.nvm
 
 echo "Zsh"
 chsh -s /usr/local/bin/zsh
-ln -s $PWD/.zshrc ~/
+ln -s $PWD/.zshrc ~/.zshrc
 
-source ~/.zshrc
+mkdir ~/.zsh
+ln -s $PWD/.zsh/* ~/.zsh/

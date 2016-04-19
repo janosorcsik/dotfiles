@@ -1,6 +1,9 @@
 
 # tap repositories and their packages
 
+tap argon/mas
+brew mas
+
 tap caskroom/cask
 cask atom
 cask dropbox
@@ -35,22 +38,17 @@ tap homebrew/bundle
 
 tap homebrew/command-not-found
 
-tap homebrew/completions
-brew apm-bash-completion
-brew brew-cask-completion
-
 tap homebrew/core
+brew gdbm
 brew git
-brew mackup
-brew nvm
-brew shellcheck
+brew pcre
+brew xz
+brew zsh-completions
+brew zsh-syntax-highlighting
 brew zsh
 
 tap rcmdnk/file
 brew brew-file
-
-tap argon/mas
-brew mas
 
 # App Store applications
 appstore 443987910 1Password
