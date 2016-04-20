@@ -14,16 +14,18 @@ if [[ -n "$st" ]]; then
 		fi
 
 		if [[ $arr[2] =~ 'Your branch is' ]]; then
-				if [[ $arr[2] =~ 'ahead' ]]; then
-						__CURRENT_GIT_BRANCH_STATUS='ahead'
-				elif [[ $arr[2] =~ 'diverged' ]]; then
-						__CURRENT_GIT_BRANCH_STATUS='diverged'
-				else
-						__CURRENT_GIT_BRANCH_STATUS='behind'
+						if [[ $arr[2] =~ 'ahead' ]]; then
+								__CURRENT_GIT_BRANCH_STATUS='ahead'
+						elif [[ $arr[2] =~ 'diverged' ]]; then
+								__CURRENT_GIT_BRANCH_STATUS='diverged'
+						elif [[ $arr[2] =~ 'up-to-date' ]]; then
+								__CURRENT_GIT_BRANCH_STATUS='up-to-date'
+						else
+								__CURRENT_GIT_BRANCH_STATUS='behind'
+						fi
 				fi
-		fi
 
-		if [[ ! $st =~ 'nothing to commit' ]]; then
-				__CURRENT_GIT_BRANCH_IS_DIRTY='1'
-		fi
+				if [[ ! $st =~ 'nothing to commit' ]]; then
+						__CURRENT_GIT_BRANCH_IS_DIRTY='1'
+				fi
 fi
