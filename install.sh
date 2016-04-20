@@ -18,13 +18,27 @@ qlmanage -r
 
 echo "Installing config.."
 mkdir ~/.config
-ln -s $PWD/.config/* ~/.config/
+ln -s $PWD/config/* ~/.config/
 
 mkdir ~/.nvm
 
-echo "Zsh"
+echo "Zsh..."
 chsh -s /usr/local/bin/zsh
-ln -s $PWD/.zshrc ~/.zshrc
+ln -s $PWD/zshrc ~/.zshrc
 
 mkdir ~/.zsh
-ln -s $PWD/.zsh/* ~/.zsh/
+ln -s $PWD/zsh/* ~/.zsh/
+
+echo "Atom..."
+mkdir ~/.atom
+ln -s $PWD/atom/* ~/.atom/
+
+echo "SSH..."
+mkdir ~/.ssh
+ln -s $PWD/ssh/* ~/.ssh/
+
+echo "Git..."
+ln -s $PWD/gitconfig ~/.gitconfig
+
+echo "OS X..."
+sh .osx

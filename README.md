@@ -1,10 +1,13 @@
 # dotfiles
-My OSX dotfiles
+My OSX dotfiles (zsh, mpv, atom)
 
-### TODO
+## Installing
+Clone the repo
 
-- [ ] apm
+`git clone https://github.com/janosorcsik/dotfiles.git`
 
-- [ ] functions
+Start
 
-- [ ] readme
+`sh install.sh`
+
+Drink a beer!
