@@ -1,6 +1,6 @@
 ZSH_DIR=$HOME/.zsh/
 
-# Load configuration files
+# Load configuration files for ZSH
 if [[ -d $ZSH_DIR ]]; then
         for ZSH_FILE in `ls -1 $ZSH_DIR`
         do
