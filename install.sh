@@ -32,6 +32,7 @@ ln -s $PWD/zsh/* ~/.zsh/
 echo "Atom..."
 mkdir ~/.atom
 ln -s $PWD/atom/* ~/.atom/
+apm install --packages-file ~/.atom/packages.list
 
 echo "SSH..."
 mkdir ~/.ssh
