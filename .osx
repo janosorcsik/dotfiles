@@ -287,8 +287,14 @@ defaults write com.apple.mail DraftsViewerAttributes -dict-add "DisplayInThreade
 defaults write com.apple.mail DraftsViewerAttributes -dict-add "SortedDescending" -string "yes"
 defaults write com.apple.mail DraftsViewerAttributes -dict-add "SortOrder" -string "received-date"
 
+# Default sort order
+defaults write com.apple.mail InboxViewerAttributes -dict-add "SortedDescending" -string "yes"
+
 # Disable inline attachments (just show the icons)
 defaults write com.apple.mail DisableInlineAttachmentViewing -bool true
+
+# Insert attachments at end of message (stops exchange servers adding ATT00001.htm etc. to your emails)
+defaults write com.apple.mail AttachAtEnd -bool true
 
 ###############################################################################
 # Time Machine                                                                #
@@ -360,6 +366,11 @@ defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool t
 # Transmission.app                                                            #
 ###############################################################################
 
+# Configure download folders
+defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true
+defaults write org.m0k.transmission DownloadFolder -string "${HOME}/Torrents/complete"
+defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Torrents/part"
+
 # Don’t prompt for confirmation before downloading
 defaults write org.m0k.transmission DownloadAsk -bool false
 
@@ -377,6 +388,9 @@ defaults write org.m0k.transmission WarningLegal -bool false
 
 # Bypass the annoyingly slow t.co URL shortener
 defaults write com.tapbots.TweetbotMac OpenURLsDirectly -bool true
+
+# Hide menu bar icon
+defaults write com.tapbots.TweetbotMac showStatusItem -int 0
 
 ###############################################################################
 # Spectacle.app                                                               #

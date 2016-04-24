@@ -1,4 +1,4 @@
-export PATH=/usr/local/bin:/usr/local/sbin:~/.bin:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export HOMEBREW_BUILD_FROM_SOURCE=1
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
@@ -9,5 +9,7 @@ fpath=(
     $fpath
 )
 
-export NVM_DIR=$HOME/.nvm
-[[ -s $(brew --prefix nvm)/nvm.sh ]] && source $(brew --prefix nvm)/nvm.sh
+export NVM_DIR="$HOME/.nvm"
+[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
+
+nvm use default

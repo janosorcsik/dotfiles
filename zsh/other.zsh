@@ -48,3 +48,7 @@ zstyle ':completion:*' menu select=2
 
 autoload -Uz compinit
 compinit
+
+if [ -f $(brew --prefix)/etc/brew-wrap ];then
+  source $(brew --prefix)/etc/brew-wrap
+fi
