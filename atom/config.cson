@@ -1,28 +1,32 @@
 "*":
-    core:
-        themes: [
-            "one-dark-ui"
-            "spacegray-atom-dark-syntax"
-        ]
-    editor:
-        fontFamily: "Monaco"
-        fontSize: 12
-        invisibles: {}
-        lineHeight: 1.4
-        scrollPastEnd: true
-        showIndentGuide: true
-        showInvisibles: true
-        tabLength: 4
-    linter:
-        showErrorTabLine: true
-    pigments:
-        markerType: "dot"
-    "svg-preview":
-        openPreviewAutomatically: true
-    "tabs-to-spaces":
-        onSave: "untabify"
-    "tree-view":
-        hideIgnoredNames: true
-        hideVcsIgnoredFiles: true
-    welcome:
-        showOnStartup: false
+  core:
+    themes: [
+      "one-dark-ui"
+      "spacegray-atom-dark-syntax"
+    ]
+  editor:
+    fontFamily: "Monaco"
+    fontSize: 12
+    invisibles: {}
+    lineHeight: 1.4
+    scrollPastEnd: true
+    showIndentGuide: true
+    showInvisibles: true
+    tabLength: 4
+  "exception-reporting":
+    userId: "63d3b2b2-8ff2-3725-f780-682bc891f0f6"
+  linter:
+    showErrorTabLine: true
+  pigments:
+    markerType: "dot"
+  "save-session":
+    dataSaveFolder: "/Users/janosorcsik/.atom/packages/save-session/projects"
+  "svg-preview":
+    openPreviewAutomatically: true
+  "tabs-to-spaces":
+    onSave: "untabify"
+  "tree-view":
+    hideIgnoredNames: true
+    hideVcsIgnoredFiles: true
+  welcome:
+    showOnStartup: false

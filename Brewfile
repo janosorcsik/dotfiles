@@ -6,6 +6,7 @@ brew mas
 
 tap caskroom/cask
 cask atom
+cask caprine
 cask cheatsheet
 cask dropbox
 cask etrecheck
@@ -65,7 +66,6 @@ brew libpng
 brew libtiff
 brew little-cms2
 brew lua
-brew mackup
 brew makedepend
 brew mpv --with-bundle
 brew openssl
