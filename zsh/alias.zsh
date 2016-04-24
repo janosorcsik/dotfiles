@@ -32,14 +32,11 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 # Brew and Cask update
 alias bu="brew file update; brew file cask_upgrade -C; brew file init"
 
-# Mackup backup
-alias mu="mackup backup"
-
 # Atom update
 alias au="apm update; apm clean; apm list --installed --bare > ~/.atom/packages.list"
 
 # NPM update
-alias nu="npm install npm -g; npm update -g" 
+alias nu="npm install npm -g; npm update -g"
 
 # Hosts file update
 alias hu="sudo sh ~/.zsh/functions/update_hosts.sh"

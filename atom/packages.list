@@ -1,12 +1,12 @@
 atom-alignment@0.12.1
-atom-beautify@0.29.6
+atom-beautify@0.29.7
 csscomb@0.3.1
-file-icons@1.7.5
+file-icons@1.7.7
 highlight-line@0.11.1
 highlight-selected@0.11.2
 linter@1.11.4
 linter-jshint@2.1.0
-linter-sass-lint@1.4.0
+linter-sass-lint@1.4.1
 pigments@0.26.0
 pretty-json@1.0.3
 rainbow-tabs@2.2.1
@@ -15,3 +15,5 @@ sort-lines@0.14.0
 spacegray-atom-dark-syntax@1.1.1
 svg-preview@0.7.4
 tabs-to-spaces@1.0.2
+
+
