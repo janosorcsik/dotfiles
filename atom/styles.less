@@ -24,11 +24,16 @@ atom-text-editor {
 // To style other content in the text editor's shadow DOM, use the ::shadow expression
 atom-text-editor::shadow .cursor {
     // border-color: red;
+    // Makes the cursor pulse instead of blink
+    transition: opacity 1.6s;
+}
+atom-text-editor::shadow .wrap-guide {
+    visibility: hidden;
 }
 atom-text-editor::shadow pigments-markers::shadow pigments-color-marker.dot,
 pigments-color-marker.dot,
 pigments-markers::shadow pigments-color-marker.dot {
-    transform: translate(0%, -50%) scale(.65);
+    transform: translate(-8px, -50%) scale(0.7);
 }
 // Puth this in default Less stylesheet
 atom-text-editor::shadow .bracket-matcher .region {
@@ -36,4 +41,7 @@ atom-text-editor::shadow .bracket-matcher .region {
     border-radius: 3px;
     background-color: rgba(255, 217, 0, 0.3);
     z-index: 100;
+}
+.icon-file-directory::before {
+    font-size: 13px;
 }

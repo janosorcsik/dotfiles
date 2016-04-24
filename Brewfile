@@ -6,8 +6,10 @@ brew mas
 
 tap caskroom/cask
 cask atom
+cask cheatsheet
 cask dropbox
 cask etrecheck
+cask flash
 cask flux
 cask imagealpha
 cask imageoptim
@@ -20,10 +22,12 @@ cask qlstephen
 cask qlvideo
 cask quicklook-csv
 cask quicklook-json
+cask silverlight
 cask sketch-toolbox
 cask sketch
 cask skype
 cask spotify
+cask svgcleaner
 cask the-unarchiver
 cask transmission
 cask transmit
@@ -39,16 +43,53 @@ tap homebrew/bundle
 tap homebrew/command-not-found
 
 tap homebrew/core
+brew boost
+brew cairo
+brew ffmpeg
+brew flow
+brew fontconfig
+brew freetype
+brew fribidi
 brew gdbm
+brew gettext
 brew git
+brew gobject-introspection
+brew harfbuzz
+brew highlight
+brew icu4c
+brew jpeg
+brew lame
+brew libass
+brew libffi
+brew libpng
+brew libtiff
+brew little-cms2
+brew lua
+brew mackup
+brew makedepend
+brew mpv --with-bundle
+brew openssl
 brew pcre
+brew pixman
+brew pkg-config
+brew python3
+brew readline
+brew sqlite
+brew texi2html
+brew x264
+brew xvid
 brew xz
+brew yasm
+brew youtube-dl
 brew zsh-completions
 brew zsh-syntax-highlighting
 brew zsh
 
 tap rcmdnk/file
 brew brew-file
+
+# Other Homebrew packages
+brew glib
 
 # App Store applications
 appstore 443987910 1Password
