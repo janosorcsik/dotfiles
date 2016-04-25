@@ -15,7 +15,6 @@ cask flux
 cask imagealpha
 cask imageoptim
 cask keepingyouawake
-cask messenger
 cask qlcolorcode
 cask qlimagesize
 cask qlmarkdown

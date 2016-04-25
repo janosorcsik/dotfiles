@@ -6,8 +6,8 @@ HOSTS_FILE="/etc/hosts"
 touch ${TMP_FILE}
 
 for URL in  http://adaway.org/hosts.txt \
-						http://winhelp2002.mvps.org/hosts.txt \
-						http://someonewhocares.org/hosts/hosts 
+                        http://winhelp2002.mvps.org/hosts.txt \
+                        http://someonewhocares.org/hosts/hosts
 do curl -s ${URL} | grep "^127.0.0.1" >> ${TMP_FILE}
 done
 
