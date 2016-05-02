@@ -8,10 +8,10 @@ xcode-select --install
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 echo "Installing HomeBrew and apps..."
-curl -fsSL https://raw.github.com/rcmdnk/homebrew-file/install/install.sh |sh
 sudo rm -rf ~/.brewfile
 mkdir ~/.brewfile/
 ln -s $PWD/Brewfile ~/.brewfile/
+curl -fsSL https://raw.github.com/rcmdnk/homebrew-file/install/install.sh |sh
 brew-file install
 
 # Reload QuickLook
