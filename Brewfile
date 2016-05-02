@@ -67,6 +67,7 @@ brew little-cms2
 brew lua
 brew makedepend
 brew mpv --with-bundle
+brew ocaml
 brew openssl
 brew pcre
 brew pixman
