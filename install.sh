@@ -2,9 +2,6 @@
 
 echo 'Start installing...'
 
-echo "Installing XCode..."
-xcode-select --install
-
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 echo "Installing HomeBrew and apps..."
