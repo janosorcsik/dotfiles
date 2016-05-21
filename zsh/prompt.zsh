@@ -1,31 +1,21 @@
-# Initialize colors.
-autoload -U colors
-colors
-
 # Allow for functions in the prompt.
-setopt PROMPT_SUBST
+setopt prompt_subst
 
 # Autoload zsh functions.
 autoload -U ~/.zsh/functions/*(:t)
 
-# Enable auto-execution of functions.
-typeset -ga preexec_functions
-typeset -ga precmd_functions
-typeset -ga chpwd_functions
+source ~/.zsh/zsh-vcs-prompt/zshrc.sh
+# prompt
+ZSH_VCS_PROMPT_ENABLE_CACHING='true'
 
-# Append git functions needed for prompt.
-preexec_functions+='preexec_update_git_vars'
-precmd_functions+='precmd_update_git_vars'
-chpwd_functions+='chpwd_update_git_vars'
+export PROMPT_INFO="\$(vcs_super_info)"
 
-# Set the prompt.
-function prompt_char {
-        git branch >/dev/null 2>/dev/null && echo '➜' && return
-        echo '$'
-}
-PROMPT='
-%{$fg[magenta]%}%n%{$reset_color%} \
-at %{$fg[cyan]%}%m%{$reset_color%} \
-in %{$fg_bold[green]%}${PWD/#$HOME/~}%{$reset_color%}\
-$(prompt_git_info)%{$reset_color%}
-$(prompt_char)%{$reset_color%}  '
+if [ -n "$SSH_TTY" ]; then
+export PROMPT="%F{055}%n%f@%F{245}%m%f:%F{green}%~%f \
+${PROMPT_INFO}
+%F{red}%(!.#.$)%f "
+else
+export PROMPT="%F{magenta}%n%f@%F{yellow}%m%f:%F{green}%~%f \
+${PROMPT_INFO}
+%(!.#.$) "
+fi
