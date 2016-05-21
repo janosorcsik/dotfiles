@@ -21,6 +21,7 @@ ln -s $PWD/config/* ~/.config/
 
 echo "Zsh..."
 sudo rm ~/.zshrc
+echo '/usr/local/bin/bash' | sudo tee -a /etc/shells
 chsh -s /usr/local/bin/zsh
 ln -s $PWD/zshrc ~/.zshrc
 sudo rm -rf ~/.zsh
