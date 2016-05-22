@@ -51,7 +51,7 @@ nvm install stable
 nvm alias default stable
 
 echo "NPM..."
-npm install -g bower gulp
+npm install -g bower gulp eslint
 
 echo "Skype..."
 sudo rm ~/Library/Application\ Support/Skype/orcsik.janos/main.db

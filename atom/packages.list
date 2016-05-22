@@ -6,7 +6,7 @@ file-icons@1.7.12
 highlight-line@0.11.1
 highlight-selected@0.11.2
 linter@1.11.4
-linter-jshint@2.1.0
+linter-eslint@7.2.2
 linter-sass-lint@1.5.0
 pigments@0.26.3
 pretty-json@1.4.0
