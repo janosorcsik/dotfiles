@@ -4,7 +4,7 @@ My OS X dotfiles (zsh, mpv, atom)
 ## Installation
 
 ### Clone the git repository:
-`git clone git://github.com/janosorcsik/dotfiles.git ~/.dotfiles`
+`git clone --recursive https://github.com/janosorcsik/dotfiles.git ~/.dotfiles`
 
 ### Run the installer:
 `bash ~/.dotfiles/install.sh`
