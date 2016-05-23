@@ -63,10 +63,11 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' insert-tab pending
 
 # menu if nb items > 2
-zstyle ':completion:*' menu select=2
+zstyle ':completion:*:default' menu select=2 
 
 zstyle ":completion:*:descriptions" format "%B%d%b"
 zstyle ':completion:*' group-name ''
+
 
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
