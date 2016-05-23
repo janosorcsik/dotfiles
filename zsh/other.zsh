@@ -72,3 +72,5 @@ bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
 
 setopt correct
+
+source "`brew --prefix`/etc/grc.bashrc"
