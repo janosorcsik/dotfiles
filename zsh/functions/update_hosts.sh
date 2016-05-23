@@ -1,7 +1,6 @@
 #!/bin/bash
 TMP_FILE="/tmp/hosts"
 HOSTS_FILE="/etc/hosts"
-# WINDOWS: %systemroot%\system32\drivers\etc\hosts
 
 touch ${TMP_FILE}
 

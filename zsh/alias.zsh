@@ -30,7 +30,7 @@ alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && k
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
 # Brew and Cask update
-alias bu="brew update && brew upgrade --all && brew cleanup && brew cask update && brew cask cleanup && brew bundle dump --force"
+alias bu="sh ~/.zsh/functions/update_brew.sh"
 
 # Atom update
 alias au="apm update && apm clean && apm list --installed --bare > ~/.atom/packages.list"
