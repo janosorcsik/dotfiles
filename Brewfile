@@ -56,6 +56,7 @@ brew 'readline'
 brew 'sqlite'
 brew 'python3'
 brew 'mpv', args: ['with-bundle']
+brew 'rmtrash'
 brew 'zsh'
 brew 'zsh-completions'
 brew 'zsh-syntax-highlighting'
