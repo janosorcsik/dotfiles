@@ -357,8 +357,8 @@ defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool t
 
 # Configure download folders
 defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true
-defaults write org.m0k.transmission DownloadFolder -string "${HOME}/Torrents/complete"
-defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Torrents/part"
+defaults write org.m0k.transmission DownloadFolder -string "${HOME}/Downloads/Torrents/complete"
+defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Downloads/Torrents/part"
 
 # Hide the donate message
 defaults write org.m0k.transmission WarningDonate -bool false

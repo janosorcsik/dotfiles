@@ -25,7 +25,7 @@ ZSH_HIGHLIGHT_STYLES[command]=fg=green
 ZSH_HIGHLIGHT_STYLES[precommand]=fg=green,underline
 ZSH_HIGHLIGHT_STYLES[commandseparator]=fg=231,bold
 ZSH_HIGHLIGHT_STYLES[hashed-command]=fg=green
-ZSH_HIGHLIGHT_STYLES[path]=fg=yellow
+ZSH_HIGHLIGHT_STYLES[path]=fg=cyan
 ZSH_HIGHLIGHT_STYLES[path_prefix]=fg=220
 ZSH_HIGHLIGHT_STYLES[path_approx]=fg=203
 ZSH_HIGHLIGHT_STYLES[globbing]=fg=164
@@ -38,6 +38,8 @@ ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=yellow
 ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]=fg=cyan
 ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=cyan
 ZSH_HIGHLIGHT_STYLES[assign]=none
+
+source ~/.zsh/zsh-dircolors-solarized/zsh-dircolors-solarized.zsh
 
 autoload -U compinit && compinit
 
@@ -63,7 +65,7 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' insert-tab pending
 
 # menu if nb items > 2
-zstyle ':completion:*:default' menu select=2 
+zstyle ':completion:*:default' menu select=2
 
 zstyle ":completion:*:descriptions" format "%B%d%b"
 zstyle ':completion:*' group-name ''
