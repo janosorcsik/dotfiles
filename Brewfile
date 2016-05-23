@@ -46,6 +46,7 @@ brew 'libbs2b'
 brew 'zimg'
 brew 'ffmpeg', args: ['with-libass', 'with-libbs2b', 'with-libvorbis', 'with-openssl', 'with-rtmpdump', 'with-theora', 'with-x265']
 brew 'gdbm'
+brew 'grc'
 brew 'jpeg'
 brew 'libtiff'
 brew 'little-cms2'
