@@ -1,3 +1,7 @@
 [submodule "zsh/zsh-vcs-prompt"]
-	path = zsh/zsh-vcs-prompt
-	url = https://github.com/yonchu/zsh-vcs-prompt.git
+    path = zsh/zsh-vcs-prompt
+    url = https://github.com/yonchu/zsh-vcs-prompt.git
+
+[submodule "zsh-dircolors-solarized"]
+    path = zsh-dircolors-solarized
+    url = https://github.com/joel-porquet/zsh-dircolors-solarized.git

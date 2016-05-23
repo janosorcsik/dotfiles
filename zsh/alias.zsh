@@ -1,8 +1,10 @@
+alias ls="gls --color --group-directories-first
+"
 # List all files colorized in long format
-alias ls="ls -hlFG"
+alias ll="ls -hlFG"
 
 # List all files colorized in long format, including dot files
-alias la="ls -hlaFG"
+alias la="ls -a"
 
 alias cd..="cd .."
 alias ..="cd .."
@@ -42,3 +44,5 @@ alias nu="npm install npm -g && npm update -g"
 alias hu="sudo sh ~/.zsh/functions/update_hosts.sh"
 
 alias rm="rmtrash"
+
+alias dircolors="gdircolors"
