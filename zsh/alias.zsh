@@ -35,7 +35,7 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 alias bu="sh ~/.zsh/functions/update_brew.sh"
 
 # Atom update
-alias au="apm update && apm clean && apm list --installed --bare > ~/.atom/packages.list"
+alias au="apm update && apm clean && apm list --installed --bare >> ~/.atom/packages.list"
 
 # NPM update
 alias nu="npm install npm -g && npm update -g"
