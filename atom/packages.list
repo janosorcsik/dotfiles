@@ -1,14 +1,13 @@
 Sublime-Style-Column-Selection@1.5.1
 atom-alignment@0.12.1
 atom-beautify@0.29.7
-csscomb@0.3.1
-file-icons@1.7.12
+file-icons@1.7.13
 highlight-line@0.11.1
 highlight-selected@0.11.2
 linter@1.11.4
 linter-eslint@7.2.2
-linter-sass-lint@1.5.0
-pigments@0.26.3
+linter-stylelint@2.10.0
+pigments@0.29.0
 pretty-json@1.4.0
 rainbow-tabs@2.2.1
 save-session@0.15.7
