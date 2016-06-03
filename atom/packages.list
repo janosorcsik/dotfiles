@@ -7,7 +7,7 @@ highlight-selected@0.11.2
 linter@1.11.4
 linter-eslint@7.2.2
 linter-stylelint@2.10.0
-pigments@0.29.0
+pigments@0.29.1
 pretty-json@1.4.0
 rainbow-tabs@2.2.1
 save-session@0.15.7
