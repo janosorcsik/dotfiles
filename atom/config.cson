@@ -12,14 +12,24 @@
     scrollPastEnd: true
     showIndentGuide: true
     showInvisibles: true
-    tabLength: 4
+    tabLength: 2
+  "atom-beautify":
+    css:
+      convert_quotes: "double"
+      force_indentation: true
+      newline_between_rules: true
+      selector_separator_newline: true
   "exception-reporting":
     userId: "63d3b2b2-8ff2-3725-f780-682bc891f0f6"
   linter:
     showErrorTabLine: true
+    errorPanelHeight: 25
   "linter-eslint":
     globalNodePath: "/Users/janosorcsik/.nvm/versions/node/v6.0.0"
     useGlobalEslint: true
+    disableWhenNoEslintConfig: false
+    lintHtmlFiles: true
+  "linter-htmlhint": {}
   pigments:
     markerType: "dot"
   "save-session":
