@@ -1,5 +1,5 @@
-alias ls="gls --color --group-directories-first
-"
+alias ls="gls --color --group-directories-first"
+
 # List all files colorized in long format
 alias ll="ls -hlFG"
 
