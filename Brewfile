@@ -6,6 +6,8 @@ tap 'homebrew/bundle'
 tap 'homebrew/command-not-found'
 tap 'homebrew/core'
 tap 'mpv-player/mpv'
+cask 'java'
+brew 'ant'
 brew 'autoconf'
 brew 'xz'
 brew 'automake'
@@ -59,6 +61,7 @@ brew 'sqlite'
 brew 'python3'
 brew 'mpv', args: ['with-bundle']
 brew 'rmtrash'
+brew 'sbt'
 brew 'zsh'
 brew 'zsh-completions'
 brew 'zsh-syntax-highlighting'
@@ -95,10 +98,10 @@ cask 'transmit'
 cask 'uninstallpkg'
 cask 'yemuzip'
 cask 'ynab'
-mas 'Tweetbot', id: 557168941
+mas 'Numbers', id: 409203825
 mas '1Password', id: 443987910
 mas 'Paste', id: 967805235
 mas 'ReadKit', id: 588726889
 mas 'Pages', id: 409201541
 mas 'Keynote', id: 409183694
-mas 'Numbers', id: 409203825
+mas 'Tweetbot', id: 557168941
