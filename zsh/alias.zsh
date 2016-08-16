@@ -43,6 +43,4 @@ alias nu="npm install npm -g && npm update -g"
 # Hosts file update
 alias hu="sudo sh ~/.zsh/functions/update_hosts.sh"
 
-alias rm="rmtrash"
-
 alias dircolors="gdircolors"
