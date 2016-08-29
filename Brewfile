@@ -53,6 +53,7 @@ brew 'jpeg'
 brew 'libtiff'
 brew 'little-cms2'
 brew 'lua'
+brew 'youtube-dl'
 brew 'readline'
 brew 'sqlite'
 brew 'python3'
@@ -86,11 +87,11 @@ cask 'transmission'
 cask 'transmit'
 cask 'yemuzip'
 cask 'ynab'
+mas 'Tweetbot', id: 557168941
 mas 'Chatty', id: 981117463
-mas 'Numbers', id: 409203825
 mas '1Password', id: 443987910
 mas 'Paste', id: 967805235
 mas 'ReadKit', id: 588726889
 mas 'Pages', id: 409201541
 mas 'Keynote', id: 409183694
-mas 'Tweetbot', id: 557168941
+mas 'Numbers', id: 409203825
