@@ -22,6 +22,9 @@ brew 'cairo'
 brew 'sphinx-doc'
 brew 'cmake'
 brew 'coreutils'
+brew 'makedepend'
+brew 'openssl'
+brew 'node'
 brew 'diff-so-fancy'
 brew 'faac'
 brew 'texi2html'
@@ -34,8 +37,6 @@ brew 'libtool'
 brew 'libogg'
 brew 'libvorbis'
 brew 'theora'
-brew 'makedepend'
-brew 'openssl'
 brew 'rtmpdump'
 brew 'fribidi'
 brew 'gobject-introspection'
@@ -62,22 +63,25 @@ brew 'zsh'
 brew 'zsh-completions'
 brew 'zsh-syntax-highlighting'
 brew 'argon/mas/mas'
+cask 'animated-gif-quicklook'
 cask 'atom'
 cask 'cheatsheet'
 cask 'dropbox'
+cask 'epubquicklook'
 cask 'etrecheck'
 cask 'flash'
 cask 'flux'
 cask 'google-chrome-canary'
 cask 'imageoptim'
 cask 'keepingyouawake'
-cask 'qlcolorcode'
 cask 'qlimagesize'
 cask 'qlmarkdown'
+cask 'qlprettypatch'
 cask 'qlstephen'
 cask 'qlvideo'
 cask 'quicklook-csv'
 cask 'quicklook-json'
+cask 'quicknfo'
 cask 'silverlight'
 cask 'sketch'
 cask 'skype'
@@ -85,13 +89,14 @@ cask 'slack'
 cask 'spotify'
 cask 'transmission'
 cask 'transmit'
+cask 'webpquicklook'
 cask 'yemuzip'
 cask 'ynab'
-mas 'Tweetbot', id: 557168941
-mas 'Chatty', id: 981117463
-mas '1Password', id: 443987910
-mas 'Paste', id: 967805235
-mas 'ReadKit', id: 588726889
-mas 'Pages', id: 409201541
-mas 'Keynote', id: 409183694
-mas 'Numbers', id: 409203825
+mas 'Numbers (4.0)', id: 409203825
+mas 'Chatty (2.0.1)', id: 981117463
+mas '1Password (6.3.3)', id: 443987910
+mas 'Paste (2.0.1)', id: 967805235
+mas 'ReadKit (2.4.3)', id: 588726889
+mas 'Pages (6.0)', id: 409201541
+mas 'Keynote (7.0)', id: 409183694
+mas 'Tweetbot (2.4.3)', id: 557168941
