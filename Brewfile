@@ -1,5 +1,6 @@
 tap 'argon/mas'
 tap 'caskroom/cask'
+tap 'caskroom/fonts'
 tap 'caskroom/versions'
 tap 'homebrew/bundle'
 tap 'homebrew/command-not-found'
@@ -71,6 +72,9 @@ cask 'epubquicklook'
 cask 'etrecheck'
 cask 'flash'
 cask 'flux'
+cask 'font-open-sans'
+cask 'font-raleway'
+cask 'font-roboto'
 cask 'google-chrome-canary'
 cask 'imageoptim'
 cask 'keepingyouawake'
@@ -92,11 +96,11 @@ cask 'transmit'
 cask 'webpquicklook'
 cask 'yemuzip'
 cask 'ynab'
+mas 'Tweetbot (2.4.4)', id: 557168941
 mas 'Numbers (4.0)', id: 409203825
-mas 'Chatty (2.0.1)', id: 981117463
 mas '1Password (6.3.3)', id: 443987910
 mas 'Paste (2.0.1)', id: 967805235
 mas 'ReadKit (2.4.3)', id: 588726889
 mas 'Pages (6.0)', id: 409201541
 mas 'Keynote (7.0)', id: 409183694
-mas 'Tweetbot (2.4.3)', id: 557168941
+mas 'Chatty (2.0.1)', id: 981117463

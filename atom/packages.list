@@ -2,7 +2,7 @@ Sublime-Style-Column-Selection@1.7.2
 atom-alignment@0.12.1
 atom-beautify@0.29.13
 auto-detect-indentation@1.2.0
-autocomplete-modules@1.6.3
+autocomplete-modules@1.6.7
 autocomplete-paths@1.0.2
 file-icons@1.7.19
 highlight-line@0.11.1
@@ -13,7 +13,7 @@ linter-htmlhint@1.3.0
 linter-stylelint@3.3.1
 markdown-preview-plus@2.4.0
 markdown-preview-plus-opener@0.2.0
-pigments@0.35.1
+pigments@0.36.0
 pretty-json@1.6.0
 rainbow-tabs@2.2.1
 save-session@0.15.7
