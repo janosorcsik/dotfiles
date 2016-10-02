@@ -1,7 +1,7 @@
 #!/bin/bash
 mas upgrade
 brew update
-brew upgrade --all
+brew upgrade
 
 brew cask update
 for c in `brew cask list`; do
