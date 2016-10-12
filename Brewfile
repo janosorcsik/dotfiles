@@ -96,11 +96,11 @@ cask 'transmit'
 cask 'webpquicklook'
 cask 'yemuzip'
 cask 'ynab'
-mas 'Numbers (4.0)', id: 409203825
 mas 'Tweetbot (2.4.4)', id: 557168941
+mas 'Chatty (2.0.1)', id: 981117463
 mas '1Password (6.3.3)', id: 443987910
 mas 'Paste (2.0.1)', id: 967805235
 mas 'ReadKit (2.4.3)', id: 588726889
 mas 'Pages (6.0)', id: 409201541
 mas 'Keynote (7.0)', id: 409183694
-mas 'Chatty (2.0.1)', id: 981117463
+mas 'Numbers (4.0)', id: 409203825
