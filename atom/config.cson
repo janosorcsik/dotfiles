@@ -1,9 +1,17 @@
 "*":
+  "atom-beautify":
+    css:
+      convert_quotes: "double"
+      force_indentation: true
+      newline_between_rules: true
+      selector_separator_newline: true
   core:
+    telemetryConsent: "no"
     themes: [
       "one-dark-ui"
       "spacegray-atom-dark-syntax"
     ]
+    useCustomTitleBar: true
   editor:
     fontFamily: "Monaco"
     fontSize: 12
@@ -13,22 +21,16 @@
     showIndentGuide: true
     showInvisibles: true
     tabLength: 2
-  "atom-beautify":
-    css:
-      convert_quotes: "double"
-      force_indentation: true
-      newline_between_rules: true
-      selector_separator_newline: true
   "exception-reporting":
     userId: "63d3b2b2-8ff2-3725-f780-682bc891f0f6"
   linter:
-    showErrorTabLine: true
     errorPanelHeight: 25
+    showErrorTabLine: true
   "linter-eslint":
-    globalNodePath: "/Users/janosorcsik/.nvm/versions/node/v6.0.0"
-    useGlobalEslint: true
     disableWhenNoEslintConfig: false
+    globalNodePath: "/Users/janosorcsik/.nvm/versions/node/v6.0.0"
     lintHtmlFiles: true
+    useGlobalEslint: true
   "linter-htmlhint": {}
   pigments:
     markerType: "dot"
