@@ -1,3 +1,4 @@
+tap 'appsketch/dafont'
 tap 'argon/mas'
 tap 'caskroom/cask'
 tap 'caskroom/fonts'
@@ -8,7 +9,6 @@ tap 'homebrew/core'
 tap 'homebrew/services'
 tap 'mpv-player/mpv'
 brew 'autoconf'
-brew 'xz'
 brew 'automake'
 brew 'libpng'
 brew 'freetype'
@@ -29,6 +29,8 @@ brew 'rtmpdump'
 brew 'curl'
 brew 'node'
 brew 'diff-so-fancy'
+brew 'docutils'
+brew 'duti'
 brew 'faac'
 brew 'lame'
 brew 'fribidi'
@@ -49,8 +51,10 @@ brew 'theora'
 brew 'x264'
 brew 'x265'
 brew 'xvid'
+brew 'xz'
 brew 'ffmpeg', args: ['with-faac', 'with-libass', 'with-libbs2b', 'with-libvorbis', 'with-openssl', 'with-rtmpdump', 'with-theora', 'with-x265']
 brew 'gdbm'
+brew 'grc'
 brew 'jpeg'
 brew 'libtiff'
 brew 'little-cms2'
@@ -67,14 +71,17 @@ brew 'zsh-syntax-highlighting'
 brew 'argon/mas/mas'
 cask 'atom'
 cask 'cheatsheet'
+cask 'dafont-flottflott'
 cask 'dropbox'
 cask 'epubquicklook'
 cask 'etrecheck'
-cask 'flash'
 cask 'flux'
+cask 'font-fira-code'
+cask 'font-inconsolata'
 cask 'font-open-sans'
 cask 'font-raleway'
 cask 'font-roboto'
+cask 'font-source-sans-pro'
 cask 'google-chrome-canary'
 cask 'imageoptim'
 cask 'keepingyouawake'
@@ -96,11 +103,11 @@ cask 'transmit'
 cask 'webpquicklook'
 cask 'yemuzip'
 cask 'ynab'
-mas 'Tweetbot (2.4.4)', id: 557168941
 mas 'Chatty (2.0.1)', id: 981117463
-mas '1Password (6.3.3)', id: 443987910
+mas 'Numbers (4.0)', id: 409203825
+mas '1Password (6.3.4)', id: 443987910
 mas 'Paste (2.0.1)', id: 967805235
 mas 'ReadKit (2.4.3)', id: 588726889
 mas 'Pages (6.0)', id: 409201541
 mas 'Keynote (7.0)', id: 409183694
-mas 'Numbers (4.0)', id: 409203825
+mas 'Tweetbot (2.4.4)', id: 557168941
