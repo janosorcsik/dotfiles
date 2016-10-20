@@ -5,21 +5,21 @@
       force_indentation: true
       newline_between_rules: true
       selector_separator_newline: true
+    general:
+      _analyticsUserId: "4d4c4d10-16ed-4dbb-a4ec-a2a4fa9c5ce4"
   core:
     telemetryConsent: "no"
     themes: [
       "one-dark-ui"
-      "spacegray-atom-dark-syntax"
+      "oceanic-next-italic"
     ]
     useCustomTitleBar: true
   editor:
-    fontFamily: "Monaco"
-    fontSize: 12
+    fontFamily: "FiraCode-Retina"
     invisibles: {}
-    lineHeight: 1.4
+    lineHeight: 1.7
     scrollPastEnd: true
     showIndentGuide: true
-    showInvisibles: true
     tabLength: 2
   "exception-reporting":
     userId: "63d3b2b2-8ff2-3725-f780-682bc891f0f6"
