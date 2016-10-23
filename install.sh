@@ -56,6 +56,3 @@ npm install -g bower gulp eslint
 echo "Skype..."
 sudo rm ~/Library/Application\ Support/Skype/orcsik.janos/main.db
 ln -s ~/Dropbox/Skype/main.db ~/Library/Application\ Support/Skype/orcsik.janos/main.db
-
-echo "OS X..."
-sh .osx
