@@ -1,5 +1,11 @@
 if brew command command-not-found-init > /dev/null; then eval "$(brew command-not-found-init)"; fi
 
+HISTFILE=$HOME/.zsh-history
+HISTSIZE=100000
+SAVEHIST=100000
+setopt extended_history
+setopt share_history
+
 setopt FunctionArgZero
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -13,7 +19,6 @@ ZSH_HIGHLIGHT_STYLES[bracket-level-3]=fg=201,bold
 ZSH_HIGHLIGHT_STYLES[bracket-level-4]=fg=231,bold
 ZSH_HIGHLIGHT_STYLES[bracket-level-5]=fg=226,bold
 ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]=standout
-
 
 ZSH_HIGHLIGHT_STYLES[default]=none
 ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=red,bold
@@ -71,9 +76,7 @@ zstyle ":completion:*:descriptions" format "%B%d%b"
 zstyle ':completion:*' group-name ''
 
 
-bindkey '^[[A' up-line-or-search
-bindkey '^[[B' down-line-or-search
-
+bindkey -e
 setopt correct
 
 source "`brew --prefix`/etc/grc.bashrc"
