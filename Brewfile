@@ -46,24 +46,32 @@ brew 'libtool'
 brew 'libvorbis'
 brew 'libsndfile'
 brew 'libbs2b'
+brew 'jpeg'
+brew 'xz'
+brew 'libtiff'
+brew 'leptonica'
+brew 'tesseract'
 brew 'texi2html'
 brew 'theora'
 brew 'x264'
 brew 'x265'
 brew 'xvid'
-brew 'xz'
-brew 'ffmpeg', args: ['with-faac', 'with-libass', 'with-libbs2b', 'with-libvorbis', 'with-openssl', 'with-rtmpdump', 'with-theora', 'with-x265']
+brew 'zimg'
+brew 'ffmpeg'
 brew 'gdbm'
 brew 'grc'
-brew 'jpeg'
-brew 'libtiff'
+brew 'libarchive'
+brew 'libdvdcss'
+brew 'libdvdread'
 brew 'little-cms2'
 brew 'lua'
+brew 'mackup'
 brew 'readline'
 brew 'sqlite'
 brew 'python3'
+brew 'vapoursynth'
 brew 'youtube-dl'
-brew 'mpv', args: ['with-bundle']
+brew 'mpv', args: ['with-bundle', 'with-libarchive', 'with-vapoursynth']
 brew 'nvm'
 brew 'zsh'
 brew 'zsh-completions'
@@ -103,11 +111,11 @@ cask 'transmit'
 cask 'webpquicklook'
 cask 'yemuzip'
 cask 'ynab'
+mas 'Tweetbot (2.4.4)', id: 557168941
 mas 'Chatty (2.0.1)', id: 981117463
-mas 'Numbers (4.0)', id: 409203825
 mas '1Password (6.3.4)', id: 443987910
 mas 'Paste (2.0.1)', id: 967805235
 mas 'ReadKit (2.4.3)', id: 588726889
 mas 'Pages (6.0)', id: 409201541
 mas 'Keynote (7.0)', id: 409183694
-mas 'Tweetbot (2.4.4)', id: 557168941
+mas 'Numbers (4.0)', id: 409203825
