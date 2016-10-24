@@ -15,7 +15,7 @@
     ]
     useCustomTitleBar: true
   editor:
-    fontFamily: "FiraCode-Retina"
+    fontFamily: "Operator Mono"
     invisibles: {}
     lineHeight: 1.7
     scrollPastEnd: true
@@ -28,7 +28,7 @@
     showErrorTabLine: true
   "linter-eslint":
     disableWhenNoEslintConfig: false
-    globalNodePath: "/Users/janosorcsik/.nvm/versions/node/v6.0.0"
+    globalNodePath: "/Users/janosorcsik/.nvm/versions/node/v6.5.0"
     lintHtmlFiles: true
     useGlobalEslint: true
   "linter-htmlhint": {}

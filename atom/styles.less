@@ -1,23 +1,40 @@
 atom-text-editor,
 atom-workspace {
-    font-family: 'FiraCode-Retina';
-    font-style: normal;
+    font-family: "Operator Mono";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.7;
     text-rendering: optimizeLegibility;
 }
 
+atom-panel.tool-panel {
+    font-size: 0.88em;
+}
+
+.entity.other.attribute-name {
+    font-style: italic;
+}
+
 atom-text-editor::shadow {
-    .comment,
-    .string.quoted,
-    .string.regexp {
-        -webkit-font-feature-settings: "liga" off, "calt" off;
+    .entity.other.attribute-name {
+        font-style: italic;
+    }
+
+    .lines {
+        .keyword.operator.arithmetic,
+        .keyword.operator.assignment,
+        .keyword.operator.comparison,
+        .keyword.operator.logical,
+        .keyword.operator.relational,
+        .keyword.operator.spread,
+        .punctuation.definition.comment,
+        .type.arrow.function {
+            font-family: "Fira Code Retina";
+        }
     }
 
     .cursor {
         transition: opacity 1.6s;
-    }
-
-    .wrap-guide {
-        visibility: hidden;
     }
 
     .bracket-matcher .region {
@@ -27,43 +44,19 @@ atom-text-editor::shadow {
         z-index: 100;
     }
 
-    .entity.other.attribute-name,
-    .storage,
-    .type .function,
-    .variable.language.this {
-        font-family: 'flottflott';
-        font-size: 145%;
-        line-height: 100%;
+    .wrap-guide {
+        visibility: hidden;
     }
+}
 
-    .css > .entity.other.attribute-name,
-    .storage.type.function.arrow,
-    .variable {
-        font-size: 100%;
-        font-family: 'FiraCode-Retina';
-        font-style: normal;
-    }
+.tab-bar .tab.active {
+    -webkit-flex: 1;
+    flex: 1;
+}
 
-    .entity.name.method,
-    .variable.other.readwrite.instance {
-        color: #6699CC;
-        font-weight: 500;
-    }
-
-    .string.unquoted {
-        color: #CDD3DE;
-    }
-
-    .variable.other.constant {
-        color: #FAC863;
-    }
-
-    .entity.name {
-        font-weight: bold;
-
-        &.mustache {
-            font-weight: normal;
-        }
+.tab-bar {
+    .tab {
+        max-width: initial;
     }
 }
 
@@ -75,8 +68,4 @@ pigments-markers::shadow pigments-color-marker.dot {
 
 .icon-file-directory::before {
     font-size: 14px;
-}
-
-atom-panel.tool-panel {
-    font-size: 0.88em;
 }

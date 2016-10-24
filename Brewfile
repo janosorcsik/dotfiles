@@ -85,6 +85,7 @@ cask 'epubquicklook'
 cask 'etrecheck'
 cask 'flux'
 cask 'font-fira-code'
+cask 'font-fira-sans'
 cask 'font-inconsolata'
 cask 'font-open-sans'
 cask 'font-raleway'
@@ -113,7 +114,7 @@ cask 'yemuzip'
 cask 'ynab'
 mas 'Tweetbot (2.4.4)', id: 557168941
 mas 'Chatty (2.0.1)', id: 981117463
-mas '1Password (6.3.4)', id: 443987910
+mas '1Password (6.3.5)', id: 443987910
 mas 'Paste (2.0.1)', id: 967805235
 mas 'ReadKit (2.4.3)', id: 588726889
 mas 'Pages (6.0)', id: 409201541
