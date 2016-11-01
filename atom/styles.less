@@ -33,8 +33,13 @@ atom-text-editor::shadow {
         }
     }
 
+    .string.quoted,
+    .string.regexp {
+        -webkit-font-feature-settings: "liga" off, "calt" off;
+    }
+
     .cursor {
-        transition: opacity 1.6s;
+        transition: opacity 0.5s;
     }
 
     .bracket-matcher .region {
