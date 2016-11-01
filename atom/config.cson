@@ -72,7 +72,7 @@
     showErrorTabLine: true
   "linter-eslint":
     disableWhenNoEslintConfig: true
-    globalNodePath: "/Users/janosorcsik/.nvm/versions/node/v6.5.0"
+    globalNodePath: "/Users/janosorcsik/.nvm/versions/node/v7.0.0"
     lintHtmlFiles: true
     useGlobalEslint: true
   "linter-htmlhint": {}
