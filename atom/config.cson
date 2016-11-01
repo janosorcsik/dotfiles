@@ -7,7 +7,44 @@
       selector_separator_newline: true
     general:
       _analyticsUserId: "4d4c4d10-16ed-4dbb-a4ec-a2a4fa9c5ce4"
+  "atom-ternjs":
+    inlineFnCompletionDocumentation: true
+  "autocomplete-plus":
+    enableExtendedUnicodeSupport: true
+  autosave:
+    enabled: true
   core:
+    autoHideMenuBar: true
+    disabledPackages: [
+      "archive-view"
+      "autoflow"
+      "background-tips"
+      "deprecation-cop"
+      "welcome"
+      "package-generator"
+      "about"
+      "bookmarks"
+      "styleguide"
+      "open-on-github"
+      "metrics"
+      "language-toml"
+      "language-yaml"
+      "language-todo"
+      "language-python"
+      "language-perl"
+      "language-objective-c"
+      "language-mustache"
+      "language-java"
+      "language-go"
+      "language-gfm"
+      "language-clojure"
+      "language-c"
+    ]
+    ignoredNames: [
+      ".git"
+      ".DS_Store"
+      "Thumbs.db"
+    ]
     telemetryConsent: "no"
     themes: [
       "one-dark-ui"
@@ -18,20 +55,35 @@
     fontFamily: "Operator Mono"
     invisibles: {}
     lineHeight: 1.7
+    preferredLineLength: 120
     scrollPastEnd: true
     showIndentGuide: true
+    showInvisibles: true
+    softWrapHangingIndent: 120
     tabLength: 2
+    useHardwareAcceleration: true
   "exception-reporting":
     userId: "63d3b2b2-8ff2-3725-f780-682bc891f0f6"
+  "file-icons":
+    forceShow: true
+    onChanges: true
   linter:
     errorPanelHeight: 25
     showErrorTabLine: true
   "linter-eslint":
-    disableWhenNoEslintConfig: false
+    disableWhenNoEslintConfig: true
     globalNodePath: "/Users/janosorcsik/.nvm/versions/node/v6.5.0"
     lintHtmlFiles: true
     useGlobalEslint: true
   "linter-htmlhint": {}
+  "markdown-preview":
+    breakOnSingleNewline: true
+  "markdown-preview-plus":
+    breakOnSingleNewline: true
+    enableLatexRenderingByDefault: true
+    pandocBibliography: true
+  "markdown-preview-plus-opener":
+    closePreviewWhenClosingEditor: true
   pigments:
     markerType: "dot"
   "save-session":
