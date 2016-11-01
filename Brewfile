@@ -62,6 +62,7 @@ brew 'zsh-history-substring-search'
 brew 'zsh-syntax-highlighting'
 brew 'argon/mas/mas'
 brew 'homebrew/dupes/grep', args: ['with-default-names']
+cask 'adguard'
 cask 'appcleaner'
 cask 'atom'
 cask 'cheatsheet'
