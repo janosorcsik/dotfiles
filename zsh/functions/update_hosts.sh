@@ -22,4 +22,4 @@ fe80::1%lo0 localhost
 # use 0.0.0.0 instead of 127.0.0.1 (faster but not 100% compatible)
 awk '!/ localhost/'{'print "0.0.0.0 "$2'} ${TMP_FILE} | sort | uniq >> ${HOSTS_FILE}
 
-exit 0
+sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder
