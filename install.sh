@@ -2,7 +2,7 @@
 
 echo 'Start installing...'
 
-export HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=/opt/homebrew-cask/Caskroom"
+export HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=/usr/local/Caskroom"
 
 echo "Installing HomeBrew and apps..."
 ln -s $PWD/Brewfile ~/Brewfile
