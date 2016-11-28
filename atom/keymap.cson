@@ -1,2 +1,12 @@
 '.editor':
     'ctrl-alt-b': 'atom-beautify:beautify-editor'
+'atom-workspace atom-text-editor':
+    'ctrl-shift-left': 'editor:move-to-previous-subword-boundary'
+    'ctrl-shift-right': 'editor:move-to-next-subword-boundary'
+    'ctrl-d': 'editor:delete-line'
+    'ctrl-alt-down': 'editor:duplicate-lines'
+    'alt-up': 'editor:move-line-up'
+    'alt-down': 'editor:move-line-down'
+'atom-worksoace atom-text-editor:not([mini])' :
+    'shift-alt-up' : 'editor:add-selection-above'
+    'shift-alt-down' : 'editor:add-selection-below'
