@@ -1,19 +1,92 @@
 "*":
   "atom-beautify":
+    cs:
+      beautify_on_save: true
     css:
-      convert_quotes: "double"
+      align_assignments: true
+      beautify_on_save: true
+      convert_quotes: "single"
+      default_beautifier: "Pretty Diff"
       force_indentation: true
       newline_between_rules: true
-      selector_separator_newline: true
+      no_lead_zero: true
+      preserve_newlines: true
+    csv:
+      beautify_on_save: true
+    ejs:
+      beautify_on_save: true
+      break_chained_methods: true
+      end_with_comma: true
+      space_after_anon_function: true
+      space_in_paren: true
     general:
       _analyticsUserId: "4d4c4d10-16ed-4dbb-a4ec-a2a4fa9c5ce4"
+      analytics: false
+      muteUnsupportedLanguageErrors: true
+    handlebars:
+      beautify_on_save: true
+      default_beautifier: "Pretty Diff"
+    html:
+      beautify_on_save: true
+      default_beautifier: "Pretty Diff"
+    jade:
+      beautify_on_save: true
+    js:
+      beautify_on_save: true
+      break_chained_methods: true
+      default_beautifier: "Pretty Diff"
+      end_with_comma: true
+      space_after_anon_function: true
+      space_before_conditional: false
+      space_in_paren: true
+    json:
+      beautify_on_save: true
+      break_chained_methods: true
+      default_beautifier: "Pretty Diff"
+      end_with_comma: true
+      space_after_anon_function: true
+      space_in_paren: true
+    jsx:
+      beautify_on_save: true
+      break_chained_methods: true
+      end_with_comma: true
+      space_after_anon_function: true
+      space_in_paren: true
+    less:
+      align_assignments: true
+      beautify_on_save: true
+      convert_quotes: "single"
+      force_indentation: true
+      no_lead_zero: true
+      preserve_newlines: true
+    markdown:
+      beautify_on_save: true
+      commonmark: true
+      default_beautifier: "Remark"
+    sass:
+      beautify_on_save: true
+    scss:
+      align_assignments: true
+      beautify_on_save: true
+      convert_quotes: "single"
+      force_indentation: true
+      no_lead_zero: true
+      preserve_newlines: true
+    sql:
+      beautify_on_save: true
+      identifiers: "lower"
+    svg:
+      beautify_on_save: true
   "atom-ternjs":
     inlineFnCompletionDocumentation: true
   "autocomplete-plus":
+    confirmCompletion: "tab"
+    defaultProvider: "Fuzzy"
     enableExtendedUnicodeSupport: true
   autosave:
     enabled: true
   core:
+    audioBeep: false
     autoHideMenuBar: true
     disabledPackages: [
       "archive-view"
@@ -40,11 +113,20 @@
       "language-clojure"
       "language-c"
     ]
+    excludeVcsIgnoredPaths: false
+    hideGitIgnoredFiles: true
     ignoredNames: [
+      ".bundle"
       ".git"
+      ".hg"
+      ".svn"
       ".DS_Store"
+      "._*"
       "Thumbs.db"
+      "node_modules"
+      ".sass-cache"
     ]
+    openEmptyEditorOnStart: false
     telemetryConsent: "no"
     themes: [
       "one-dark-ui"
@@ -52,40 +134,52 @@
     ]
     useCustomTitleBar: true
   editor:
+    autoIndentOnPaste: false
     fontFamily: "Operator Mono"
+    fontSize: 13
     invisibles: {}
-    lineHeight: 1.7
-    preferredLineLength: 120
+    lineHeight: 1.3
+    preferredLineLength: 100
     scrollPastEnd: true
+    scrollSensitivity: 200
     showIndentGuide: true
     showInvisibles: true
-    softWrapHangingIndent: 120
+    softWrap: true
+    softWrapAtPreferredLineLength: true
+    softWrapHangingIndent: 2
     tabLength: 2
+    tabType: "soft"
     useHardwareAcceleration: true
+    useShadowDOM: false
   "exception-reporting":
     userId: "63d3b2b2-8ff2-3725-f780-682bc891f0f6"
   "file-icons":
     forceShow: true
     onChanges: true
+  "highlight-selected": {}
   linter:
-    errorPanelHeight: 25
-    showErrorTabLine: true
+    lintOnFlyInterval: 500
+    showErrorPanel: false
+    statusIconScope: "File"
   "linter-eslint":
-    disableWhenNoEslintConfig: true
+    disableWhenNoEslintConfig: false
     globalNodePath: "/Users/janosorcsik/.nvm/versions/node/v7.0.0"
     lintHtmlFiles: true
+    showRuleIdInMessage: false
     useGlobalEslint: true
   "linter-htmlhint": {}
   "markdown-preview":
     breakOnSingleNewline: true
-  "markdown-preview-plus":
-    breakOnSingleNewline: true
-    enableLatexRenderingByDefault: true
-    pandocBibliography: true
-  "markdown-preview-plus-opener":
-    closePreviewWhenClosingEditor: true
+    useGitHubStyle: true
+  "one-dark-ui":
+    layoutMode: "Compact"
+    tabSizing: "Minimum"
   pigments:
+    autocompleteSuggestionsFromValue: true
+    extendAutocompleteToColorValue: true
+    extendAutocompleteToVariables: true
     markerType: "dot"
+    mergeColorDuplicates: true
   "save-session":
     dataSaveFolder: "/Users/janosorcsik/.atom/packages/save-session/projects"
   "svg-preview":
