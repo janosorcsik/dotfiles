@@ -14,6 +14,9 @@ tap 'homebrew/services'
 tap 'mpv-player/mpv'
 brew 'autoconf'
 brew 'automake'
+brew 'bison'
+brew 'ghc'
+brew 'cabal-install'
 brew 'libpng'
 brew 'freetype'
 brew 'fontconfig'
@@ -23,15 +26,17 @@ brew 'pcre'
 brew 'glib'
 brew 'pixman'
 brew 'cairo'
+brew 'cmake'
 brew 'coreutils'
 brew 'curl', args: ['with-openssl']
 brew 'diff-so-fancy'
+brew 'docutils'
 brew 'duti'
 brew 'lame'
 brew 'git'
 brew 'x264'
 brew 'xvid'
-brew 'ffmpeg'
+brew 'ffmpeg', args: ['with-openssl']
 brew 'flac'
 brew 'fribidi'
 brew 'gdbm'
@@ -42,9 +47,14 @@ brew 'harfbuzz'
 brew 'jpeg'
 brew 'libtiff'
 brew 'leptonica'
+brew 'libgpg-error'
+brew 'libgcrypt'
+brew 'libaacs'
 brew 'xz'
 brew 'libarchive'
 brew 'libass'
+brew 'libdvdcss'
+brew 'libdvdread'
 brew 'libogg'
 brew 'libsamplerate'
 brew 'libvorbis'
@@ -57,10 +67,12 @@ brew 'openssl'
 brew 'readline'
 brew 'sqlite'
 brew 'python3'
-brew 'youtube-dl'
-brew 'mpv', args: ['with-bundle', 'with-libarchive', 'with-vapoursynth']
+brew 'youtube-dl', args: ['with-rtmpdump']
+brew 'mpv', args: ['HEAD', 'with-bundle', 'with-libdvdread']
 brew 'node'
 brew 'nvm'
+brew 'rtmpdump'
+brew 'sphinx-doc'
 brew 'tesseract'
 brew 'texi2html'
 brew 'zimg'
@@ -116,11 +128,13 @@ cask 'transmit'
 cask 'webpquicklook'
 cask 'yemuzip'
 cask 'ynab'
-mas 'Numbers', id: 409203825
 mas 'Tweetbot', id: 557168941
+mas 'Flume', id: 792425898
+mas 'Chatty', id: 981117463
 mas '1Password', id: 443987910
 mas 'Paste', id: 967805235
 mas 'ReadKit', id: 588726889
 mas 'Pages', id: 409201541
 mas 'Keynote', id: 409183694
-mas 'Chatty', id: 981117463
+mas 'Milkeddit', id: 1109711745
+mas 'Numbers', id: 409203825
