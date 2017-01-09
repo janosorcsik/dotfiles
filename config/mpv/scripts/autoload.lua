@@ -7,6 +7,13 @@
 -- Add at most 5000 * 2 files when starting a file (before + after).
 MAXENTRIES = 5000
 
+local options = require 'mp.options'
+
+o = {
+    disabled = false
+}
+options.read_options(o)
+
 function Set (t)
     local set = {}
     for _, v in pairs(t) do set[v] = true end
@@ -25,7 +32,7 @@ function add_files_at(index, files)
     local oldcount = mp.get_property_number("playlist-count", 1)
     for i = 1, #files do
         mp.commandv("loadfile", files[i], "append")
-        mp.commandv("playlist_move", oldcount + i - 1, index + i - 1)
+        mp.commandv("playlist-move", oldcount + i - 1, index + i - 1)
     end
 end
 
@@ -49,7 +56,7 @@ end
 function find_and_add_entries()
     local path = mp.get_property("path", "")
     local dir, filename = mputils.split_path(path)
-    if #dir == 0 then
+    if o.disabled or #dir == 0 then
         return
     end
     local pl_count = mp.get_property_number("playlist-count", 1)
@@ -72,6 +79,11 @@ function find_and_add_entries()
         return EXTENSIONS[string.lower(ext)]
     end)
     table.sort(files, function (a, b)
+        local len = string.len(a) - string.len(b)
+        if len ~= 0 then -- case for ordering filename ending with such as X.Y.Z
+            local ext = string.len(get_extension(a)) + 1
+            return string.sub(a, 1, -ext) < string.sub(b, 1, -ext)
+        end
         return string.lower(a) < string.lower(b)
     end)
 
