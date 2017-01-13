@@ -60,7 +60,7 @@ ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]=fg=cyan
 ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=cyan
 ZSH_HIGHLIGHT_STYLES[assign]=none
 
-source ~/.zsh/zsh-dircolors-solarized/zsh-dircolors-solarized.zsh
+eval `gdircolors ~/.dircolors`
 
 autoload -U compinit && compinit
 
