@@ -1,4 +1,5 @@
-#! /bin/sh
+#!/usr/bin/env bash
+set -ux
 
 echo 'Start installing...'
 
@@ -21,7 +22,7 @@ ln -s $PWD/config/* ~/.config/
 
 echo "Zsh..."
 sudo rm ~/.zshrc
-echo '/usr/local/bin/bash' | sudo tee -a /etc/shells
+echo '/usr/local/bin/zsh' | sudo tee -a /etc/shells
 chsh -s /usr/local/bin/zsh
 ln -s $PWD/zshrc ~/.zshrc
 sudo rm -rf ~/.zsh
@@ -56,3 +57,5 @@ npm install -g bower gulp eslint
 echo "Skype..."
 sudo rm ~/Library/Application\ Support/Skype/orcsik.janos/main.db
 ln -s ~/Dropbox/Skype/main.db ~/Library/Application\ Support/Skype/orcsik.janos/main.db
+
+ln -s $PWD/dircolors.256dark ~/.dircolors
