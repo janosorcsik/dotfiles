@@ -39,5 +39,3 @@ alias au="apm update && apm clean && apm list --installed --bare >! ~/.atom/pack
 
 # NPM update
 alias nu="npm install npm -g && npm update -g"
-
-alias dircolors="gdircolors"

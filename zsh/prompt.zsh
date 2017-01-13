@@ -11,11 +11,11 @@ ZSH_VCS_PROMPT_ENABLE_CACHING='true'
 export PROMPT_INFO="\$(vcs_super_info)"
 
 if [ -n "$SSH_TTY" ]; then
-export PROMPT="%F{055}%n%f@%F{245}%m%f:%F{green}%~%f \
+export PROMPT="%F{055}%n%f@%F{245}%m%f:%F{blue}%~%f \
 ${PROMPT_INFO}
 %F{red}%(!.#.$)%f "
 else
-export PROMPT="%F{magenta}%n%f@%F{yellow}%m%f:%F{green}%~%f \
+export PROMPT="%F{magenta}%n%f@%F{21}%m%f:%F{blue}%~%f \
 ${PROMPT_INFO}
 %(!.#.$) "
 fi
