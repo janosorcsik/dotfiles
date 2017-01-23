@@ -95,12 +95,12 @@ cask 'transmit'
 cask 'webpquicklook'
 cask 'yemuzip'
 cask 'ynab'
-mas 'Flume', id: 792425898
-mas 'Chatty', id: 981117463
+mas 'Tweetbot', id: 557168941
 mas 'Numbers', id: 409203825
+mas 'Flume', id: 792425898
 mas '1Password', id: 443987910
 mas 'Paste', id: 967805235
 mas 'ReadKit', id: 588726889
 mas 'Pages', id: 409201541
 mas 'Keynote', id: 409183694
-mas 'Tweetbot', id: 557168941
+mas 'Chatty', id: 981117463
