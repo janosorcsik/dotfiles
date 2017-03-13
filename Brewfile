@@ -9,10 +9,9 @@ tap 'homebrew/bundle'
 tap 'homebrew/command-not-found'
 tap 'homebrew/core'
 brew 'coreutils'
-brew 'diff-so-fancy'
 brew 'gdbm'
 brew 'git'
-brew 'node'
+brew 'nvm'
 brew 'pcre'
 brew 'zsh'
 brew 'zsh-completions'
@@ -23,36 +22,20 @@ cask 'atom'
 cask 'cheatsheet'
 cask 'coconutbattery'
 cask 'dropbox'
-cask 'epubquicklook'
 cask 'etrecheck'
-cask 'flash-npapi'
-cask 'flux'
-cask 'font-droid-serif'
 cask 'font-fira-code'
-cask 'font-fira-sans'
-cask 'font-inconsolata'
 cask 'font-microsoft-office'
-cask 'font-montserrat'
-cask 'font-open-sans'
-cask 'font-raleway'
-cask 'font-roboto'
-cask 'font-source-sans-pro'
 cask 'google-chrome-canary'
 cask 'ifilex'
 cask 'iina'
 cask 'imageoptim'
 cask 'keepingyouawake'
 cask 'monolingual'
-cask 'qlimagesize'
 cask 'qlmarkdown'
-cask 'qlprettypatch'
 cask 'qlstephen'
-cask 'qlvideo'
 cask 'quicklook-csv'
-cask 'quicklook-json'
-cask 'quicknfo'
 cask 'rdm'
-cask 'silverlight'
+cask 'shiftit'
 cask 'sketch'
 cask 'skype'
 cask 'slack'
@@ -60,16 +43,15 @@ cask 'spotify'
 cask 'supaview'
 cask 'the-unarchiver'
 cask 'transmission'
-cask 'transmit'
-cask 'webpquicklook'
 cask 'yemuzip'
 cask 'ynab'
-mas 'Tweetbot', id: 557168941
-mas 'Numbers', id: 409203825
-mas 'Flume', id: 792425898
 mas '1Password', id: 443987910
+mas 'Chatty', id: 981117463
+mas 'Flume', id: 792425898
+mas 'ForkLift', id: 412448059
+mas 'Keynote', id: 409183694
+mas 'Numbers', id: 409203825
+mas 'Pages', id: 409201541
 mas 'Paste', id: 967805235
 mas 'ReadKit', id: 588726889
-mas 'Pages', id: 409201541
-mas 'Keynote', id: 409183694
-mas 'Chatty', id: 981117463
+mas 'Tweetbot', id: 557168941
