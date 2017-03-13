@@ -10,6 +10,6 @@ fpath=(
 )
 
 export NVM_DIR="$HOME/.nvm"
-[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
+. "$(brew --prefix nvm)/nvm.sh"
 
 nvm use default

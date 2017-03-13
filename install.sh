@@ -15,11 +15,6 @@ brew linkapps
 # Reload QuickLook
 qlmanage -r
 
-echo "Installing config..."
-sudo rm -rf ~/.config
-mkdir ~/.config
-ln -s $PWD/config/* ~/.config/
-
 echo "Zsh..."
 sudo rm ~/.zshrc
 echo '/usr/local/bin/zsh' | sudo tee -a /etc/shells
@@ -46,13 +41,11 @@ ln -s $PWD/gitconfig ~/.gitconfig
 
 echo "NVM..."
 sudo rm -rf ~/.nvm
-git clone http://github.com/creationix/nvm.git ~/.nvm
-sh ~/.nvm/nvm.sh
-nvm install stable
-nvm alias default stable
+. "$(brew --prefix nvm)/nvm.sh"
+nvm install stable && nvm use stable
 
 echo "NPM..."
-npm install -g bower gulp eslint
+npm install -g diff-so-fancy
 
 echo "Skype..."
 sudo rm ~/Library/Application\ Support/Skype/orcsik.janos/main.db
