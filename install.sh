@@ -45,7 +45,7 @@ sudo rm -rf ~/.nvm
 nvm install stable && nvm use stable
 
 echo "NPM..."
-npm install -g diff-so-fancy
+npm install -g diff-so-fancy yarn
 
 echo "Skype..."
 sudo rm ~/Library/Application\ Support/Skype/orcsik.janos/main.db
