@@ -1,12 +1,15 @@
 atom-ternjs@0.18.2
-autocomplete-modules@1.6.7
+autocomplete-modules@1.6.8
 autocomplete-paths@1.0.5
 block-comment@0.4.3
+busy-signal@1.3.0
 file-icons@2.0.17
 highlight-line@0.12.0
 highlight-selected@0.12.0
-language-babel@2.56.0
-linter@1.11.23
+intentions@1.1.2
+language-babel@2.56.2
+linter@2.1.0
 linter-eslint@8.1.3
+linter-ui-default@1.1.0
 pigments@0.39.0
 
