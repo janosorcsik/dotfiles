@@ -39,3 +39,6 @@ alias au="apm update && apm clean && apm list --installed --bare > ~/.atom/packa
 
 # NPM update
 alias nu="npm install npm -g && npm update -g"
+
+# Remove Duplicates from the “Open With” Right-Click Menu in Mac OS X:
+alias killdups='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
