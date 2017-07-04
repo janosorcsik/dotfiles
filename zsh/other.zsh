@@ -91,12 +91,6 @@ zstyle ':completion:*:default' menu select=2
 zstyle ":completion:*:descriptions" format "%B%d%b"
 zstyle ':completion:*' group-name ''
 
-source /usr/local/opt/zsh-history-substring-search/zsh-history-substring-search.zsh
-bindkey -e
-
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-
 setopt correct
 
 source "`brew --prefix`/etc/grc.bashrc"

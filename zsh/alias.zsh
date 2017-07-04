@@ -7,13 +7,18 @@ alias ll="ls -hlFG"
 alias la="ls -a"
 
 alias cd..="cd .."
-alias ..="cd .."
+alias ..="cd.."
 
 # Simple HTTP server
 alias http="python -m SimpleHTTPServer"
 
-# Enable aliases to be sudo’ed
-alias sudo="sudo "
+# Colored grep
+alias grep="grep --color=auto"
+
+# Default Python:
+alias python=python3
+# Default pip:
+alias pip=pip3
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
