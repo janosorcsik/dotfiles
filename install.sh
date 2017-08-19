@@ -24,12 +24,6 @@ sudo rm -rf ~/.zsh
 mkdir ~/.zsh
 ln -s $PWD/zsh/* ~/.zsh/
 
-echo "Atom..."
-sudo rm -rf ~/.atom
-mkdir ~/.atom
-ln -s $PWD/atom/* ~/.atom/
-apm install --packages-file ~/.atom/packages.list
-
 echo "SSH..."
 sudo rm -rf ~/.ssh
 mkdir ~/.ssh

@@ -39,6 +39,7 @@ cask "spotify"
 cask "supaview"
 cask "the-unarchiver"
 cask "transmission"
+cask "visual-studio-code"
 cask "yemuzip"
 cask "ynab"
 mas "1Blocker", id: 1107421413
