@@ -1,5 +1,5 @@
 # dotfiles
-My OS X dotfiles (zsh, mpv, atom)
+My OS X dotfiles
 
 ## Installation
 
