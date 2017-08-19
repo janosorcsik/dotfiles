@@ -24,11 +24,6 @@ sudo rm -rf ~/.zsh
 mkdir ~/.zsh
 ln -s $PWD/zsh/* ~/.zsh/
 
-echo "SSH..."
-sudo rm -rf ~/.ssh
-mkdir ~/.ssh
-ln -s $PWD/ssh/* ~/.ssh/
-
 echo "Git..."
 sudo rm ~/.gitconfig
 ln -s $PWD/gitconfig ~/.gitconfig
@@ -44,5 +39,3 @@ npm install -g diff-so-fancy yarn
 echo "Skype..."
 sudo rm ~/Library/Application\ Support/Skype/orcsik.janos/main.db
 ln -s ~/Dropbox/Skype/main.db ~/Library/Application\ Support/Skype/orcsik.janos/main.db
-
-ln -s $PWD/dircolors.256dark ~/.dircolors
