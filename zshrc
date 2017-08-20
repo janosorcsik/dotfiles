@@ -24,6 +24,8 @@ nvm use default
 # Autoload zsh functions.
 autoload -U ~/.zsh/functions/*(:t)
 
+if brew command command-not-found-init > /dev/null; then eval "$(brew command-not-found-init)"; fi
+
 alias ls="gls --color --group-directories-first"
 
 # List all files colorized in long format
