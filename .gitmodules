@@ -1,3 +1,0 @@
-[submodule "zsh/zsh-vcs-prompt"]
-    path = zsh/zsh-vcs-prompt
-    url = https://github.com/yonchu/zsh-vcs-prompt.git
