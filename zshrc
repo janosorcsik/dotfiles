@@ -1,10 +1,13 @@
 source /usr/local/share/antigen/antigen.zsh
 
-antigen bundle git
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle akoenig/npm-run.plugin.zsh
+antigen bundle zuxfoucault/colored-man-pages_mod
+antigen bundle lukechilds/zsh-better-npm-completion
+antigen bundle molovo/tipz
 antigen bundle Tarrasch/zsh-command-not-found
-antigen bundle hcgraf/zsh-sudo
+antigen bundle tarruda/zsh-autosuggestions
+antigen bundle zdharma/fast-syntax-highlighting
+antigen bundle zsh-users/zsh-history-substring-search
 
 antigen use oh-my-zsh
 
