@@ -34,7 +34,7 @@ sudo rm -rf ~/.nvm
 nvm install stable && nvm use stable
 
 echo "NPM..."
-sudo npm install -g diff-so-fancy
+sudo npm install -g diff-so-fancy eslint
 
 echo "Skype..."
 sudo rm ~/Library/Application\ Support/Skype/orcsik.janos/main.db
