@@ -33,7 +33,6 @@ cask "qlstephen"
 cask "qlvideo"
 cask "quicklook-csv"
 cask "skype"
-cask "slack"
 cask "spotify"
 cask "supaview"
 cask "the-unarchiver"
@@ -51,4 +50,5 @@ mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Paste", id: 967805235
 mas "ReadKit", id: 588726889
+mas "Slack", id: 803453959
 mas "Tweetbot", id: 557168941
