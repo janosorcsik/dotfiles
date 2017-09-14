@@ -4,7 +4,7 @@ My OS X dotfiles
 ## Installation
 
 ### Clone the git repository:
-`git clone --recursive https://github.com/janosorcsik/dotfiles.git ~/.dotfiles`
+`git clone https://github.com/janosorcsik/dotfiles.git ~/.dotfiles`
 
 ### Run the installer:
 `bash ~/.dotfiles/install.sh`
