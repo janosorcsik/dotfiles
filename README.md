@@ -7,6 +7,6 @@ My OS X dotfiles
 `git clone https://github.com/janosorcsik/dotfiles.git ~/.dotfiles`
 
 ### Run the installer:
-`bash ~/.dotfiles/install.sh`
+`cd ~/.dotfiles && bash install.sh`
 
 ### Drink a beer!
