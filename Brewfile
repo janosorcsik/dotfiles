@@ -38,7 +38,6 @@ cask "the-unarchiver"
 cask "transmission"
 cask "visual-studio-code"
 cask "yemuzip"
-cask "ynab"
 mas "1Blocker", id: 1107421413
 mas "1Password", id: 443987910
 mas "Chatty", id: 981117463
@@ -49,5 +48,4 @@ mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Paste", id: 967805235
 mas "ReadKit", id: 588726889
-mas "Slack", id: 803453959
 mas "Tweetbot", id: 557168941
