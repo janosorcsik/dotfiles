@@ -4,7 +4,7 @@ mas upgrade
 brew update
 brew upgrade
 
-brew cu --all --yes --cleanup
+brew cu --all --yes --cleanup --quiet
 
 brew bundle dump --force
 
