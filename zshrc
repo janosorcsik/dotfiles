@@ -15,6 +15,8 @@ antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
 
 antigen apply
 
+SPACESHIP_KUBECONTEXT_SHOW=false
+
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export HOMEBREW_BUILD_FROM_SOURCE=1
 export HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=/usr/local/Caskroom"
