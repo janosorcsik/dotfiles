@@ -32,11 +32,11 @@
       (rm -rf \"$tmp_dir\" &); \
   }; f"
 [apply]
-	whitespace = fix
+  whitespace = fix
 [core]
   pager = diff-so-fancy | less --tabs=4 -RFX
-	trustctime = false
-	precomposeunicode = false
+  trustctime = false
+  precomposeunicode = false
   untrackedCache = true
   whitespace = space-before-tab,-indent-with-non-tab,trailing-space
 [push]
