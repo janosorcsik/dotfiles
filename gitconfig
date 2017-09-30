@@ -32,24 +32,41 @@
       (rm -rf \"$tmp_dir\" &); \
   }; f"
 [apply]
+  # Detect whitespace errors when applying a patch
   whitespace = fix
+[pager]
+  # insanely beautiful diffs ==> npm install -g diff-so-fancy
+  diff = diff-so-fancy | less --tabs=4 -RFX
+  show = diff-so-fancy | less --tabs=4 -RFX
 [core]
-  pager = diff-so-fancy | less --tabs=4 -RFX
-  trustctime = false
-  precomposeunicode = false
-  untrackedCache = true
+  # Treat spaces before tabs and all kinds of trailing whitespace as an error
+  # [default] trailing-space: looks for spaces at the end of a line
+  # [default] space-before-tab: looks for spaces before tabs at the beginning of a line
   whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+  # Make `git rebase` safer on macOS
+  # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+  trustctime = false
+  # Prevent showing files whose names contain non-ASCII symbols as unversioned.
+  # http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
+  precomposeunicode = false
+  # Speed up commands involving untracked files such as `git status`.
+  # https://git-scm.com/docs/git-update-index#_untracked_cache
+  untrackedCache = true
+# push easily. http://stackoverflow.com/a/23918418/89484
 [push]
-  default = matching
+  default = current
   followTags = true
 [credential]
   helper = osxkeychain
+# correct typos
 [help]
   autocorrect = 1
 [fetch]
   prune = true
 [diff]
   compactionHeuristic = true
+  # Detect copies as well as renames
   renames = copies
 [merge]
+  # Include summaries of merged commits in newly created merge commit messages
   log = true
