@@ -6,7 +6,7 @@ echo 'Start installing...'
 export HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=/usr/local/Caskroom"
 
 echo "Installing HomeBrew and apps..."
-ln -s $PWD/Brewfile ~/Brewfile
+ln -s ~/.dotfiles/Brewfile ~/Brewfile
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew tap homebrew/bundle
 brew bundle
@@ -18,14 +18,14 @@ echo "Zsh..."
 sudo rm ~/.zshrc
 echo '/usr/local/bin/zsh' | sudo tee -a /etc/shells
 chsh -s /usr/local/bin/zsh
-ln -s $PWD/zshrc ~/.zshrc
+ln -s ~/.dotfiles/zshrc ~/.zshrc
 sudo rm -rf ~/.zsh
 mkdir ~/.zsh
-ln -s $PWD/zsh/* ~/.zsh/
+ln -s ~/.dotfiles/zsh/* ~/.zsh/
 
 echo "Git..."
 sudo rm ~/.gitconfig
-ln -s $PWD/gitconfig ~/.gitconfig
+ln -s ~/.dotfiles/gitconfig ~/.gitconfig
 
 echo "NVM..."
 sudo rm -rf ~/.nvm
