@@ -14,7 +14,7 @@
   old = red bold
   new = green bold
   whitespace = red reverse
-  [color "status"]
+[color "status"]
   added = yellow
   changed = green
   untracked = cyan
@@ -31,9 +31,25 @@
       git clean -fdxn | sed -n s'/^Would remove \\(.*\\)/\\1/p' | xargs -I % mv \"%\" \"$tmp_dir\"; \
       (rm -rf \"$tmp_dir\" &); \
   }; f"
+[apply]
+	whitespace = fix
 [core]
-	pager = diff-so-fancy | less --tabs=4 -RFX
+  pager = diff-so-fancy | less --tabs=4 -RFX
+	trustctime = false
+	precomposeunicode = false
+  untrackedCache = true
+  whitespace = space-before-tab,-indent-with-non-tab,trailing-space
 [push]
-	default = simple
+  default = matching
+  followTags = true
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
+[help]
+  autocorrect = 1
+[fetch]
+  prune = true
+[diff]
+  compactionHeuristic = true
+  renames = copies
+[merge]
+  log = true
