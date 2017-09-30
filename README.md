@@ -10,3 +10,6 @@ My OS X dotfiles
 `bash ~/.dotfiles/install.sh`
 
 ### Drink a beer!
+
+### Setup mac OS:
+`bash ~/.dotfiles/macos`
