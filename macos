@@ -49,6 +49,12 @@ sudo systemsetup -setrestartfreeze on
 # Check for software updates daily, not just once per week
 defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
 
+# Disable warnings about applications from "untrused developers".
+sudo spctl --master-disable
+
+# Show battery life percentage.
+defaults write com.apple.menuextra.battery ShowPercent -string "YES"
+
 ###############################################################################
 # SSD-specific tweaks                                                         #
 ###############################################################################
