@@ -9,9 +9,10 @@ tap "argon/mas"
 tap "colindean/fonts-nonfree"
 brew "antigen"
 brew "coreutils"
+brew "diff-so-fancy"
 brew "gdbm"
 brew "git"
-brew "nvm"
+brew "node"
 brew "zsh"
 brew "zsh-completions"
 brew "argon/mas/mas"
@@ -25,6 +26,7 @@ cask "iina"
 cask "imageoptim"
 cask "keepingyouawake"
 cask "monolingual"
+cask "plex-media-server"
 cask "qlmarkdown"
 cask "qlstephen"
 cask "qlvideo"
@@ -44,6 +46,7 @@ mas "Chatty", id: 981117463
 mas "Keynote", id: 409183694
 mas "Magnet", id: 441258766
 mas "Microsoft Remote Desktop", id: 715768417
+mas "Money", id: 1185488696
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Paste", id: 967805235
