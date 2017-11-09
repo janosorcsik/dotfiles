@@ -3,7 +3,7 @@ set -ux
 
 echo 'Start installing...'
 
-export HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=/usr/local/Caskroom"
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 echo "Installing HomeBrew and apps..."
 ln -s ~/.dotfiles/Brewfile ~/Brewfile
@@ -27,13 +27,8 @@ echo "Git..."
 sudo rm ~/.gitconfig
 ln -s ~/.dotfiles/gitconfig ~/.gitconfig
 
-echo "NVM..."
-sudo rm -rf ~/.nvm
-. "$(brew --prefix nvm)/nvm.sh"
-nvm install stable && nvm use stable
-
 echo "NPM..."
-sudo npm install -g diff-so-fancy eslint
+sudo npm install -g eslint
 
 echo "Skype..."
 sudo rm ~/Library/Application\ Support/Skype/orcsik.janos/main.db

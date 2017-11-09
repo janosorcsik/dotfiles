@@ -16,15 +16,10 @@ antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
 antigen apply
 
 SPACESHIP_KUBECONTEXT_SHOW=false
+TIPZ_TEXT='💡'
 
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-export HOMEBREW_BUILD_FROM_SOURCE=1
-export HOMEBREW_CASK_OPTS="--appdir=/Applications --caskroom=/usr/local/Caskroom"
-
-export NVM_DIR="$HOME/.nvm"
-. "$(brew --prefix nvm)/nvm.sh"
-
-nvm use default
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # Autoload zsh functions.
 autoload -U ~/.zsh/functions/*(:t)

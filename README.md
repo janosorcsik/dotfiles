@@ -1,15 +1,19 @@
 # dotfiles
+
 My OS X dotfiles
 
 ## Installation
 
-### Clone the git repository:
+### Clone the git repository
+
 `git clone https://github.com/janosorcsik/dotfiles.git ~/.dotfiles`
 
-### Run the installer:
+### Run the installer
+
 `bash ~/.dotfiles/install.sh`
 
-### Drink a beer!
+### Drink a beer
 
-### Setup mac OS:
+### Setup mac OS
+
 `bash ~/.dotfiles/macos`
