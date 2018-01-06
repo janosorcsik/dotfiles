@@ -32,7 +32,7 @@ alias ls="gls --color --group-directories-first"
 alias ll="ls -lhAFG"
 
 # List all files colorized in long format, including dot files
-alias la="ls -a"
+alias la="ls -A"
 
 alias cd..="cd .."
 alias ..="cd.."
