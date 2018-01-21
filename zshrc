@@ -9,8 +9,6 @@ antigen bundle tarruda/zsh-autosuggestions
 antigen bundle zdharma/fast-syntax-highlighting
 antigen bundle zsh-users/zsh-history-substring-search
 
-antigen use oh-my-zsh
-
 antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
 
 antigen apply
