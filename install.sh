@@ -19,6 +19,8 @@ sudo rm ~/.zshrc
 echo '/usr/local/bin/zsh' | sudo tee -a /etc/shells
 chsh -s /usr/local/bin/zsh
 ln -s ~/.dotfiles/zshrc ~/.zshrc
+sudo rm ~/.zsh_plugins.txt
+ln -s ~/.dotfiles/zsh_plugins.txt ~/.zsh_plugins.txt
 sudo rm -rf ~/.zsh
 mkdir ~/.zsh
 ln -s ~/.dotfiles/zsh/* ~/.zsh/
