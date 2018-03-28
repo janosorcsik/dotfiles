@@ -1,28 +1,39 @@
-source /usr/local/share/antigen/antigen.zsh
+source <(antibody init)
 
-antigen bundle akoenig/npm-run.plugin.zsh
-antigen bundle zuxfoucault/colored-man-pages_mod
-antigen bundle lukechilds/zsh-better-npm-completion
-antigen bundle molovo/tipz
-antigen bundle Tarrasch/zsh-command-not-found
-antigen bundle tarruda/zsh-autosuggestions
-antigen bundle zdharma/fast-syntax-highlighting
-antigen bundle zsh-users/zsh-history-substring-search
-
-antigen theme https://github.com/denysdovhan/spaceship-prompt spaceship
-
-antigen apply
+antibody bundle < ~/.zsh_plugins.txt
 
 SPACESHIP_KUBECONTEXT_SHOW=false
-TIPZ_TEXT='💡'
 
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:$(brew --prefix openssl)/bin:$PATH
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # Autoload zsh functions.
 autoload -U ~/.zsh/functions/*(:t)
 
 if brew command command-not-found-init > /dev/null; then eval "$(brew command-not-found-init)"; fi
+
+#forces zsh to realize new commands
+zstyle ':completion:*' completer _oldlist _expand _complete _match _ignored _approximate
+
+# matches case insensitive for lowercase
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# pasting with tabs doesn't perform completion
+zstyle ':completion:*' insert-tab pending
+
+# rehash if command not found (possibly recently installed)
+zstyle ':completion:*' rehash true
+
+# menu if nb items > 2
+zstyle ':completion:*' menu select=2
+
+autoload -Uz compinit
+typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
+if [ $(date +'%j') != $updated_at ]; then
+  compinit -i
+else
+  compinit -C -i
+fi
 
 alias ls="gls --color --group-directories-first"
 

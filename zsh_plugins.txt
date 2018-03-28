@@ -1,0 +1,4 @@
+denysdovhan/spaceship-prompt
+tarruda/zsh-autosuggestions
+zsh-users/zsh-history-substring-search
+zdharma/fast-syntax-highlighting
