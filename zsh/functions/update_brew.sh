@@ -12,4 +12,4 @@ brew prune
 
 brew cleanup --force -s
 brew cask cleanup
-rm -rf `brew --cache`
+rm -rf "$(brew --cache)"
