@@ -1,16 +1,16 @@
+export PATH=/usr/local/bin:/usr/local/sbin:$(brew --prefix openssl)/bin:$PATH
+
 source <(antibody init)
 
 antibody bundle < ~/.zsh_plugins.txt
 
-SPACESHIP_KUBECONTEXT_SHOW=false
-
-export PATH=/usr/local/bin:/usr/local/sbin:$(brew --prefix openssl)/bin:$PATH
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-
-# Autoload zsh functions.
-autoload -U ~/.zsh/functions/*(:t)
-
-if brew command command-not-found-init > /dev/null; then eval "$(brew command-not-found-init)"; fi
+autoload -Uz compinit
+typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
+if [ $(date +'%j') != $updated_at ]; then
+  compinit -i
+else
+  compinit -C -i
+fi
 
 #forces zsh to realize new commands
 zstyle ':completion:*' completer _oldlist _expand _complete _match _ignored _approximate
@@ -26,14 +26,6 @@ zstyle ':completion:*' rehash true
 
 # menu if nb items > 2
 zstyle ':completion:*' menu select=2
-
-autoload -Uz compinit
-typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
-if [ $(date +'%j') != $updated_at ]; then
-  compinit -i
-else
-  compinit -C -i
-fi
 
 alias ls="gls --color --group-directories-first"
 
@@ -84,3 +76,7 @@ alias killdups='/System/Library/Frameworks/CoreServices.framework/Versions/A/Fra
 
 # Use alias with sudo
 alias sudo='nocorrect sudo '
+
+export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=/Library/Fonts"
+
+if brew command command-not-found-init > /dev/null; then eval "$(brew command-not-found-init)"; fi
