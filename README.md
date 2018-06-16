@@ -1,6 +1,6 @@
 # dotfiles
 
-My OS X dotfiles
+My macOS dotfiles
 
 ## Installation
 
@@ -14,6 +14,6 @@ My OS X dotfiles
 
 ### Drink a beer 🍺
 
-### Setup mac OS
+### Change macOS settings
 
 `bash ~/.dotfiles/macos`
