@@ -6,7 +6,7 @@ echo 'Start installing...'
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 echo "Installing HomeBrew and apps..."
-ln -s ~/.dotfiles/Brewfile ~/Brewfile
+ln -s ~/.dotfiles/Brewfile ~/.Brewfile
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew tap homebrew/bundle
 brew bundle
