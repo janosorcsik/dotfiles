@@ -12,7 +12,7 @@ My OS X dotfiles
 
 `bash ~/.dotfiles/install.sh`
 
-### Drink a beer
+### Drink a beer 🍺
 
 ### Setup mac OS
 
