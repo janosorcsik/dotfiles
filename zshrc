@@ -1,15 +1,11 @@
 export PATH=/usr/local/bin:/usr/local/sbin:$(brew --prefix openssl)/bin:$PATH
 
-source <(antibody init)
-
-antibody bundle < ~/.zsh_plugins.txt
-
-autoload -Uz compinit
+autoload -Uz compaudit compinit
 typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
 if [ $(date +'%j') != $updated_at ]; then
-  compinit -i
+  compinit -di
 else
-  compinit -C -i
+  compinit -dCi
 fi
 
 #forces zsh to realize new commands
@@ -80,3 +76,18 @@ alias sudo='nocorrect sudo '
 export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=/Library/Fonts"
 
 if brew command command-not-found-init > /dev/null; then eval "$(brew command-not-found-init)"; fi
+
+# Set Spaceship ZSH as a prompt
+autoload -U promptinit; promptinit
+prompt spaceship
+SPACESHIP_PROMPT_ORDER=(
+  dir
+  git
+  exec_time
+  line_sep
+  battery
+  char
+)
+
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
