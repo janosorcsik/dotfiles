@@ -89,5 +89,12 @@ SPACESHIP_PROMPT_ORDER=(
   char
 )
 
+SPACESHIP_GIT_STATUS_PREFIX=" "
+SPACESHIP_GIT_STATUS_ADDED="%F{yellow}+"
+SPACESHIP_GIT_STATUS_UNTRACKED="%F{cyan}?"
+SPACESHIP_GIT_STATUS_DELETED="%F{green}✘"
+SPACESHIP_GIT_STATUS_MODIFIED="%F{green}!"
+SPACESHIP_GIT_STATUS_SUFFIX=""
+
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
