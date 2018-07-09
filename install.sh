@@ -9,7 +9,7 @@ echo "Installing HomeBrew and apps..."
 ln -s ~/.dotfiles/Brewfile ~/.Brewfile
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew tap homebrew/bundle
-brew bundle
+brew bundle --global
 
 # Reload QuickLook
 qlmanage -r
