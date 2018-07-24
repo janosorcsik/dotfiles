@@ -3,7 +3,7 @@ set -ux
 
 echo 'Start installing...'
 
-export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=/Library/Fonts"
+export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 
 echo "Installing HomeBrew and apps..."
 ln -s ~/.dotfiles/Brewfile ~/.Brewfile

@@ -73,7 +73,7 @@ alias killdups='/System/Library/Frameworks/CoreServices.framework/Versions/A/Fra
 # Use alias with sudo
 alias sudo='nocorrect sudo '
 
-export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=/Library/Fonts"
+export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 
 if brew command command-not-found-init > /dev/null; then eval "$(brew command-not-found-init)"; fi
 
