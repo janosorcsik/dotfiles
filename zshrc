@@ -1,5 +1,3 @@
-export PATH=/usr/local/bin:/usr/local/sbin:$(brew --prefix openssl)/bin:$PATH
-
 autoload -Uz compaudit compinit
 typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
 if [ $(date +'%j') != $updated_at ]; then
@@ -75,7 +73,7 @@ alias sudo='nocorrect sudo '
 
 export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 
-if brew command command-not-found-init > /dev/null; then eval "$(brew command-not-found-init)"; fi
+source /usr/local/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh
 
 # Set Spaceship ZSH as a prompt
 autoload -U promptinit; promptinit
