@@ -1,3 +1,5 @@
+export PATH="/usr/local/sbin:$PATH"
+
 autoload -Uz compaudit compinit
 typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
 if [ $(date +'%j') != $updated_at ]; then
