@@ -96,5 +96,12 @@ SPACESHIP_GIT_STATUS_DELETED="%F{green}✘"
 SPACESHIP_GIT_STATUS_MODIFIED="%F{green}!"
 SPACESHIP_GIT_STATUS_SUFFIX=""
 
+HISTSIZE=5000               #How many lines of history to keep in memory
+HISTFILE=~/.zsh_history     #Where to save history to disk
+SAVEHIST=5000               #Number of history entries to save to disk
+setopt    appendhistory     #Append history to the history file (no overwriting)
+setopt    sharehistory      #Share history across terminals
+setopt    incappendhistory  #Immediately append to the history file, not just when a term is killed
+
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
