@@ -2,7 +2,7 @@
 
 mas upgrade
 brew update
-brew upgrade
+brew upgrade --fetch-HEAD
 
 brew cu --all --yes --cleanup --quiet --no-brew-update
 
@@ -10,6 +10,5 @@ brew bundle dump --global --force
 
 brew prune
 
-brew cleanup --force -s
-brew cask cleanup
+brew cleanup -s
 rm -rf "$(brew --cache)"
