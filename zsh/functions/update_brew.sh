@@ -4,7 +4,7 @@ mas upgrade
 brew update
 brew upgrade --fetch-HEAD
 
-brew cu --all --yes --cleanup --quiet --no-brew-update
+brew cu --all --yes --quiet --no-brew-update
 
 brew bundle dump --global --force
 
