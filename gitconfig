@@ -1,5 +1,5 @@
 [user]
-	name = János Orcsik
+	name = János Orcsik
 	email = orcsikj@gmail.com
 [color]
 	ui = true
@@ -25,7 +25,6 @@
 	ca = commit -am
 	co = checkout
 	br = branch -a
-	branches = branch -a
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	df = diff --color --color-words --abbrev
 	purge = "!f() { \
