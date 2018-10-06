@@ -470,6 +470,13 @@ defaults write com.tapbots.TweetbotMac OpenURLsDirectly -bool true
 defaults write com.sub.QLAddict theme farran
 
 ###############################################################################
+# QLColorCode                                                                 #
+###############################################################################
+
+# Set QLColorCode font
+defaults write org.n8gray.QLColorCode font 'OperatorMono-Book'
+
+###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 
