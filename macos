@@ -463,6 +463,13 @@ defaults write org.m0k.transmission BlocklistAutoUpdate -bool true
 defaults write com.tapbots.TweetbotMac OpenURLsDirectly -bool true
 
 ###############################################################################
+# QLAddict                                                                    #
+###############################################################################
+
+# Set QLAddict theme
+defaults write com.sub.QLAddict theme farran
+
+###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 
