@@ -3,9 +3,9 @@ export PATH="/usr/local/sbin:$PATH"
 autoload -Uz compaudit compinit
 typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
 if [ $(date +'%j') != $updated_at ]; then
-  compinit -di
+	compinit -di
 else
-  compinit -dCi
+	compinit -dCi
 fi
 
 #forces zsh to realize new commands
@@ -78,15 +78,16 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 source /usr/local/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh
 
 # Set Spaceship ZSH as a prompt
-autoload -U promptinit; promptinit
+autoload -U promptinit
+promptinit
 prompt spaceship
 SPACESHIP_PROMPT_ORDER=(
-  dir
-  git
-  exec_time
-  line_sep
-  battery
-  char
+	dir
+	git
+	exec_time
+	line_sep
+	battery
+	char
 )
 
 SPACESHIP_GIT_STATUS_PREFIX=" "
@@ -96,12 +97,12 @@ SPACESHIP_GIT_STATUS_DELETED="%F{green}✗"
 SPACESHIP_GIT_STATUS_MODIFIED="%F{green}!"
 SPACESHIP_GIT_STATUS_SUFFIX=""
 
-HISTSIZE=5000               #How many lines of history to keep in memory
-HISTFILE=~/.zsh_history     #Where to save history to disk
-SAVEHIST=5000               #Number of history entries to save to disk
-setopt    appendhistory     #Append history to the history file (no overwriting)
-setopt    sharehistory      #Share history across terminals
-setopt    incappendhistory  #Immediately append to the history file, not just when a term is killed
+HISTSIZE=5000           #How many lines of history to keep in memory
+HISTFILE=~/.zsh_history #Where to save history to disk
+SAVEHIST=5000           #Number of history entries to save to disk
+setopt appendhistory    #Append history to the history file (no overwriting)
+setopt sharehistory     #Share history across terminals
+setopt incappendhistory #Immediately append to the history file, not just when a term is killed
 
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
