@@ -39,8 +39,8 @@ cask "visual-studio-code"
 cask "yemuzip"
 cask "colindean/fonts-nonfree/font-microsoft-office"
 mas "1Blocker", id: 1107421413
-mas "1Password", id: 443987910
 mas "Chatty", id: 981117463
+mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "Magnet", id: 441258766
 mas "Microsoft Remote Desktop", id: 1295203466
