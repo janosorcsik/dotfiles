@@ -23,6 +23,8 @@ zstyle ':completion:*' rehash true
 # menu if nb items > 2
 zstyle ':completion:*' menu select=2
 
+alias cat="bat"
+
 alias ls="gls --color --group-directories-first"
 
 # List all files colorized in long format
