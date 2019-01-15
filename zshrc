@@ -1,4 +1,4 @@
-export PATH="/usr/local/sbin:$PATH"
+PATH="/usr/local/sbin:$PATH:./node_modules/.bin";
 
 autoload -Uz compaudit compinit
 typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
