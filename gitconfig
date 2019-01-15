@@ -21,12 +21,22 @@
 	changed = green
 	untracked = cyan
 [alias]
+	a = add
 	s = status -s
-	ca = commit -am
+	c = clone --recursive
+	cm = commit -m
 	co = checkout
-	br = branch -a
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	cob = checkout -b
+	del-merged-local = "!git branch --merged master | grep -v 'master$' | xargs git branch -D"
+	del-no-remote = "!git remote prune origin && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -D"
 	df = diff --color --color-words --abbrev
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	m = merge
+	f = fetch
+	pl = pull
+	ps = push
+	r = reset
+	rb = rebase
 	purge = "!f() { \
 			declare tmp_dir=$(mktemp -d); \
 			git clean -fdxn | sed -n s'/^Would remove \\(.*\\)/\\1/p' | xargs -I % mv \"%\" \"$tmp_dir\"; \
@@ -69,6 +79,7 @@
 	# Detect copies as well as renames
 	renames = copies
 	colorMoved = zebra
+	indentHeuristic = true
 [merge]
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
