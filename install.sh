@@ -28,7 +28,7 @@ sudo rm ~/.gitconfig
 ln -s ~/.dotfiles/gitconfig ~/.gitconfig
 
 echo "NPM..."
-sudo npm install -g eslint spaceship-prompt
+sudo npm install -g spaceship-prompt
 
 echo "Skype..."
 sudo rm ~/Library/Application\ Support/Skype/orcsik.janos/main.db
