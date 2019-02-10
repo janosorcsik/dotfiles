@@ -3,6 +3,14 @@
 	email = orcsikj@gmail.com
 [color]
 	ui = true
+	branch = true
+	diff = true
+	interactive = true
+	status = true
+	grep = true
+	pager = true
+	decorate = true
+	showbranch = true
 [color "branch"]
 	current = yellow reverse
 	local = yellow
@@ -71,7 +79,7 @@
 	helper = osxkeychain
 # correct typos
 [help]
-	autocorrect = 1
+ autocorrect = 1
 [fetch]
 	prune = true
 [diff]
