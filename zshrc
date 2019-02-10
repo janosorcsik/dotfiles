@@ -1,6 +1,6 @@
 PATH="/usr/local/sbin:$PATH:./node_modules/.bin";
 
-autoload -Uz compaudit compinit
+autoload -Uz compinit
 typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
 if [ $(date +'%j') != $updated_at ]; then
 	compinit -di
@@ -25,32 +25,12 @@ zstyle ':completion:*' menu select=2
 
 alias cat="bat"
 
-alias ls="gls --color --group-directories-first"
+alias ls="ls -G"
 
-# List all files colorized in long format
-alias ll="ls -lhAFG"
-
-# List all files colorized in long format, including dot files
-alias la="ls -A"
+# List all files
+alias la="ls -lhA"
 
 alias cd..="cd .."
-alias ..="cd.."
-
-# Simple HTTP server
-alias http="python -m SimpleHTTPServer"
-
-# Colored grep
-alias grep="grep --color=auto"
-
-# Default Python:
-alias python=python3
-# Default pip:
-alias pip=pip3
-
-# IP addresses
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias localip="ipconfig getifaddr en0"
-alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 
 # Show/hide hidden files in Finder
 alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
@@ -71,9 +51,6 @@ alias nu="npm install npm -g && npm update -g"
 
 # Remove Duplicates from the “Open With” Right-Click Menu in Mac OS X:
 alias killdups='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
-
-# Use alias with sudo
-alias sudo='nocorrect sudo '
 
 export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 
