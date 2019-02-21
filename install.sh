@@ -2,7 +2,7 @@
 set -ux
 
 echo 'Start installing...'
-
+export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 
 echo "Installing HomeBrew and apps..."
