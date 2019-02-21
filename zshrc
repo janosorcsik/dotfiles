@@ -75,6 +75,9 @@ SPACESHIP_GIT_STATUS_ADDED="%F{yellow}+%F{red}"
 SPACESHIP_GIT_STATUS_UNTRACKED="%F{cyan}?%F{red}"
 SPACESHIP_GIT_STATUS_DELETED="%F{red}✗%F{red}"
 SPACESHIP_GIT_STATUS_MODIFIED="%F{green}!%F{red}"
+SPACESHIP_GIT_STATUS_AHEAD="%F{purple}↥%F{red}"
+SPACESHIP_GIT_STATUS_BEHIND="%F{purple}↧%F{red}"
+SPACESHIP_GIT_STATUS_DIVERGED="%F{purple}⇄%F{red}"
 SPACESHIP_GIT_STATUS_SUFFIX=""
 
 HISTSIZE=5000            #How many lines of history to keep in memory
