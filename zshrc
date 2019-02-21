@@ -52,6 +52,7 @@ alias nu="npm install npm -g && npm update -g"
 # Remove Duplicates from the “Open With” Right-Click Menu in Mac OS X:
 alias killdups='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
 
+export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 
 source /usr/local/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh
