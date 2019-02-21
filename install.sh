@@ -23,6 +23,9 @@ sudo rm -rf ~/.zsh
 mkdir ~/.zsh
 ln -s ~/.dotfiles/zsh/* ~/.zsh/
 
+# Remove last login text
+touch ~/.hushlogin
+
 echo "Git..."
 sudo rm ~/.gitconfig
 ln -s ~/.dotfiles/gitconfig ~/.gitconfig
