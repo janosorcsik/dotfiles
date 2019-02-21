@@ -1,105 +1,108 @@
-[user]
-	name = János Orcsik
-	email = orcsikj@gmail.com
-[color]
-	ui = true
-	branch = true
-	diff = true
-	interactive = true
-	status = true
-	grep = true
-	pager = true
-	decorate = true
-	showbranch = true
-[color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
-[color "diff"]
-	meta = yellow
-	commit = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
-	newMoved = cyan
-	oldMoved = blue
-[color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
 [alias]
 	a = add
-	s = status -s
 	c = clone --recursive
-	cm = commit -m
+	cm = commit --message
 	co = checkout
-	cob = checkout -b
 	del-merged-local = "!git branch --merged master | grep -v 'master$' | xargs git branch -D"
 	del-no-remote = "!git remote prune origin && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -D"
 	df = diff --color --color-words --abbrev
+	f = fetch
+	fa = fetch --all
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	m = merge
-	f = fetch
+	nb = checkout -b
 	pl = pull
-	ps = push
-	r = reset
-	rb = rebase
 	purge = "!f() { \
 			declare tmp_dir=$(mktemp -d); \
 			git clean -fdxn | sed -n s'/^Would remove \\(.*\\)/\\1/p' | xargs -I % mv \"%\" \"$tmp_dir\"; \
 			(rm -rf \"$tmp_dir\" &); \
 	}; f"
+	ps = push
+	r = reset
+	rb = rebase
+	s = status --branch --short
 [apply]
 	# Detect whitespace errors when applying a patch
 	whitespace = fix
-[pager]
-	# insanely beautiful diffs ==> npm install -g diff-so-fancy
-	diff = diff-so-fancy | less --tabs=4 -RFX
-	show = diff-so-fancy | less --tabs=4 -RFX
+[color]
+	branch = true
+	decorate = true
+	diff = true
+	grep = true
+	interactive = true
+	pager = true
+	showbranch = true
+	status = true
+	ui = true
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "diff"]
+	commit = yellow bold
+	frag = magenta bold
+	meta = yellow
+	new = green bold
+	newMoved = cyan
+	old = red bold
+	oldMoved = blue
+	whitespace = red reverse
+[color "diff-highlight"]
+	newHighlight = green bold 22
+	newNormal = green bold
+	oldHighlight = red bold 52
+	oldNormal = red bold
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
 [core]
-	# Treat spaces before tabs and all kinds of trailing whitespace as an error
-	# [default] trailing-space: looks for spaces at the end of a line
-	# [default] space-before-tab: looks for spaces before tabs at the beginning of a line
-	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
-	# Make `git rebase` safer on macOS
-	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
-	trustctime = false
 	# Prevent showing files whose names contain non-ASCII symbols as unversioned.
 	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
 	precomposeunicode = false
 	# Speed up commands involving untracked files such as `git status`.
 	# https://git-scm.com/docs/git-update-index#_untracked_cache
+		# Make `git rebase` safer on macOS
+	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+	trustctime = false
 	untrackedCache = true
-# push easily. http://stackoverflow.com/a/23918418/89484
-[push]
-	default = current
-	followTags = true
+	# Treat spaces before tabs and all kinds of trailing whitespace as an error
+	# [default] trailing-space: looks for spaces at the end of a line
+	# [default] space-before-tab: looks for spaces before tabs at the beginning of a line
+	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
 [credential]
 	helper = osxkeychain
-# correct typos
-[help]
- autocorrect = 1
-[fetch]
-	prune = true
 [diff]
+	colorMoved = zebra
 	compactionHeuristic = true
+	indentHeuristic = true
 	# Detect copies as well as renames
 	renames = copies
-	colorMoved = zebra
-	indentHeuristic = true
+[fetch]
+	prune = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	process = git-lfs filter-process
+	required = true
+	smudge = git-lfs smudge -- %f
+[help]
+	# correct typos
+	autocorrect = 1
+[log]
+	date = relative
 [merge]
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
-[log]
-	date = relative
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
-[filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
+[pager]
+	# insanely beautiful diffs ==> npm install -g diff-so-fancy
+	diff = diff-so-fancy | less --tabs=4 -RFX
+	show = diff-so-fancy | less --tabs=4 -RFX
+[push]
+	# push easily. http://stackoverflow.com/a/23918418/89484
+	default = current
+	followTags = true
+[rerere]
+	enabled = true
+[user]
+	name = János Orcsik
+	email = orcsikj@gmail.com
