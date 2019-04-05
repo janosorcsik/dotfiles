@@ -11,7 +11,7 @@
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	m = merge
 	nb = checkout -b
-	pl = pull
+	pl = pull --recurse-submodules
 	purge = "!f() { \
 			declare tmp_dir=$(mktemp -d); \
 			git clean -fdxn | sed -n s'/^Would remove \\(.*\\)/\\1/p' | xargs -I % mv \"%\" \"$tmp_dir\"; \
