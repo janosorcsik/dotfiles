@@ -476,6 +476,9 @@ defaults write com.sub.QLAddict theme farran
 # Set QLColorCode font
 defaults write org.n8gray.QLColorCode font 'OperatorMono-Book'
 
+# Disable capitalized keywords
+defaults write org.n8gray.QLColorCode extraHLFlags '-t 4'
+
 ###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
