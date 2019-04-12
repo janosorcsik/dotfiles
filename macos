@@ -460,7 +460,7 @@ defaults write org.m0k.transmission BlocklistAutoUpdate -bool true
 ###############################################################################
 
 # Bypass the annoyingly slow t.co URL shortener
-defaults write com.tapbots.TweetbotMac OpenURLsDirectly -bool true
+defaults write com.tapbots.Tweetbot3Mac OpenURLsDirectly -bool true
 
 ###############################################################################
 # QLAddict                                                                    #
