@@ -399,6 +399,16 @@ defaults write com.apple.QuickTimePlayerX MGPlayMovieOnOpen -bool true
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
 ###############################################################################
+# Screenshot                                                                  #
+###############################################################################
+
+mkdir -p ~/Library/Mobile\ Documents/com~apple~CloudDocs/Screenshots
+chmod u+rw ~/Library/Mobile\ Documents/com~apple~CloudDocs/Screenshots
+
+# Change screenshots location
+defaults write com.apple.screencapture location ~/Library/Mobile\ Documents/com~apple~CloudDocs/Screenshots
+
+###############################################################################
 # Mac App Store                                                               #
 ###############################################################################
 
