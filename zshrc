@@ -61,6 +61,13 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 
 source /usr/local/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh
 
+# Enable colors in zsh.
+autoload colors && colors
+
+# Enable colors in ls.
+export CLICOLOR=1
+export LSCOLORS="Gxfxcxdxbxegedabagacad"
+
 # Set Spaceship ZSH as a prompt
 autoload -U promptinit
 promptinit
