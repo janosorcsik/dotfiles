@@ -80,6 +80,7 @@
 	renames = copies
 [fetch]
 	prune = true
+	fsckObjects = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	process = git-lfs filter-process
@@ -101,8 +102,12 @@
 	# push easily. http://stackoverflow.com/a/23918418/89484
 	default = current
 	followTags = true
+[receive]
+  fsckObjects = true
 [rerere]
 	enabled = true
+[transfer]
+  fsckObjects = true
 [user]
 	name = János Orcsik
 	email = orcsikj@gmail.com
