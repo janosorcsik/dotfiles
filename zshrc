@@ -1,4 +1,4 @@
-PATH="/usr/local/sbin:$PATH:./node_modules/.bin";
+PATH="/usr/local/sbin:$PATH:./node_modules/.bin:$HOME/.dotnet/tools";
 
 autoload -Uz compinit
 
