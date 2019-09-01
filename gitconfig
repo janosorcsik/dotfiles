@@ -8,7 +8,7 @@
 	df = diff --color --color-words --abbrev
 	f = fetch
 	fa = fetch --all
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --branches --remotes
 	m = merge
 	nb = checkout -b
 	pl = pull --recurse-submodules
@@ -58,9 +58,7 @@
 	untracked = cyan
 [core]
 	commitGraph = true
-	# Prevent showing files whose names contain non-ASCII symbols as unversioned.
-	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
-	precomposeunicode = false
+	precomposeunicode = true
 	# Speed up commands involving untracked files such as `git status`.
 	# https://git-scm.com/docs/git-update-index#_untracked_cache
 		# Make `git rebase` safer on macOS
@@ -118,5 +116,5 @@
 [transfer]
 	fsckObjects = true
 [user]
-	name = János Orcsik
+	name = János Orcsik
 	email = orcsikj@gmail.com
