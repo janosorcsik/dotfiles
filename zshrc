@@ -1,5 +1,7 @@
 export PATH="/usr/local/sbin:./node_modules/.bin:$HOME/.dotnet/tools:$PATH"
 
+fpath=(/usr/local/share/zsh-completions $fpath)
+
 autoload -Uz compinit
 _comp_files=(${ZDOTDIR:-$HOME}/.zcompdump(Nm-20))
 if (( $#_comp_files )); then
