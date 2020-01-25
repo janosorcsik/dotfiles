@@ -3,10 +3,8 @@
 	c = clone --recursive
 	cm = commit --message
 	co = checkout
-	del-merged-local = "!git branch --merged master | grep -v 'master$' | xargs git branch -D"
-	del-no-remote = "!git remote prune origin && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -D"
+	del = "!git fetch origin --prune && git branch --merged origin/master | grep -v 'master$' | xargs git branch -d"
 	df = diff --color --color-words --abbrev
-	f = fetch
 	fa = fetch --all
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --branches --remotes
 	m = merge
@@ -18,22 +16,13 @@
 			(rm -rf \"$tmp_dir\" &); \
 	}; f"
 	ps = push
-	r = reset
-	rb = rebase
 	s = status --branch --short
+
 [apply]
 	# Detect whitespace errors when applying a patch
 	whitespace = fix
 [color]
-	branch = true
-	decorate = true
-	diff = true
-	grep = true
-	interactive = true
-	pager = true
-	showbranch = true
-	status = true
-	ui = true
+	ui = auto
 [color "branch"]
 	current = yellow reverse
 	local = yellow
@@ -41,11 +30,9 @@
 [color "diff"]
 	commit = yellow bold
 	frag = magenta bold
-	meta = yellow
+	meta = 11
 	new = green bold
-	newMoved = cyan
 	old = red bold
-	oldMoved = blue
 	whitespace = red reverse
 [color "diff-highlight"]
 	newHighlight = green bold 22
@@ -57,26 +44,10 @@
 	changed = green
 	untracked = cyan
 [core]
-	commitGraph = true
-	precomposeunicode = true
-	# Speed up commands involving untracked files such as `git status`.
-	# https://git-scm.com/docs/git-update-index#_untracked_cache
-		# Make `git rebase` safer on macOS
-	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
-	trustctime = false
 	untrackedCache = true
-	whitespace=fix,space-before-tab,tab-in-indent,trailing-space,cr-at-eol
 [credential]
 	helper = osxkeychain
-[diff]
-	algorithm = histogram
-	colorMoved = zebra
-	compactionHeuristic = true
-	indentHeuristic = true
-	# Detect copies as well as renames
-	renames = copies
 [fetch]
-	fsckObjects = true
 	prune = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
@@ -86,35 +57,15 @@
 [help]
 	# correct typos
 	autocorrect = 1
-[log]
-	date = relative
-	decorate = short
-[merge]
-	conflictstyle = diff3
-	# Include summaries of merged commits in newly created merge commit messages
-	log = true
 [pager]
 	# insanely beautiful diffs ==> npm install -g diff-so-fancy
 	diff = diff-so-fancy | less --tabs=4 -RFX
 	show = diff-so-fancy | less --tabs=4 -RFX
-[pull]
-	rebase = true
 [push]
 	# push easily. http://stackoverflow.com/a/23918418/89484
 	default = current
-	followTags = true
-[rebase]
-	autoStash = true
-	autosquash = true
-[receive]
-	fsckObjects = true
 [rerere]
 	enabled = true
-[status]
-	color = true
-	submodulesummary = true
-[transfer]
-	fsckObjects = true
 [user]
 	name = János Orcsik
 	email = orcsikj@gmail.com
