@@ -17,10 +17,6 @@
 	}; f"
 	ps = push
 	s = status --branch --short
-
-[apply]
-	# Detect whitespace errors when applying a patch
-	whitespace = fix
 [color]
 	ui = auto
 [color "branch"]
