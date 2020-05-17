@@ -31,7 +31,7 @@ sudo rm ~/.gitconfig
 ln -s ~/.dotfiles/gitconfig ~/.gitconfig
 
 echo "NPM..."
-sudo npm install -g spaceship-prompt yarn
+npm install -g spaceship-prompt yarn
 
 echo "Skype..."
 sudo rm ~/Library/Application\ Support/Skype/orcsik.janos/main.db
