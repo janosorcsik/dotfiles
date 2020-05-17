@@ -1,4 +1,5 @@
-export PATH="/usr/local/sbin:./node_modules/.bin:$HOME/.dotnet/tools:$PATH"
+export N_PREFIX=$HOME/.n 
+export PATH="/usr/local/sbin:./node_modules/.bin:$HOME/.dotnet/tools:$N_PREFIX/bin:$PATH"
 
 fpath=($fpath /usr/local/share/zsh-completions)
 
