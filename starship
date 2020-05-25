@@ -1,0 +1,47 @@
+add_newline = false
+
+[battery]
+full_symbol = "⚡ "
+charging_symbol = "🔌 "
+discharging_symbol = "🔋 "
+
+[[battery.display]]
+threshold = 10
+style = "red"
+
+[[battery.display]]
+threshold = 50
+style = "yellow"
+
+[[battery.display]]
+threshold = 100
+style = "green"
+
+[character]
+symbol = "➜"
+error_symbol = "✗"
+use_symbol_for_status = true
+
+[git_branch]
+symbol = "🌱 "
+
+[git_state]
+rebase = "🔀"
+revert = "⏪"
+cherry_pick = "🍒"
+bisect = "✂️"
+progress_divider = " of "
+
+[git_status]
+stashed = "📦"
+ahead = "⬆️"
+behind = "⬇️"
+conflicted = "⚔️ "
+diverged = "🔱 "
+deleted = "🗑 "
+renamed = "🆎 "
+modified = "📝 "
+staged = "🗃️ " 
+untracked = "🛤️ "
+prefix = ""
+suffix = " "

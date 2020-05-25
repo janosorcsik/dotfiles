@@ -30,8 +30,12 @@ echo "Git..."
 sudo rm ~/.gitconfig
 ln -s ~/.dotfiles/gitconfig ~/.gitconfig
 
+echo "Starship..."
+sudo rm ~/.starship
+ln -s ~/.dotfiles/starship ~/.starship
+
 echo "NPM..."
-npm install -g spaceship-prompt yarn
+npm install -g yarn
 
 echo "Skype..."
 sudo rm ~/Library/Application\ Support/Skype/orcsik.janos/main.db
