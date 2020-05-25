@@ -1,3 +1,4 @@
+export STARSHIP_CONFIG=~/.starship
 export N_PREFIX=$HOME/.n 
 export PATH="/usr/local/sbin:./node_modules/.bin:$HOME/.dotnet/tools:$N_PREFIX/bin:$PATH"
 
@@ -59,31 +60,6 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 
 source /usr/local/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh
 
-# Set Spaceship ZSH as a prompt
-autoload -Uz promptinit
-promptinit
-prompt spaceship
-export SPACESHIP_PROMPT_ORDER=(
-	dir
-	git
-	line_sep
-	battery
-	char
-)
-
-export SPACESHIP_GIT_STATUS_PREFIX=" "
-export SPACESHIP_GIT_STATUS_ADDED="%F{yellow}✚%F{red}"
-export SPACESHIP_GIT_STATUS_UNTRACKED="%F{cyan}✭%F{red}"
-export SPACESHIP_GIT_STATUS_DELETED="%F{red}✖%F{red}"
-export SPACESHIP_GIT_STATUS_MODIFIED="%F{green}✹%F{red}"
-export SPACESHIP_GIT_STATUS_RENAMED="%F{cyan}➜%F{red}"
-export SPACESHIP_GIT_STATUS_STASHED="%F{blue}$%F{red}"
-export SPACESHIP_GIT_STATUS_UNMERGED="%F{white}═%F{red}"
-export SPACESHIP_GIT_STATUS_AHEAD="%F{purple}↥%F{red}"
-export SPACESHIP_GIT_STATUS_BEHIND="%F{purple}↧%F{red}"
-export SPACESHIP_GIT_STATUS_DIVERGED="%F{purple}⇄%F{red}"
-export SPACESHIP_GIT_STATUS_SUFFIX=""
-
 HISTSIZE=5000                #How many lines of history to keep in memory
 HISTFILE=$HOME/.zsh_history  #Where to save history to disk
 SAVEHIST=$HISTSIZE           #Number of history entries to save to disk
@@ -103,3 +79,5 @@ fd() {
       -print 2> /dev/null | fzf +m) &&
  cd "$dir"
 }
+
+eval "$(starship init zsh)"

@@ -22,6 +22,8 @@ brew "git-lfs"
 brew "mas"
 # Node version management
 brew "n"
+# The cross-shell prompt for astronauts
+brew "starship"
 # Download YouTube videos from the command-line
 brew "youtube-dl"
 # Fish-like fast/unobtrusive autosuggestions for zsh
@@ -30,10 +32,8 @@ brew "zsh-autosuggestions"
 brew "zsh-completions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
-cask "1password"
 cask "cheatsheet"
 cask "dictionaries"
-cask "font-jetbrains-mono"
 cask "google-chrome"
 cask "iina"
 cask "mounty"
@@ -50,6 +50,7 @@ cask "teamviewer"
 cask "transmission"
 cask "tunnelblick"
 cask "visual-studio-code"
+mas "1Password 7", id: 1333542190
 mas "Battery Indicator", id: 1206020918
 mas "Dato", id: 1470584107
 mas "Finances", id: 1218241304
