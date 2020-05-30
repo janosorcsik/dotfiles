@@ -1,7 +1,6 @@
 tap "buo/cask-upgrade"
 tap "homebrew/bundle"
 tap "homebrew/cask"
-tap "homebrew/cask-fonts"
 tap "homebrew/command-not-found"
 tap "homebrew/core"
 # Clone of cat(1) with syntax highlighting and Git integration
@@ -39,11 +38,7 @@ cask "iina"
 cask "mounty"
 cask "pastebot"
 cask "qladdict"
-cask "qlcolorcode"
-cask "qlmarkdown"
-cask "qlstephen"
 cask "qlvideo"
-cask "quicklook-json"
 cask "skype"
 cask "spotify"
 cask "teamviewer"
@@ -54,6 +49,7 @@ mas "1Password 7", id: 1333542190
 mas "Battery Indicator", id: 1206020918
 mas "Dato", id: 1470584107
 mas "Finances", id: 1218241304
+mas "Glance", id: 1513574319
 mas "Grammarly for Safari", id: 1462114288
 mas "Keynote", id: 409183694
 mas "Lungo", id: 1263070803
