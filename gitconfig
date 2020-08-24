@@ -1,9 +1,8 @@
 [alias]
 	a = add
-	c = clone --recursive
+	cl = clone --recursive
 	cm = commit --message
 	co = checkout
-	df = diff --color --color-words --abbrev
 	fa = fetch --all
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --branches --remotes
 	m = merge
@@ -35,8 +34,12 @@
 	untracked = cyan
 [core]
 	untrackedCache = true
+	# insanely beautiful diffs ==> npm install -g diff-so-fancy
+	pager = diff-so-fancy | less --tabs=2 -RFX
 [credential]
 	helper = osxkeychain
+[diff]
+	algorithm = histogram
 [fetch]
 	prune = true
 [filter "lfs"]
@@ -47,10 +50,6 @@
 [help]
 	# correct typos
 	autocorrect = 1
-[pager]
-	# insanely beautiful diffs ==> npm install -g diff-so-fancy
-	diff = diff-so-fancy | less --tabs=4 -RFX
-	show = diff-so-fancy | less --tabs=4 -RFX
 [push]
 	# push easily. http://stackoverflow.com/a/23918418/89484
 	default = current
