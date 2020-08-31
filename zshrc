@@ -1,5 +1,4 @@
-export STARSHIP_CONFIG=~/.starship
-export N_PREFIX=$HOME/.n 
+export N_PREFIX=$HOME/.n
 export PATH="/usr/local/sbin:./node_modules/.bin:$HOME/.dotnet/tools:$N_PREFIX/bin:$PATH"
 
 fpath=($fpath /usr/local/share/zsh-completions)
@@ -80,4 +79,5 @@ fd() {
  cd "$dir"
 }
 
-eval "$(starship init zsh)"
+autoload -U promptinit; promptinit
+prompt pure
