@@ -12,8 +12,6 @@ brew "coreutils"
 brew "diff-so-fancy"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
-# Command-line fuzzy finder written in Go
-brew "fzf"
 # Distributed revision control system
 brew "git"
 # Git extension for versioning large files

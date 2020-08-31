@@ -32,8 +32,6 @@ alias ll="ls -g --human-readable --no-group"
 
 alias cd..="cd .."
 
-alias grep="grep --color=auto"
-
 # Show/hide hidden files in Finder
 alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
 alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
@@ -42,17 +40,11 @@ alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && kil
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
-# Lock the screen (when going AFK)
-alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
-
 # Brew and Cask update
 alias bu="sh $HOME/.zsh/functions/update_brew.sh"
 
 # NPM update
 alias nu="npm install npm -g && npm update -g"
-
-# Remove Duplicates from the “Open With” Right-Click Menu in Mac OS X:
-alias killdups='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
 
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
@@ -69,15 +61,6 @@ setopt histignorealldups     #Substitute commands in the prompt
 
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-fd() {
- local dir
- dir=$(find ${1:-.} -path '*/\.*' -prune -o -type d \
-      -print 2> /dev/null | fzf +m) &&
- cd "$dir"
-}
 
 autoload -U promptinit; promptinit
 prompt pure
