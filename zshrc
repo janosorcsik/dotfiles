@@ -32,6 +32,19 @@ alias ll="ls -g --human-readable --no-group"
 
 alias cd..="cd .."
 
+#Git
+alias ga="git add"
+alias gcl="git clone --recursive"
+alias gcm="git commit --message"
+alias gco="git checkout"
+alias gd="git diff --color | diff-so-fancy"
+alias gfa="git fetch --all"
+alias gm="git merge"
+alias gnb="git checkout -b"
+alias gpl="git pull --recurse-submodules"
+alias gps="git push"
+alias gs="git status --branch --short"
+
 # Show/hide hidden files in Finder
 alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
 alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
