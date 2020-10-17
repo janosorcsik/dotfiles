@@ -23,15 +23,16 @@ sudo rm -rf ~/.zsh
 mkdir ~/.zsh
 ln -s ~/.dotfiles/zsh/* ~/.zsh/
 
+# Install Powerlevel10k Pure prompt
+sudo rm -rf ~/powerlevel10k
+git clone https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+
 # Remove last login text
 touch ~/.hushlogin
 
 echo "Git..."
 sudo rm ~/.gitconfig
 ln -s ~/.dotfiles/gitconfig ~/.gitconfig
-
-echo "NPM..."
-npm install -g pure
 
 echo "Skype..."
 sudo rm ~/Library/Application\ Support/Skype/orcsik.janos/main.db
