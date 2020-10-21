@@ -31,6 +31,7 @@ brew "zsh-syntax-highlighting"
 cask "dictionaries"
 cask "google-chrome"
 cask "iina"
+cask "keka"
 cask "mos"
 cask "mounty"
 cask "pastebot"
@@ -38,6 +39,7 @@ cask "qladdict"
 cask "qlvideo"
 cask "skype"
 cask "spotify"
+cask "teamviewer"
 cask "transmission"
 cask "tunnelblick"
 cask "visual-studio-code"
@@ -58,6 +60,6 @@ mas "Pages", id: 409201541
 mas "PiPer", id: 1421915518
 mas "Reeder", id: 1449412482
 mas "Slack", id: 803453959
-mas "The Unarchiver", id: 425424353
+mas "Tampermonkey", id: 1482490089
 mas "Tweetbot", id: 1384080005
 mas "Wipr", id: 1320666476
