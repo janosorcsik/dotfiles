@@ -10,12 +10,8 @@ brew "bat"
 brew "coreutils"
 # Good-lookin' diffs with diff-highlight and more
 brew "diff-so-fancy"
-# Play, record, convert, and stream audio and video
-brew "ffmpeg"
 # Distributed revision control system
 brew "git"
-# Git extension for versioning large files
-brew "git-lfs"
 # Mac App Store command-line interface
 brew "mas"
 # Node version management
