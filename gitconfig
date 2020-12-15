@@ -44,12 +44,13 @@
 	# correct typos
 	autocorrect = 1
 [merge]
+	ff = false
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
 [pull]
-	ff = only
+	ff = true
 [push]
-	default = simple
+	default = current
 [rerere]
 	enabled = true
 [user]
