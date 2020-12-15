@@ -7,7 +7,7 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 
 echo "Installing HomeBrew and apps..."
 ln -s ~/.dotfiles/Brewfile ~/.Brewfile
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 brew tap homebrew/bundle
 brew bundle --global
 
