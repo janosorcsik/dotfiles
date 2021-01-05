@@ -4,6 +4,7 @@ tap "homebrew/cask"
 tap "homebrew/cask-versions"
 tap "homebrew/command-not-found"
 tap "homebrew/core"
+tap "romkatv/powerlevel10k"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # GNU File, Shell, and Text utilities
@@ -16,17 +17,17 @@ brew "git"
 brew "mas"
 # Node version management
 brew "n"
-# Download YouTube videos from the command-line
-brew "youtube-dl"
 # Fish-like fast/unobtrusive autosuggestions for zsh
 brew "zsh-autosuggestions"
 # Additional completion definitions for zsh
 brew "zsh-completions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
+# A Zsh Theme
+brew "romkatv/powerlevel10k/powerlevel10k"
+cask "appcleaner"
 cask "dictionaries"
 cask "glance"
-cask "google-chrome"
 cask "iina"
 cask "mounty"
 cask "pastebot"
@@ -39,8 +40,7 @@ cask "transmission"
 cask "viscosity"
 cask "visual-studio-code"
 mas "1Password 7", id: 1333542190
-mas "Battery Indicator", id: 1206020918
-mas "Dato", id: 1470584107
+mas "Aviary", id: 1522043420
 mas "Finances", id: 1218241304
 mas "Grammarly for Safari", id: 1462114288
 mas "ImageFinder for Safari", id: 1514863337
