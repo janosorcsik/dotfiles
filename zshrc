@@ -67,6 +67,7 @@ alias bu="sh $HOME/.zsh/functions/update_brew.sh"
 alias nu="npm install npm -g && npm update -g"
 
 export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 
 source /usr/local/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh
