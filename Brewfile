@@ -25,22 +25,39 @@ brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 # A Zsh Theme
 brew "romkatv/powerlevel10k/powerlevel10k"
+# Application uninstaller
 cask "appcleaner"
 cask "dictionaries"
+# Utility to provide quick look previews for files that aren't natively supported
 cask "glance"
+# Free and open-source media player
 cask "iina"
+# Provides updates to various Microsoft products
+cask "microsoft-auto-update"
+cask "microsoft-teams"
+# Re-mounts write-protected NTFS volumes
 cask "mounty"
+# Workflow application to improve productivity
 cask "pastebot"
 cask "qladdict"
 cask "qlvideo"
+# Emoji picker optimized for blind people
 cask "rocket"
+# Video chat, voice call and instant messaging application
 cask "skype"
+# Microsofts instant messaging enterprise software
+cask "skype-for-business"
+# Music streaming service
 cask "spotify"
+# Remote access and connectivity software focused on security
+cask "teamviewer"
+# Open-source BitTorrent client
 cask "transmission"
+# VPN client for secure internet access and private browsing
 cask "viscosity"
+# Open-source code editor
 cask "visual-studio-code"
 mas "1Password 7", id: 1333542190
-mas "Aviary", id: 1522043420
 mas "Finances", id: 1218241304
 mas "Grammarly for Safari", id: 1462114288
 mas "ImageFinder for Safari", id: 1514863337
@@ -55,5 +72,5 @@ mas "PiPer", id: 1421915518
 mas "Reeder", id: 1449412482
 mas "Slack", id: 803453959
 mas "Tampermonkey", id: 1482490089
-mas "Tweetbot", id: 1384080005
+mas "Twitter", id: 1482454543
 mas "Wipr", id: 1320666476
