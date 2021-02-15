@@ -39,7 +39,6 @@ cask "microsoft-teams"
 cask "mounty"
 # Workflow application to improve productivity
 cask "pastebot"
-cask "qladdict"
 cask "qlvideo"
 # Emoji picker optimized for blind people
 cask "rocket"
@@ -49,6 +48,8 @@ cask "skype"
 cask "skype-for-business"
 # Music streaming service
 cask "spotify"
+# Quicklook extension for source files
+cask "syntax-highlight"
 # Remote access and connectivity software focused on security
 cask "teamviewer"
 # Open-source BitTorrent client
@@ -69,7 +70,6 @@ mas "Microsoft Remote Desktop", id: 1295203466
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "PiPer", id: 1421915518
-mas "Reeder", id: 1449412482
 mas "Slack", id: 803453959
 mas "Tampermonkey", id: 1482490089
 mas "Twitter", id: 1482454543
