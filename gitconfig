@@ -9,9 +9,9 @@
 	frag = magenta bold
 	meta = yellow bold
 	new = green bold
-    newMoved = cyan
+	newMoved = cyan
 	old = red bold
-    oldMoved = blue
+	oldMoved = blue
 	whitespace = red reverse
 [color "diff-highlight"]
 	newHighlight = green bold 22
@@ -26,15 +26,19 @@
 	untrackedCache = true
 	# insanely beautiful diffs ==> npm install -g diff-so-fancy
 	pager = diff-so-fancy | less --tabs=2 -RFX
-    precomposeUnicode = true
+	precomposeUnicode = true
 [credential]
 	helper = osxkeychain
 [diff]
 	algorithm = histogram
-    colorMoved = zebra
-    renames = copies
+	colorMoved = zebra
+	compactionHeuristic=true
+	indentHeuristic = true
+	noprefix = true
+	renames = copies
 [fetch]
 	prune = true
+	pruneTags = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	process = git-lfs filter-process
