@@ -1,22 +1,24 @@
+tap "beeftornado/rmtree"
 tap "buo/cask-upgrade"
 tap "homebrew/bundle"
 tap "homebrew/cask"
+tap "homebrew/cask-drivers"
 tap "homebrew/cask-versions"
 tap "homebrew/command-not-found"
 tap "homebrew/core"
 tap "romkatv/powerlevel10k"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-# GNU File, Shell, and Text utilities
-brew "coreutils"
-# Good-lookin' diffs with diff-highlight and more
-brew "diff-so-fancy"
+# Modern replacement for 'ls'
+brew "exa"
 # Distributed revision control system
 brew "git"
+# Syntax-highlighting pager for git and diff output
+brew "git-delta"
 # Mac App Store command-line interface
 brew "mas"
-# Node version management
-brew "n"
+# Platform built on V8 to build network applications
+brew "node"
 # Fish-like fast/unobtrusive autosuggestions for zsh
 brew "zsh-autosuggestions"
 # Additional completion definitions for zsh
@@ -28,17 +30,16 @@ brew "romkatv/powerlevel10k/powerlevel10k"
 # Application uninstaller
 cask "appcleaner"
 cask "dictionaries"
-# Utility to provide quick look previews for files that aren't natively supported
-cask "glance"
 # Free and open-source media player
 cask "iina"
 # Provides updates to various Microsoft products
 cask "microsoft-auto-update"
-cask "microsoft-teams"
 # Re-mounts write-protected NTFS volumes
 cask "mounty"
 # Workflow application to improve productivity
 cask "pastebot"
+# HTTP client that helps testing and describing APIs
+cask "paw"
 cask "qlvideo"
 # Emoji picker optimized for blind people
 cask "rocket"
@@ -48,8 +49,10 @@ cask "skype"
 cask "skype-for-business"
 # Music streaming service
 cask "spotify"
-# Quicklook extension for source files
-cask "syntax-highlight"
+# Settings for SteelSeries peripherals and accessories
+cask "steelseries-engine"
+# Text editor for code, markup and prose
+cask "sublime-text"
 # Remote access and connectivity software focused on security
 cask "teamviewer"
 # Open-source BitTorrent client
@@ -59,9 +62,13 @@ cask "viscosity"
 # Open-source code editor
 cask "visual-studio-code"
 mas "1Password 7", id: 1333542190
+mas "AdGuard for Safari", id: 1440147259
+mas "Fantastical", id: 975937182
 mas "Finances", id: 1218241304
 mas "Grammarly for Safari", id: 1462114288
+mas "Hidden Bar", id: 1452453066
 mas "ImageFinder for Safari", id: 1514863337
+mas "iPreview", id: 1519213509
 mas "Keynote", id: 409183694
 mas "Lungo", id: 1263070803
 mas "Magnet", id: 441258766
@@ -72,5 +79,6 @@ mas "Pages", id: 409201541
 mas "PiPer", id: 1421915518
 mas "Slack", id: 803453959
 mas "Tampermonkey", id: 1482490089
+mas "The Unarchiver", id: 425424353
+mas "Tomato 2", id: 1494210770
 mas "Twitter", id: 1482454543
-mas "Wipr", id: 1320666476
