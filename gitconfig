@@ -1,3 +1,5 @@
+[checkout]
+	defaultRemote = origin
 [color]
 	ui = auto
 [color "branch"]
@@ -9,9 +11,11 @@
 	frag = magenta bold
 	meta = yellow bold
 	new = green bold
-	newMoved = cyan
+	newMoved = cyan dim
+	newMovedAlternative = cyan italic
 	old = red bold
-	oldMoved = blue
+	oldMoved = blue dim
+	oldMovedAlternative = blue italic
 	whitespace = red reverse
 [color "diff-highlight"]
 	newHighlight = green bold 22
@@ -24,15 +28,15 @@
 	untracked = cyan
 [core]
 	untrackedCache = true
-	# insanely beautiful diffs ==> npm install -g diff-so-fancy
-	pager = diff-so-fancy | less --tabs=2 -RFX
 	precomposeUnicode = true
 [credential]
 	helper = osxkeychain
+[delta]
+  features = diff-so-fancy
 [diff]
 	algorithm = histogram
-	colorMoved = zebra
-	compactionHeuristic=true
+	colorMoved = dimmed_zebra
+	compactionHeuristic = true
 	indentHeuristic = true
 	noprefix = true
 	renames = copies
@@ -47,14 +51,24 @@
 [help]
 	# correct typos
 	autocorrect = 1
+[log]
+	date = relative
 [merge]
 	ff = false
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
+	renameLimit = 0
+[pager]
+	diff = delta
+	log = delta
+	reflog = delta
+	show = delta
 [pull]
-	ff = true
+	default = current
+	ff = only
 [push]
 	default = current
+	followTags = true
 [rerere]
 	enabled = true
 [user]
