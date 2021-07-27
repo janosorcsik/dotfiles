@@ -19,9 +19,6 @@ sudo rm ~/.zshrc
 echo '/usr/local/bin/zsh' | sudo tee -a /etc/shells
 chsh -s /usr/local/bin/zsh
 ln -s ~/.dotfiles/zshrc ~/.zshrc
-sudo rm -rf ~/.zsh
-mkdir ~/.zsh
-ln -s ~/.dotfiles/zsh/* ~/.zsh/
 
 # Install Powerlevel10k Pure prompt
 sudo rm ~/.p10k.zsh

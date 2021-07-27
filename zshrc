@@ -62,10 +62,23 @@ alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && 
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
 # Brew and Cask update
-alias bu="sh $HOME/.zsh/functions/update_brew.sh"
+#alias bu="sh $HOME/.zsh/functions/update_brew.sh"
 
 # NPM update
 alias nu="npm install npm -g && npm update -g"
+
+function bu {
+  mas upgrade
+  brew update
+  brew upgrade --fetch-HEAD
+
+  brew cu --all --yes --quiet --no-brew-update
+
+  brew cleanup -s
+  rm -rf "$(brew --cache)"
+
+  brew bundle dump --global --force --describe --no-lock
+}
 
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_AUTO_UPDATE=1
