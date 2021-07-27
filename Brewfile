@@ -11,6 +11,8 @@ tap "romkatv/powerlevel10k"
 brew "bat"
 # Modern replacement for 'ls'
 brew "exa"
+# GNU internationalization (i18n) and localization (l10n) library
+brew "gettext"
 # Distributed revision control system
 brew "git"
 # Syntax-highlighting pager for git and diff output
@@ -19,6 +21,8 @@ brew "git-delta"
 brew "mas"
 # Platform built on V8 to build network applications
 brew "node"
+# JavaScript package manager
+brew "yarn"
 # Fish-like fast/unobtrusive autosuggestions for zsh
 brew "zsh-autosuggestions"
 # Additional completion definitions for zsh
@@ -34,13 +38,15 @@ cask "dictionaries"
 cask "iina"
 # Provides updates to various Microsoft products
 cask "microsoft-auto-update"
+# Meet, chat, call, and collaborate in just one place
+cask "microsoft-teams"
 # Re-mounts write-protected NTFS volumes
 cask "mounty"
-# Workflow application to improve productivity
-cask "pastebot"
 # HTTP client that helps testing and describing APIs
 cask "paw"
 cask "qlvideo"
+# Control your tools with a few keystrokes
+cask "raycast"
 # Emoji picker optimized for blind people
 cask "rocket"
 # Video chat, voice call and instant messaging application
@@ -71,7 +77,6 @@ mas "ImageFinder for Safari", id: 1514863337
 mas "iPreview", id: 1519213509
 mas "Keynote", id: 409183694
 mas "Lungo", id: 1263070803
-mas "Magnet", id: 441258766
 mas "Messenger", id: 1480068668
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Numbers", id: 409203825
