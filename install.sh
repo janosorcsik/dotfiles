@@ -30,7 +30,3 @@ touch ~/.hushlogin
 echo "Git..."
 sudo rm ~/.gitconfig
 ln -s ~/.dotfiles/gitconfig ~/.gitconfig
-
-echo "Skype..."
-sudo rm ~/Library/Application\ Support/Skype/orcsik.janos/main.db
-ln -s ~/Dropbox/Skype/main.db ~/Library/Application\ Support/Skype/orcsik.janos/main.db
