@@ -80,6 +80,14 @@ function bu {
   brew bundle dump --global --force --describe --no-lock
 }
 
+function gitc {
+  git branch -r --merged | grep -v '\*\|master\|main\|develop\|release' | sed 's/origin\///' | xargs -n 1 git push --delete origin
+
+  git fetch --prune
+
+  git branch -vv | grep 'origin/.*: gone]' | awk '{print \$1}' | xargs git branch -D
+}
+
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
