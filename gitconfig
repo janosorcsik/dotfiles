@@ -1,76 +1,85 @@
 [checkout]
-	defaultRemote = origin
+  defaultRemote = origin
 [color]
-	ui = auto
+  branch = auto
+  diff = auto
+  status = auto
+  ui = true
 [color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
+  current = yellow reverse
+  local = yellow
+  remote = green
 [color "diff"]
-	commit = green bold
-	frag = magenta bold
-	meta = yellow bold
-	new = green bold
-	newMoved = cyan dim
-	newMovedAlternative = cyan italic
-	old = red bold
-	oldMoved = blue dim
-	oldMovedAlternative = blue italic
-	whitespace = red reverse
+  commit = green bold
+  frag = magenta bold
+  meta = yellow bold
+  new = green bold
+  newMoved = cyan dim
+  newMovedAlternative = cyan italic
+  old = red bold
+  oldMoved = blue dim
+  oldMovedAlternative = blue italic
+  whitespace = red reverse
 [color "diff-highlight"]
-	newHighlight = green bold 22
-	newNormal = green bold
-	oldHighlight = red bold 52
-	oldNormal = red bold
+  newHighlight = green bold 22
+  newNormal = green bold
+  oldHighlight = red bold 52
+  oldNormal = red bold
 [color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
+  added = yellow
+  changed = green
+  untracked = cyan
 [core]
-	untrackedCache = true
-	precomposeUnicode = true
+  untrackedCache = true
+  precomposeUnicode = true
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
 [delta]
   features = diff-so-fancy
 [diff]
-	algorithm = histogram
-	colorMoved = dimmed_zebra
-	compactionHeuristic = true
-	indentHeuristic = true
-	noprefix = true
-	renames = copies
+  algorithm = histogram
+  colorMoved = dimmed_zebra
+  compactionHeuristic = true
+  indentHeuristic = true
+  noprefix = true
+  renames = copies
 [fetch]
-	prune = true
-	pruneTags = true
+  prune = true
+  pruneTags = true
+  writeCommitGraph = true
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	process = git-lfs filter-process
-	required = true
-	smudge = git-lfs smudge -- %f
+  clean = git-lfs clean -- %f
+  process = git-lfs filter-process
+  required = true
+  smudge = git-lfs smudge -- %f
 [help]
-	# correct typos
-	autocorrect = 1
+  # correct typos
+  autoCorrect = 1
 [log]
-	date = relative
+  date = relative
+  decorate = full
 [merge]
-	ff = false
-	# Include summaries of merged commits in newly created merge commit messages
-	log = true
-	renameLimit = 0
+  ff = only
+  # Include summaries of merged commits in newly created merge commit messages
+  log = true
+  renameLimit = 0
 [pager]
-	diff = delta
-	log = delta
-	reflog = delta
-	show = delta
+  diff = delta
+  log = delta
+  reflog = delta
+  show = delta
 [pull]
-	default = current
-	ff = only
+  default = current
+  ff = only
 [push]
-	default = current
-	followTags = true
+  default = current
+  followTags = true
 [rerere]
-	enabled = true
+  enabled = true
+[status]
+  showUntrackedFiles = all
+[transfer]
+  fsckObjects = true
 [user]
-	name = János Orcsik
-	email = orcsikj@gmail.com
+  name = János Orcsik
+  email = orcsikj@gmail.com

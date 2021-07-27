@@ -166,9 +166,9 @@ sudo chflags nohidden /Volumes
 # Expand the following File Info panes:
 # “General”, “Open with”, and “Sharing & Permissions”
 defaults write com.apple.finder FXInfoPanesExpanded -dict \
-	General -bool true \
-	OpenWith -bool true \
-	Privileges -bool true
+  General -bool true \
+  OpenWith -bool true \
+  Privileges -bool true
 
 ###############################################################################
 # Dock, Dashboard, and hot corners                                            #
@@ -361,16 +361,16 @@ defaults write com.sub.QLAddict theme farran
 ###############################################################################
 
 for app in "Activity Monitor" \
-	"cfprefsd" \
-	"Contacts" \
-	"Dock" \
-	"Finder" \
-	"Mail" \
-	"Photos" \
-	"Safari" \
-	"SystemUIServer" \
-	"Terminal" \
-	"Transmission"; do
-	killall "${app}" &> /dev/null
+  "cfprefsd" \
+  "Contacts" \
+  "Dock" \
+  "Finder" \
+  "Mail" \
+  "Photos" \
+  "Safari" \
+  "SystemUIServer" \
+  "Terminal" \
+  "Transmission"; do
+  killall "${app}" &> /dev/null
 done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
