@@ -85,7 +85,7 @@ function gitc {
 
   git fetch --prune
 
-  git branch -vv | grep 'origin/.*: gone]' | awk '{print \$1}' | xargs git branch -D
+  git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -D
 }
 
 export HOMEBREW_NO_ANALYTICS=1
