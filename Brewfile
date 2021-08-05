@@ -56,7 +56,7 @@ cask "skype-for-business"
 # Music streaming service
 cask "spotify"
 # Settings for SteelSeries peripherals and accessories
-cask "steelseries-engine"
+cask "steelseries-gg"
 # Text editor for code, markup and prose
 cask "sublime-text"
 # Remote access and connectivity software focused on security
