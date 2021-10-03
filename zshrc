@@ -61,11 +61,6 @@ alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && 
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
 # Brew and Cask update
-#alias bu="sh $HOME/.zsh/functions/update_brew.sh"
-
-# NPM update
-alias nu="npm install npm -g && npm update -g"
-
 function bu {
   mas upgrade
   brew update
@@ -78,6 +73,9 @@ function bu {
 
   brew bundle dump --global --force --describe --no-lock
 }
+
+# NPM update
+alias nu="npm install npm -g && npm update -g"
 
 function gitc {
   git branch -r --merged | grep -v '\*\|master\|main\|develop\|release' | sed 's/origin\///' | xargs -n 1 git push --delete origin
