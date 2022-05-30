@@ -76,7 +76,7 @@ function bu {
 }
 
 # NPM update
-alias nu="npm install npm -g && npm update -g"
+alias nu="npm install npm --location=global && npm update --location=global"
 
 function gitc {
   git branch -r --merged | grep -v '\*\|master\|main\|develop\|release' | sed 's/origin\///' | xargs -n 1 git push --delete origin
