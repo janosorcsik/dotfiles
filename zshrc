@@ -101,6 +101,9 @@ setopt sharehistory          #Share history across terminals
 setopt incappendhistory      #Immediately append to the history file, not just when a term is killed
 setopt histignorealldups     #Substitute commands in the prompt
 
+# Turn off all beeps
+unsetopt BEEP
+
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
