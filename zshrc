@@ -27,6 +27,7 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 zstyle ':completion:*:*:*:default' menu yes select
 
+zstyle ':completion:*' group-name ''
 zstyle ':completion:*:descriptions' format $'\e[01;33m -- %d --\e[0m'
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
