@@ -17,11 +17,12 @@
 [merge]
   conflictstyle = diff3
 [pull]
-	ff = only
+  all = true
+  rebase = true
 [push]
   default = current
 [rebase]
   autoStash = true
 [user]
-  name = János Orcsik
   email = orcsikj@gmail.com
+  name = János Orcsik
