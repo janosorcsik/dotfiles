@@ -6,14 +6,14 @@
   helper = osxkeychain
 [delta]
   features = diff-so-fancy
-	line-numbers = true
+  line-numbers = true
   navigate = true    # use n and N to move between diff sections
 [diff]
   colorMoved = default
 [interactive]
   diffFilter = delta --color-only
 [fetch]
-	prune = true
+  prune = true
 [merge]
   conflictstyle = diff3
 [pull]
