@@ -35,7 +35,11 @@ echo "Tmux..."
 sudo rm ~/.tmux.conf
 ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
 
-echo "Install Tmux plugins"
+echo "Install Tmux plugins..."
 sudo rm -rf ~/.tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ~/.tmux/plugins/tpm/bin/install_plugins
+
+echo "Nvim..."
+sudo rm -rf ~/.config/nvim
+ln -s ~/.dotfiles/nvim ~/.config/nvim
