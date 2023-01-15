@@ -30,3 +30,12 @@ touch ~/.hushlogin
 echo "Git..."
 sudo rm ~/.gitconfig
 ln -s ~/.dotfiles/gitconfig ~/.gitconfig
+
+echo "Tmux..."
+sudo rm ~/.tmux.conf
+ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
+
+echo "Install Tmux plugins"
+sudo rm -rf ~/.tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+~/.tmux/plugins/tpm/bin/install_plugins
