@@ -20,7 +20,7 @@ require("lazy").setup({
 		name = "catppuccin",
 		priority = 1000,
 		config = function()
-			vim.cmd.colorscheme("catppuccin")
+			vim.cmd.colorscheme("catppuccin-mocha")
 		end,
 	},
 	{
@@ -68,7 +68,7 @@ require("lazy").setup({
 			{ "L3MON4D3/LuaSnip" },
 			{ "saadparwaiz1/cmp_luasnip" },
 
-			{ "Hoffs/omnisharp-extended-lsp.nvim" },
+			{ "Decodetalkers/csharpls-extended-lsp.nvim" },
 		},
 		config = function()
 			require("plugins.lsp")

@@ -7,7 +7,7 @@ lsp.ensure_installed({
 	"bashls",
 	"eslint",
 	"jsonls",
-	"omnisharp",
+	"csharp_ls",
 	"sumneko_lua",
 	"tsserver",
 	"yamlls",
@@ -60,14 +60,9 @@ lsp.configure("sumneko_lua", {
 	},
 })
 
-local omnisharp_extended = require("omnisharp_extended")
-
-lsp.configure("omnisharp", {
-	enable_roslyn_analyzers = true,
-	organize_imports_on_format = true,
-	enable_import_completion = true,
+lsp.configure("csharp_ls", {
 	handlers = {
-		["textDocument/definition"] = omnisharp_extended.handler,
+		["textDocument/definition"] = require("csharpls_extended").handler,
 	},
 })
 
