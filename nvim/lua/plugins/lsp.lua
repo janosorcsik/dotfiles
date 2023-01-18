@@ -41,11 +41,11 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 lsp.setup_nvim_cmp({
 	mapping = cmp_mappings,
 	sources = {
-		{ name = "nvim_lsp" },
-		{ name = "nvim_lsp_document_symbol" },
-		{ name = "luasnip" },
-		{ name = "buffer" },
+		{ name = "nvim_lsp_signature_help" },
 		{ name = "path" },
+		{ name = "luasnip", max_item_count = 4 },
+		{ name = "nvim_lsip", priority = 10 },
+		{ name = "buffer" },
 	},
 })
 
