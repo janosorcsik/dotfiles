@@ -1,3 +1,4 @@
+vim.keymap.set("", "<Space>", "<Nop>", { silent = true })
 vim.g.mapleader = " "
 
 -- Install Lazy.nvim
@@ -63,7 +64,7 @@ require("lazy").setup({
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			-- Snippets
-			"saadparwaiz1/cmp_luasnip",
+			{ "saadparwaiz1/cmp_luasnip", dependencies = { "L3MON4D3/LuaSnip" } },
 			-- Other
 			"Decodetalkers/csharpls-extended-lsp.nvim",
 		},
@@ -90,3 +91,14 @@ require("lazy").setup({
 require("set")
 require("netrw")
 require("maps")
+
+-- Easily exit help/man/etc panels
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = { "help", "man", "lspinfo", "quickfix" },
+	callback = function()
+	  vim.cmd([[
+		nnoremap <silent> <buffer> q :close<CR>
+		set nobuflisted
+	  ]])
+	end,
+  })
