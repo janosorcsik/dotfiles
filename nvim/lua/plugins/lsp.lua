@@ -44,7 +44,7 @@ lsp.setup_nvim_cmp({
 		{ name = "nvim_lsp_signature_help" },
 		{ name = "path" },
 		{ name = "luasnip", max_item_count = 4 },
-		{ name = "nvim_lsip", priority = 10 },
+		{ name = "nvim_lsp", priority = 10 },
 		{ name = "buffer" },
 	},
 })
