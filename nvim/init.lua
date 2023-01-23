@@ -91,14 +91,4 @@ require("lazy").setup({
 require("set")
 require("netrw")
 require("maps")
-
--- Easily exit help/man/etc panels
-vim.api.nvim_create_autocmd({ "FileType" }, {
-	pattern = { "help", "man", "lspinfo", "quickfix" },
-	callback = function()
-	  vim.cmd([[
-		nnoremap <silent> <buffer> q :close<CR>
-		set nobuflisted
-	  ]])
-	end,
-  })
+require("autocmds")
