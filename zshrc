@@ -5,9 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export PATH="/usr/local/sbin:./node_modules/.bin:$PATH"
+export PATH="./node_modules/.bin:$PATH"
 
-fpath=($fpath /usr/local/share/zsh-completions)
+FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
 autoload -Uz compinit
 zmodload -i zsh/complist
@@ -93,7 +93,7 @@ export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 
-source /usr/local/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh
+source $(brew --prefix)/Library/Taps/homebrew/homebrew-command-not-found/handler.sh
 
 HISTSIZE=5000                #How many lines of history to keep in memory
 HISTFILE=$HOME/.zsh_history  #Where to save history to disk
@@ -106,10 +106,10 @@ setopt histignorealldups     #Substitute commands in the prompt
 # Turn off all beeps
 unsetopt BEEP
 
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
