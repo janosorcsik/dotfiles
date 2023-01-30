@@ -1,11 +1,14 @@
 #!/usr/bin/env sh
 set -ux
 
-echo 'Start installing...'
+echo "Installing Command Line Tools"
+xcode-select install
+
+echo "Installing HomeBrew and apps..."
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 
-echo "Installing HomeBrew and apps..."
+sudo rm ~/.Brewfile
 ln -s ~/.dotfiles/Brewfile ~/.Brewfile
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 brew tap homebrew/bundle
@@ -15,10 +18,10 @@ brew bundle --global
 qlmanage -r
 
 echo "Zsh..."
-sudo rm ~/.zshrc
-echo '/usr/local/bin/zsh' | sudo tee -a /etc/shells
-chsh -s /usr/local/bin/zsh
+sudo rm ~/.zshrc ~/.zprofile
+chsh -s /bin/zsh
 ln -s ~/.dotfiles/zshrc ~/.zshrc
+ln -s ~/.dotfiles/zprofile ~/.zprofile
 
 # Install Powerlevel10k Pure prompt
 sudo rm ~/.p10k.zsh
