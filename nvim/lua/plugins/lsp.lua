@@ -5,10 +5,10 @@ lsp.preset("recommended")
 -- ensure that these LSP servers are installed
 lsp.ensure_installed({
 	"bashls",
+	"csharp_ls",
 	"eslint",
 	"jsonls",
-	"csharp_ls",
-	"sumneko_lua",
+	"lua_ls",
 	"tsserver",
 	"yamlls",
 	"vimls",
@@ -50,7 +50,7 @@ lsp.setup_nvim_cmp({
 })
 
 -- Fix Undefined global 'vim'
-lsp.configure("sumneko_lua", {
+lsp.configure("lua_ls", {
 	settings = {
 		Lua = {
 			diagnostics = {
