@@ -18,6 +18,8 @@ brew "git"
 brew "git-delta"
 # Mac App Store command-line interface
 brew "mas"
+# Text-based UI library
+brew "ncurses"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Platform built on V8 to build network applications
