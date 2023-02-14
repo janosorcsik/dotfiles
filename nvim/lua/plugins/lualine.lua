@@ -4,7 +4,6 @@ require("lualine").setup({
 		section_separators = "",
 		globalstatus = true,
 		disabled_filetypes = {
-			"alpha",
 			"mason",
 			"lazy",
 			"TelescopePrompt",
