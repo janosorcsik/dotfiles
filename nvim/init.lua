@@ -26,7 +26,6 @@ require("lazy").setup({
 			vim.cmd.colorscheme("catppuccin")
 		end,
 	},
-	"nvim-lua/plenary.nvim",
 	{
 		"nvim-lualine/lualine.nvim",
 		event = "UIEnter",
@@ -38,6 +37,7 @@ require("lazy").setup({
 		"nvim-telescope/telescope.nvim",
 		cmd = "Telescope",
 		event = "VeryLazy",
+		dependencies = "nvim-lua/plenary.nvim",
 		config = function()
 			require("telescope").setup()
 		end,
@@ -65,23 +65,21 @@ require("lazy").setup({
 			require("plugins.treesitter")
 		end,
 	},
-	"Hoffs/omnisharp-extended-lsp.nvim",
 	{
 		"VonHeikemen/lsp-zero.nvim",
+		branch = "v1.x",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			-- LSP Support
 			"neovim/nvim-lspconfig",
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
+			"Hoffs/omnisharp-extended-lsp.nvim", -- go to definition in nugets/system dlls
 			-- Autocompletion
 			"hrsh7th/nvim-cmp",
 			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-nvim-lsp-signature-help",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
 			-- Snippets
-			{ "saadparwaiz1/cmp_luasnip", dependencies = { "L3MON4D3/LuaSnip" } },
+			"L3MON4D3/LuaSnip",
 		},
 		config = function()
 			require("plugins.lsp")
