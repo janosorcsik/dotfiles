@@ -19,9 +19,11 @@ require("lazy").setup({
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
+		build = ":CatppuccinCompile",
+		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.cmd.colorscheme("catppuccin-mocha")
+			vim.cmd.colorscheme("catppuccin")
 		end,
 	},
 	{
@@ -73,6 +75,10 @@ require("lazy").setup({
 		end,
 	},
 }, {
+	defaults = { lazy = true },
+	install = {
+		colorscheme = { "catppuccin" },
+	},
 	performance = {
 		rtp = {
 			disabled_plugins = {
