@@ -43,10 +43,24 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"echasnovski/mini.comment",
+		event = "VeryLazy",
+		config = function()
+			require("mini.comment").setup({
+				hooks = {
+					pre = function()
+						require("ts_context_commentstring.internal").update_commentstring()
+					end,
+				},
+			})
+		end,
+	},
+	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
-		event = "BufReadPost",
-		dependencies = { "echasnovski/mini.comment", "JoosepAlviste/nvim-ts-context-commentstring" },
+		event = { "BufReadPost", "BufNewFile" },
+		cmd = { "TSUninstall", "TSInstall" },
+		dependencies = "JoosepAlviste/nvim-ts-context-commentstring",
 		config = function()
 			require("plugins.treesitter")
 		end,
