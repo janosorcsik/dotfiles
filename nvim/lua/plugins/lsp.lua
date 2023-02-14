@@ -5,10 +5,10 @@ lsp.preset("recommended")
 -- ensure that these LSP servers are installed
 lsp.ensure_installed({
 	"bashls",
-	"csharp_ls",
 	"eslint",
 	"jsonls",
 	"lua_ls",
+	"omnisharp",
 	"tsserver",
 	"yamlls",
 	"vimls",
@@ -60,9 +60,9 @@ lsp.configure("lua_ls", {
 	},
 })
 
-lsp.configure("csharp_ls", {
+lsp.configure("omnisharp", {
 	handlers = {
-		["textDocument/definition"] = require("csharpls_extended").handler,
+		["textDocument/definition"] = require("omnisharp_extended").handler,
 	},
 })
 

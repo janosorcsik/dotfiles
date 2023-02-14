@@ -65,9 +65,10 @@ require("lazy").setup({
 			require("plugins.treesitter")
 		end,
 	},
+	"Hoffs/omnisharp-extended-lsp.nvim",
 	{
 		"VonHeikemen/lsp-zero.nvim",
-		event = "VeryLazy",
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			-- LSP Support
 			"neovim/nvim-lspconfig",
@@ -81,8 +82,6 @@ require("lazy").setup({
 			"hrsh7th/cmp-path",
 			-- Snippets
 			{ "saadparwaiz1/cmp_luasnip", dependencies = { "L3MON4D3/LuaSnip" } },
-			-- Other
-			"Decodetalkers/csharpls-extended-lsp.nvim",
 		},
 		config = function()
 			require("plugins.lsp")
