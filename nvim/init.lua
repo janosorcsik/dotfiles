@@ -76,9 +76,13 @@ require("lazy").setup({
 	performance = {
 		rtp = {
 			disabled_plugins = {
+				"man",
 				"gzip",
 				"matchit",
 				"matchparen",
+				"rplugin",
+				"spellfile",
+				"shada",
 				"tarPlugin",
 				"tohtml",
 				"tutor",
