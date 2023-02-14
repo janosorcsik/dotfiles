@@ -26,6 +26,7 @@ require("lazy").setup({
 			vim.cmd.colorscheme("catppuccin")
 		end,
 	},
+	"nvim-lua/plenary.nvim",
 	{
 		"nvim-lualine/lualine.nvim",
 		event = "UIEnter",
@@ -36,8 +37,7 @@ require("lazy").setup({
 	{
 		"nvim-telescope/telescope.nvim",
 		cmd = "Telescope",
-		version = false, -- telescope did only one release, so use HEAD for now
-		dependencies = { "nvim-lua/plenary.nvim" },
+		event = "VeryLazy",
 		config = function()
 			require("telescope").setup()
 		end,
