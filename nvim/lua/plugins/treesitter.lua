@@ -19,11 +19,3 @@ require("nvim-treesitter.configs").setup({
 
 require("nvim-treesitter.parsers").filetype_to_parsername.json = "jsonc"
 require("nvim-treesitter.parsers").filetype_to_parsername.zsh = "bash"
-
-require("mini.comment").setup({
-	hooks = {
-		pre = function()
-			require("ts_context_commentstring.internal").update_commentstring()
-		end,
-	},
-})
