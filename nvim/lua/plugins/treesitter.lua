@@ -17,5 +17,6 @@ require("nvim-treesitter.configs").setup({
 	},
 })
 
-require("nvim-treesitter.parsers").filetype_to_parsername.json = "jsonc"
-require("nvim-treesitter.parsers").filetype_to_parsername.zsh = "bash"
+local register = vim.treesitter.language.register
+register("json", "jsonc")
+register("zsh", "bash")
