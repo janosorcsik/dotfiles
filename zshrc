@@ -36,9 +36,9 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 alias cat="bat"
 
-alias ls="exa -a --group-directories-first"
+alias ls="eza -a --group-directories-first"
 
-alias ll="exa -al --group-directories-first"
+alias ll="eza -al --group-directories-first"
 
 alias ..="cd .."
 
