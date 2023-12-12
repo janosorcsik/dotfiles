@@ -27,3 +27,5 @@
 [user]
   email = orcsikj@gmail.com
   name = János Orcsik
+[init]
+	defaultBranch = main
