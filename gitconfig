@@ -1,20 +1,30 @@
 [add.interactive]
   useBuiltin = false # required for git 2.37.0
+[commit]
+	verbose = true
 [core]
+	commitGraph = true
   pager = delta
+	quotepath = false
 [credential]
   helper = osxkeychain
 [delta]
   features = diff-so-fancy
   line-numbers = true
-  true-color = always
   navigate = true    # use n and N to move between diff sections
+  true-color = always
 [diff]
   colorMoved = default
+[help]
+	autocorrect = true
+[init]
+	defaultBranch = main
 [interactive]
   diffFilter = delta --color-only
 [fetch]
   prune = true
+[gc]
+	writeCommitGraph = true
 [merge]
   conflictstyle = diff3
 [pull]
@@ -24,8 +34,10 @@
   default = current
 [rebase]
   autoStash = true
+[rerere]
+	enabled = true
+[status]
+	showStash = true
 [user]
   email = orcsikj@gmail.com
   name = János Orcsik
-[init]
-	defaultBranch = main
