@@ -350,13 +350,6 @@ defaults write org.m0k.transmission BlocklistURL -string "http://list.iblocklist
 defaults write org.m0k.transmission BlocklistAutoUpdate -bool true
 
 ###############################################################################
-# QLAddict                                                                    #
-###############################################################################
-
-# Set QLAddict theme
-defaults write com.sub.QLAddict theme farran
-
-###############################################################################
 # Arc                                                                         #
 ###############################################################################
 
