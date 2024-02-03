@@ -357,6 +357,13 @@ defaults write org.m0k.transmission BlocklistAutoUpdate -bool true
 defaults write com.sub.QLAddict theme farran
 
 ###############################################################################
+# Arc                                                                         #
+###############################################################################
+
+# Enable swipe back
+defaults write company.thebrowser.Browser AppleEnableSwipeNavigateWithScrolls -bool true
+
+###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 
@@ -370,6 +377,7 @@ for app in "Activity Monitor" \
   "Safari" \
   "SystemUIServer" \
   "Terminal" \
+  "Arc" \
   "Transmission"; do
   killall "${app}" &> /dev/null
 done
