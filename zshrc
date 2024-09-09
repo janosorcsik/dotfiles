@@ -1,18 +1,16 @@
-export PATH="./node_modules/.bin:$PATH"
-export PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH"
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+export PATH="./node_modules/.bin:$(brew --prefix)/opt/coreutils/libexec/gnubin:${PATH}"
+
+FPATH="$(brew --prefix)/share/zsh/site-functions:$(brew --prefix)/share/zsh-completions:${FPATH}"
 
 autoload -Uz compinit
-zmodload -i zsh/complist
-
-_comp_files=(${ZDOTDIR:-$HOME}/.zcompdump(Nm-20))
-if (( $#_comp_files )); then
-  compinit -i -C
-else
-  compinit -i
-fi
-unset _comp_files
+compinit
 
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
@@ -101,6 +99,7 @@ setopt histignorealldups     #Substitute commands in the prompt
 unsetopt BEEP
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.catppuccin_mocha-zsh-syntax-highlighting.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 
