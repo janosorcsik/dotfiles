@@ -1,21 +1,25 @@
+local autocmd = vim.api.nvim_create_autocmd
+
 -- Highlight on yank
-vim.api.nvim_create_autocmd("TextYankPost", {
+autocmd("TextYankPost", {
+	pattern = "*",
 	callback = function()
 		vim.highlight.on_yank({
+			higroup = "IncSearch",
 			timeout = 40,
 		})
 	end,
 })
 
 -- resize splits if window got resized
-vim.api.nvim_create_autocmd({ "VimResized" }, {
+autocmd({ "VimResized" }, {
 	callback = function()
 		vim.cmd("tabdo wincmd =")
 	end,
 })
 
 -- go to last loc when opening a buffer
-vim.api.nvim_create_autocmd("BufReadPost", {
+autocmd("BufReadPost", {
 	callback = function()
 		local mark = vim.api.nvim_buf_get_mark(0, '"')
 		local lcount = vim.api.nvim_buf_line_count(0)
@@ -26,7 +30,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 -- close some filetypes with <q>
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
 	pattern = {
 		"qf",
 		"help",

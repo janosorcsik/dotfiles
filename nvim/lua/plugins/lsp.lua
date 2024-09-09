@@ -1,49 +1,56 @@
-local lsp = require("lsp-zero")
+local cmp = require("cmp")
+local lspconfig = require("lspconfig")
+local lspzero = require("lsp-zero")
 
-lsp.preset("recommended")
+lspzero.on_attach(function(_, bufnr)
+	local opts = {
+		buffer = bufnr,
+		silent = true,
+	}
 
--- ensure that these LSP servers are installed
-lsp.ensure_installed({
-	"bashls",
-	"eslint",
-	"jsonls",
-	"lua_ls",
-	"omnisharp",
-	"tsserver",
-	"yamlls",
-	"vimls",
-})
+	vim.keymap.set("n", "<leader>c", vim.lsp.buf.code_action, opts)
+	vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, opts)
+	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+	vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+	vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
+end)
 
--- Make the Lua LSP server aware of the vim runtime paths
-lsp.nvim_workspace()
-
-lsp.set_preferences({
-	sign_icons = {
-		error = "E",
-		warn = "W",
-		hint = "H",
-		info = "I",
+require("mason").setup()
+require("mason-lspconfig").setup({
+	ensure_installed = {
+		"bashls",
+		"eslint",
+		"jsonls",
+		"lua_ls",
+		"omnisharp",
+		"tailwindcss",
+		"ts_ls",
+		"yamlls",
+		"vimls",
 	},
-})
-
--- Fix Undefined global 'vim'
-lsp.configure("lua_ls", {
-	settings = {
-		Lua = {
-			diagnostics = {
-				globals = { "vim" },
-			},
-		},
-	},
-})
-
-lsp.configure("omnisharp", {
 	handlers = {
-		["textDocument/definition"] = require("omnisharp_extended").handler,
+		lspzero.default_setup,
+		lua_ls = function()
+			lspconfig.lua_ls.setup(lspzero.nvim_lua_ls())
+		end,
+		omnisharp = function()
+			lspconfig.omnisharp.setup({
+				handlers = {
+					["textDocument/definition"] = require("omnisharp_extended").handler,
+				},
+			})
+		end,
 	},
 })
 
-lsp.setup()
+cmp.setup({
+	mapping = {
+		["<cr>"] = cmp.mapping.confirm({
+			select = true,
+		}),
+	},
+})
 
 vim.diagnostic.config({
 	virtual_text = true,

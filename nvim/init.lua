@@ -1,6 +1,3 @@
-vim.keymap.set("", "<Space>", "<Nop>", { silent = true })
-vim.g.mapleader = " "
-
 -- Install Lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -67,7 +64,7 @@ require("lazy").setup({
 	},
 	{
 		"VonHeikemen/lsp-zero.nvim",
-		branch = "v1.x",
+		branch = "v3.x",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			-- LSP Support
