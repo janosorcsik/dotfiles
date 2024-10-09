@@ -1,15 +1,20 @@
-tap "alienator88/cask"
+tap "azure/functions"
 tap "beeftornado/rmtree"
 tap "buo/cask-upgrade"
 tap "colindean/fonts-nonfree"
 tap "homebrew/bundle"
-tap "homebrew/cask"
 tap "homebrew/command-not-found"
-tap "homebrew/core"
 tap "isen-ng/dotnet-sdk-versions"
 tap "jakehilborn/jakehilborn"
 tap "lihaoyun6/tap"
 tap "nikitabobko/tap"
+tap "warrensbox/tap"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@3"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.11"
+# Microsoft Azure CLI 2.0
+brew "azure-cli"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # GNU File, Shell, and Text utilities
@@ -42,14 +47,16 @@ brew "ncurses"
 brew "neovim"
 # Platform built on V8 to build network applications
 brew "node"
+# Manage multiple Node.js versions
+brew "nvm"
 # Theme for zsh
 brew "powerlevel10k"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.11"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # HTTP regression testing and benchmarking utility
 brew "siege"
+# Command-line tool for Stripe
+brew "stripe-cli"
 # Opinionated Lua code formatter
 brew "stylua"
 # Terminal multiplexer
@@ -66,6 +73,10 @@ brew "zsh-autosuggestions"
 brew "zsh-completions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
+# Azure Functions Core Tools 4.0
+brew "azure/functions/azure-functions-core-tools@4"
+# The tfswitch command lets you switch between terraform versions.
+brew "warrensbox/tap/tfswitch"
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
 # Command-line interface for 1Password
@@ -92,6 +103,8 @@ cask "dotnet-sdk6-0-400"
 cask "dotnet-sdk8"
 # This cask follows releases from https://github.com/dotnet/core/tree/master
 cask "dotnet-sdk8-0-400"
+# Client for the Dropbox cloud storage service
+cask "dropbox"
 cask "font-inter"
 cask "font-meslo-lg-nerd-font"
 cask "font-microsoft-office"
@@ -113,6 +126,8 @@ cask "pearcleaner"
 cask "pronotes"
 # Thumbnails, static previews, cover art and metadata for video files
 cask "qlvideo"
+# A lightweight and high-performance screen recorder for macOS.
+cask "quickrecorder"
 # Control your tools with a few keystrokes
 cask "raycast"
 # Screenshot measurement and annotation tool
