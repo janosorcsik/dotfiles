@@ -2,6 +2,7 @@ tap "azure/functions"
 tap "beeftornado/rmtree"
 tap "buo/cask-upgrade"
 tap "colindean/fonts-nonfree"
+tap "epk/epk"
 tap "homebrew/bundle"
 tap "homebrew/command-not-found"
 tap "isen-ng/dotnet-sdk-versions"
@@ -9,10 +10,10 @@ tap "jakehilborn/jakehilborn"
 tap "lihaoyun6/tap"
 tap "nikitabobko/tap"
 tap "warrensbox/tap"
+# New file format for still image compression
+brew "jpeg-xl"
 # Cryptography and SSL/TLS Toolkit
 brew "openssl@3"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.11"
 # Microsoft Azure CLI 2.0
 brew "azure-cli"
 # Clone of cat(1) with syntax highlighting and Git integration
@@ -51,6 +52,8 @@ brew "node"
 brew "nvm"
 # Theme for zsh
 brew "powerlevel10k"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.11"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # HTTP regression testing and benchmarking utility
@@ -59,10 +62,12 @@ brew "siege"
 brew "stripe-cli"
 # Opinionated Lua code formatter
 brew "stylua"
+# Static analysis security scanner for your terraform code
+brew "tfsec"
 # Terminal multiplexer
 brew "tmux"
-# JavaScript package manager
-brew "yarn"
+# CLI tool that moves files or folder to the trash
+brew "trash"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
 # UNIX shell (command interpreter)
@@ -103,17 +108,18 @@ cask "dotnet-sdk6-0-400"
 cask "dotnet-sdk8"
 # This cask follows releases from https://github.com/dotnet/core/tree/master
 cask "dotnet-sdk8-0-400"
-# Client for the Dropbox cloud storage service
-cask "dropbox"
 cask "font-inter"
 cask "font-meslo-lg-nerd-font"
 cask "font-microsoft-office"
+cask "font-sf-mono-nerd-font"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
 # JetBrains tools manager
 cask "jetbrains-toolbox"
 # Open-source keystroke visualiser
 cask "keycastr"
+# Open-source Dropbox client
+cask "maestral"
 # Native desktop app for Messenger (formerly Facebook Messenger)
 cask "messenger"
 # Media player
@@ -153,6 +159,8 @@ cask "visual-studio-code"
 # Video communication and virtual meeting platform
 cask "zoom"
 mas "1Password for Safari", id: 1569813296
+mas "ColorSlurp", id: 1287239339
+mas "Day One", id: 1055511498
 mas "Finances", id: 1218241304
 mas "GarageBand", id: 682658836
 mas "Grammarly for Safari", id: 1462114288
@@ -162,8 +170,7 @@ mas "Keynote", id: 409183694
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "SponsorBlock", id: 1573461917
-mas "StopTheMadness", id: 1376402589
 mas "Things", id: 904280696
 mas "Tomito", id: 1526042938
-mas "Wipr", id: 1320666476
+mas "Wipr", id: 1662217862
 mas "Xcode", id: 497799835
