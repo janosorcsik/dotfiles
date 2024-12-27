@@ -38,13 +38,9 @@ echo "Git..."
 sudo rm ~/.gitconfig
 ln -s ~/.dotfiles/gitconfig ~/.gitconfig
 
-echo "Tmux..."
-sudo rm ~/.tmux.conf
-ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
-
-echo "Install Tmux plugins..."
-sudo rm -rf ~/.tmux
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+echo "Ghostty..."
+sudo rm ~/.config/ghostty/config
+ln -s ~/.dotfiles/ghostty.conf ~/.config/ghostty/config
 
 echo "Nvim..."
 sudo rm -rf ~/.config/nvim
