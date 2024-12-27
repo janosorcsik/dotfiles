@@ -1,7 +1,6 @@
 tap "azure/functions"
 tap "beeftornado/rmtree"
 tap "buo/cask-upgrade"
-tap "colindean/fonts-nonfree"
 tap "epk/epk"
 tap "homebrew/bundle"
 tap "homebrew/command-not-found"
@@ -18,6 +17,8 @@ brew "openssl@3"
 brew "azure-cli"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Multi-shell multi-command argument completer
+brew "carapace"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
 # Get a file from an HTTP, HTTPS or FTP server
@@ -64,10 +65,8 @@ brew "stripe-cli"
 brew "stylua"
 # Static analysis security scanner for your terraform code
 brew "tfsec"
-# Terminal multiplexer
-brew "tmux"
 # CLI tool that moves files or folder to the trash
-brew "trash"
+brew "trash", link: true
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
 # UNIX shell (command interpreter)
@@ -92,6 +91,8 @@ cask "aerospace"
 cask "affinity-designer"
 # Professional image editing software
 cask "affinity-photo"
+# Get the battery level of all your devices on your Mac.
+cask "airbattery"
 # Menu bar tool to limit maximum charging percentage
 cask "aldente"
 # Chromium based browser
@@ -108,12 +109,14 @@ cask "dotnet-sdk6-0-400"
 cask "dotnet-sdk8"
 # This cask follows releases from https://github.com/dotnet/core/tree/master
 cask "dotnet-sdk8-0-400"
+# This cask follows releases from https://github.com/dotnet/core/tree/master
+cask "dotnet-sdk9"
+# This cask follows releases from https://github.com/dotnet/core/tree/master
+cask "dotnet-sdk9-0-100"
 cask "font-inter"
-cask "font-meslo-lg-nerd-font"
-cask "font-microsoft-office"
 cask "font-sf-mono-nerd-font"
-# Terminal emulator as alternative to Apple's Terminal app
-cask "iterm2"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
 # JetBrains tools manager
 cask "jetbrains-toolbox"
 # Open-source keystroke visualiser
@@ -126,10 +129,12 @@ cask "messenger"
 cask "movist-pro"
 # Replacement for Docker Desktop
 cask "orbstack"
+# Read/write support for NTFS formatted volumes
+cask "paragon-ntfs"
 # Utility to uninstall apps and remove leftover files from old/uninstalled apps
 cask "pearcleaner"
-# Apple Notes extension
-cask "pronotes"
+# Graphical user interface for the 'defaults' command
+cask "prefs-editor"
 # Thumbnails, static previews, cover art and metadata for video files
 cask "qlvideo"
 # A lightweight and high-performance screen recorder for macOS.
@@ -169,6 +174,7 @@ mas "iPreview", id: 1519213509
 mas "Keynote", id: 409183694
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
+mas "Raycast Companion", id: 6738274497
 mas "SponsorBlock", id: 1573461917
 mas "Things", id: 904280696
 mas "Tomito", id: 1526042938
