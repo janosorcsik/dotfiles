@@ -45,3 +45,7 @@ ln -s ~/.dotfiles/ghostty.conf ~/.config/ghostty/config
 echo "Nvim..."
 sudo rm -rf ~/.config/nvim
 ln -s ~/.dotfiles/nvim ~/.config/nvim
+
+echo "IdeaVim..."
+sudo rm ~/.ideavimrc
+ln -s ~/.dotfiles/ideavimrc ~/.ideavimrc

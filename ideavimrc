@@ -1,0 +1,49 @@
+" leader key
+let mapleader = ' '
+
+" sync Vim clipboard with OS clipboard
+set clipboard+=unnamed
+set clipboard+=unnamedplus
+" highlight search results
+set hlsearch
+" case-insensitive search
+set ignorecase
+" enable case-sensitive search when uppercased letter is present
+set smartcase
+" search while typing
+set incsearch
+" smart line joining
+set ideajoin
+" relative line numbers
+set number
+set relativenumber
+
+" sent to the black hole register
+nnoremap d "_d
+nnoremap D "_D
+nnoremap dd "_dd
+nnoremap ciw "_ciw
+nnoremap caw "_caw
+nnoremap C "_C
+nnoremap cc "_cc
+nnoremap Y y$
+
+" reselect in Visual mode
+vnoremap < <gv
+vnoremap > >gv
+vnoremap = =gv
+
+" center the content
+nnoremap <C-u> <C-u>zz
+nnoremap <C-d> <C-d>zz
+nnoremap n nzz
+nnoremap N Nzz
+
+" move line up/down
+nnoremap <a-j> :m .+1<cr>==
+nnoremap <a-k> :m .-2<cr>==
+
+set commentary
+set highlightedyank
+set NERDTree
+set surround
