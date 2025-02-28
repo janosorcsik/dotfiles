@@ -1,0 +1,23 @@
+background-blur-radius = 40
+background-opacity = 0.96
+
+alpha-blending = linear-corrected
+window-colorspace = display-p3
+
+font-family = SFMono Nerd Font
+font-size = 16
+
+theme = catppuccin-mocha
+
+adjust-cell-height = 10%
+window-padding-x = 10
+window-padding-y = 10
+window-padding-balance = true
+
+confirm-close-surface = false
+quit-after-last-window-closed = true
+
+window-inherit-working-directory = false
+working-directory = home
+
+keybind = global:option+space=toggle_quick_terminal

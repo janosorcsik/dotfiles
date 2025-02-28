@@ -39,12 +39,16 @@ sudo rm ~/.gitconfig
 ln -s ~/.dotfiles/gitconfig ~/.gitconfig
 
 echo "Ghostty..."
-sudo rm ~/.config/ghostty/config
-ln -s ~/.dotfiles/ghostty.conf ~/.config/ghostty/config
+sudo rm -rf ~/.config/ghostty
+ln -s ~/.dotfiles/config/ghostty ~/.config/ghostty
 
 echo "Nvim..."
 sudo rm -rf ~/.config/nvim
-ln -s ~/.dotfiles/nvim ~/.config/nvim
+ln -s ~/.dotfiles/config/nvim ~/.config/nvim
+
+echo "Bat..."
+sudo rm -rf ~/.config/bat
+ln -s ~/.dotfiles/config/bat ~/.config/bat
 
 echo "IdeaVim..."
 sudo rm ~/.ideavimrc
