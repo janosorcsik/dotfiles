@@ -49,6 +49,7 @@ ln -s ~/.dotfiles/config/nvim ~/.config/nvim
 echo "Bat..."
 sudo rm -rf ~/.config/bat
 ln -s ~/.dotfiles/config/bat ~/.config/bat
+bat cache --build
 
 echo "IdeaVim..."
 sudo rm ~/.ideavimrc
