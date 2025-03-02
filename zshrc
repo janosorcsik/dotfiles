@@ -4,13 +4,11 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
 export PATH="./node_modules/.bin:${PATH}"
 
 FPATH="$(brew --prefix)/share/zsh/site-functions:$(brew --prefix)/share/zsh-completions:${FPATH}"
 
-autoload -Uz compinit
-compinit
+autoload -Uz compinit && compinit -C
 
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
@@ -89,13 +87,20 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 
 source $(brew --prefix)/Library/Taps/homebrew/homebrew-command-not-found/handler.sh
 
-HISTSIZE=5000                #How many lines of history to keep in memory
-HISTFILE=$HOME/.zsh_history  #Where to save history to disk
-SAVEHIST=$HISTSIZE           #Number of history entries to save to disk
-setopt appendhistory         #Append history to the history file (no overwriting)
-setopt sharehistory          #Share history across terminals
-setopt incappendhistory      #Immediately append to the history file, not just when a term is killed
-setopt histignorealldups     #Substitute commands in the prompt
+HISTFILE=$HOME/.zsh_history      # Where to save history to disk
+HISTSIZE=5000                    # How many lines of history to keep in memory
+SAVEHIST=$HISTSIZE               # Number of history entries to save to disk
+setopt BANG_HIST                 # Treat the '!' character specially during expansion.
+setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
+setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
+setopt SHARE_HISTORY             # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
+setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
+setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
+setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
+setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 
 # Turn off all beeps
 unsetopt BEEP
@@ -114,6 +119,7 @@ export FZF_CTRL_T_OPTS="--preview='bat --style numbers,changes --color=always {}
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+export NVM_LAZY_LOAD=true
 
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
