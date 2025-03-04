@@ -67,7 +67,7 @@ function bu {
   brew cleanup -s
   rm -rf "$(brew --cache)"
 
-  brew bundle dump --global --force --describe --no-lock
+  brew bundle dump --global --force --describe
 }
 
 # NPM update
