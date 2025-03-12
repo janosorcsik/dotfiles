@@ -9,9 +9,10 @@ font-size = 16
 
 theme = catppuccin-mocha
 
-adjust-cell-height = 10%
-window-padding-x = 10
-window-padding-y = 10
+adjust-cell-height = 35%
+adjust-cursor-thickness = 3
+window-padding-x = 8
+window-padding-y = 4
 window-padding-balance = true
 
 confirm-close-surface = false
