@@ -25,7 +25,7 @@ ln -s ~/.dotfiles/zprofile ~/.zprofile
 
 # Install Powerlevel10k Pure prompt
 sudo rm ~/.p10k.zsh
-ln -s ~/.dotfiles/zsh/p10k.zsh ~/.p10k.zsh
+ln -s ~/.dotfiles/p10k.zsh ~/.p10k.zsh
 
 # Install Catppuccin theme
 sudo rm ~/.catppuccin_mocha-zsh-syntax-highlighting.zsh
