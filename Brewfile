@@ -56,8 +56,6 @@ brew "ncurses"
 brew "neovim"
 # Platform built on V8 to build network applications
 brew "node"
-# Manage multiple Node.js versions
-brew "nvm"
 # Theme for zsh
 brew "powerlevel10k"
 # Interpreted, interactive, object-oriented programming language
@@ -76,6 +74,8 @@ brew "syft"
 brew "tfsec"
 # CLI tool that moves files or folder to the trash
 brew "trash", link: true
+# Generator for LS_COLORS with support for multiple color themes
+brew "vivid"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
 # UNIX shell (command interpreter)

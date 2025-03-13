@@ -21,6 +21,8 @@ sudo rm ~/.zshrc ~/.zprofile
 chsh -s /bin/zsh
 ln -s ~/.dotfiles/zshrc ~/.zshrc
 ln -s ~/.dotfiles/zprofile ~/.zprofile
+sudo rm -rf ~/.zsh
+ln -s ~/.dotfiles/zsh ~/.zsh
 
 # Install Powerlevel10k Pure prompt
 sudo rm ~/.p10k.zsh

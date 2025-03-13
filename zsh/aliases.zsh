@@ -1,0 +1,29 @@
+# Aliases - common commands
+alias cat="bat"
+alias ls="eza -a --group-directories-first"
+alias ll="eza -al --group-directories-first"
+alias ..="cd .."
+alias rm="trash"
+
+# Git aliases
+alias ga="git add"
+alias gcl="git clone --recursive"
+alias gcm="git commit --message"
+alias gco="git checkout"
+alias gd="git diff"
+alias gf="git fetch"
+alias gm="git merge"
+alias glg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gnb="git checkout -b"
+alias gpl="git pull --recurse-submodules"
+alias gps="git push"
+alias gs="git status --branch --short"
+
+# macOS Finder aliases
+alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+
+# NPM update alias
+alias nu="npm install npm --location=global && npm update --location=global"
