@@ -28,7 +28,7 @@ ln -s ~/.dotfiles/p10k.zsh ~/.p10k.zsh
 
 # Install Catppuccin theme
 sudo rm ~/.catppuccin_mocha-zsh-syntax-highlighting.zsh
-ln -s ~/.dotfiles/zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh ~/.catppuccin_mocha-zsh-syntax-highlighting.zsh
+ln -s ~/.dotfiles/catpuccin/zsh-syntax-highlighting/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh ~/.catppuccin_mocha-zsh-syntax-highlighting.zsh
 
 # Remove last login text
 touch ~/.hushlogin
@@ -40,7 +40,8 @@ ln -s ~/.dotfiles/gitconfig ~/.gitconfig
 echo "Ghostty..."
 sudo rm -rf ~/.config/ghostty
 mkdir ~/.config/ghostty
-ln -s ~/.dotfiles/config/ghostty ~/.config/ghostty
+ln -s ~/.dotfiles/catpuccin/ghostty/themes ~/.config/ghostty/themes
+ln -s ~/.dotfiles/config/ghostty/config ~/.config/ghostty/config
 
 echo "Nvim..."
 sudo rm -rf ~/.config/nvim
@@ -49,7 +50,7 @@ ln -s ~/.dotfiles/config/nvim ~/.config/nvim
 echo "Bat..."
 sudo rm -rf ~/.config/bat
 mkdir ~/.config/bat
-ln -s ~/.dotfiles/catpuccin-ghostty/themes ~/.config/bat/themes
+ln -s ~/.dotfiles/catpuccin/bat/themes ~/.config/bat/themes
 ln -s ~/.dotfiles/config/bat/config ~/.config/bat/config
 bat cache --build
 
