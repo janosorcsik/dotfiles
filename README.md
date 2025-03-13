@@ -7,7 +7,7 @@ My macOS dotfiles
 ### Clone the git repository
 
 ```sh
-git clone https://github.com/janosorcsik/dotfiles.git ~/.dotfiles
+git clone --recursive https://github.com/janosorcsik/dotfiles.git ~/.dotfiles
 ```
 
 ### Run the installer
