@@ -55,6 +55,6 @@ echo "IdeaVim..."
 sudo rm ~/.ideavimrc
 ln -s ~/.dotfiles/ideavimrc ~/.ideavimrc
 
-echo "Nvm..."
+echo "Zsh nvm..."
 sudo rm -rf ~/.zsh-nvm
-git clone https://github.com/lukechilds/zsh-nvm.git ~/.zsh-nvm
+ln -s ~/.dotfiles/zsh-nvim ~/.zsh-nvm
