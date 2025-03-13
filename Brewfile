@@ -5,9 +5,12 @@ tap "epk/epk"
 tap "homebrew/bundle"
 tap "homebrew/command-not-found"
 tap "isen-ng/dotnet-sdk-versions"
-tap "jakehilborn/jakehilborn"
+tap "kreuzwerker/taps"
 tap "lihaoyun6/tap"
+tap "mocki-toki/formulae"
 tap "nikitabobko/tap"
+tap "smudge/smudge"
+tap "viva64/pvs-studio"
 tap "warrensbox/tap"
 # New file format for still image compression
 brew "jpeg-xl"
@@ -17,6 +20,8 @@ brew "openssl@3"
 brew "azure-cli"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Get/set bluetooth power and discoverable state
+brew "blueutil"
 # Multi-shell multi-command argument completer
 brew "carapace"
 # GNU File, Shell, and Text utilities
@@ -41,6 +46,8 @@ brew "git"
 brew "git-delta"
 # Git extension for versioning large files
 brew "git-lfs"
+# Command-line benchmarking tool
+brew "hyperfine"
 # Mac App Store command-line interface
 brew "mas"
 # Text-based UI library
@@ -63,6 +70,8 @@ brew "siege"
 brew "stripe-cli"
 # Opinionated Lua code formatter
 brew "stylua"
+# CLI for generating a Software Bill of Materials from container images
+brew "syft"
 # Static analysis security scanner for your terraform code
 brew "tfsec"
 # CLI tool that moves files or folder to the trash
@@ -79,6 +88,12 @@ brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 # Azure Functions Core Tools 4.0
 brew "azure/functions/azure-functions-core-tools@4"
+# CLI to support with downloading and compiling terraform providers for Mac with M1 chip.
+brew "kreuzwerker/taps/m1-terraform-provider-helper"
+# A CLI for configuring 'Night Shift' on macOS 🌕🌖🌗🌘🌑
+brew "smudge/smudge/nightlight"
+brew "viva64/pvs-studio/pvs-studio"
+brew "viva64/pvs-studio/pvs-studio-dotnet"
 # The tfswitch command lets you switch between terraform versions.
 brew "warrensbox/tap/tfswitch"
 # Password manager that keeps all passwords secure behind one password
@@ -97,6 +112,8 @@ cask "airbattery"
 cask "aldente"
 # Chromium based browser
 cask "arc"
+# Barik is a macOS menu bar replacement, with yabai and AeroSpace support
+cask "barik"
 # Trains AIs to understand and translate texts
 cask "deepl"
 # Translate words without ever opening a dictionary
@@ -112,7 +129,9 @@ cask "dotnet-sdk8-0-400"
 # This cask follows releases from https://github.com/dotnet/core/tree/master
 cask "dotnet-sdk9"
 # This cask follows releases from https://github.com/dotnet/core/tree/master
-cask "dotnet-sdk9-0-100"
+cask "dotnet-sdk9-0-200"
+# Change the behavior of the fn keys depending on the active application
+cask "fluor"
 cask "font-inter"
 cask "font-sf-mono-nerd-font"
 # Terminal emulator that uses platform-native UI and GPU acceleration
@@ -143,28 +162,29 @@ cask "quickrecorder"
 cask "raycast"
 # Screenshot measurement and annotation tool
 cask "shottr"
-# Video chat, voice call and instant messaging application
-cask "skype"
 # Team communication and collaboration software
 cask "slack"
 # Music streaming service
 cask "spotify"
 # Unpacks archive files
 cask "the-unarchiver"
+# Helper application for Things
+cask "thingsmacsandboxhelper"
 # Utility to change the default backup interval of Time Machine
 cask "timemachineeditor"
 # Open-source BitTorrent client
 cask "transmission"
+# PKG software package uninstall tool
+cask "uninstallpkg"
 # Configurator of compatible keyboards in real time
 cask "vial"
 # Calling and messaging application focusing on security
 cask "viber"
 # Open-source code editor
 cask "visual-studio-code"
-# Video communication and virtual meeting platform
-cask "zoom"
+# REST, GraphQL and gRPC client
+cask "yaak"
 mas "1Password for Safari", id: 1569813296
-mas "ColorSlurp", id: 1287239339
 mas "Day One", id: 1055511498
 mas "Finances", id: 1218241304
 mas "GarageBand", id: 682658836
@@ -172,11 +192,35 @@ mas "Grammarly for Safari", id: 1462114288
 mas "iMovie", id: 408981434
 mas "iPreview", id: 1519213509
 mas "Keynote", id: 409183694
+mas "NextDNS", id: 1464122853
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
-mas "Raycast Companion", id: 6738274497
+mas "Sokoban", id: 6469252576
 mas "SponsorBlock", id: 1573461917
 mas "Things", id: 904280696
 mas "Tomito", id: 1526042938
 mas "Wipr", id: 1662217862
 mas "Xcode", id: 497799835
+vscode "bradlc.vscode-tailwindcss"
+vscode "christian-kohler.path-intellisense"
+vscode "darkriszty.markdown-table-prettify"
+vscode "dbaeumer.vscode-eslint"
+vscode "esbenp.prettier-vscode"
+vscode "ghmcadams.lintlens"
+vscode "github.vscode-github-actions"
+vscode "hbenl.vscode-test-explorer"
+vscode "ibm.output-colorizer"
+vscode "jackfranklin.vscode-go-to-file"
+vscode "mikestead.dotenv"
+vscode "ms-dotnettools.csharp"
+vscode "ms-vscode.test-adapter-converter"
+vscode "pascalsenn.keyboard-quickfix"
+vscode "pflannery.vscode-versionlens"
+vscode "tamasfe.even-better-toml"
+vscode "usernamehw.errorlens"
+vscode "visualstudioexptteam.intellicode-api-usage-examples"
+vscode "visualstudioexptteam.vscodeintellicode"
+vscode "vitest.explorer"
+vscode "vscodevim.vim"
+vscode "yoavbls.pretty-ts-errors"
+vscode "yzhang.markdown-all-in-one"

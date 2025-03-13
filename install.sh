@@ -1,8 +1,7 @@
 #!/usr/bin/env sh
-set -ux
 
 echo "Installing Command Line Tools"
-xcode-select install
+xcode-select --install
 
 echo "Installing HomeBrew and apps..."
 export HOMEBREW_NO_ANALYTICS=1
@@ -40,6 +39,7 @@ ln -s ~/.dotfiles/gitconfig ~/.gitconfig
 
 echo "Ghostty..."
 sudo rm -rf ~/.config/ghostty
+mkdir ~/.config/ghostty
 ln -s ~/.dotfiles/config/ghostty ~/.config/ghostty
 
 echo "Nvim..."
@@ -48,7 +48,9 @@ ln -s ~/.dotfiles/config/nvim ~/.config/nvim
 
 echo "Bat..."
 sudo rm -rf ~/.config/bat
-ln -s ~/.dotfiles/config/bat ~/.config/bat
+mkdir ~/.config/bat
+ln -s ~/.dotfiles/catpuccin-ghostty/themes ~/.config/bat/themes
+ln -s ~/.dotfiles/config/bat/config ~/.config/bat/config
 bat cache --build
 
 echo "IdeaVim..."
@@ -57,4 +59,4 @@ ln -s ~/.dotfiles/ideavimrc ~/.ideavimrc
 
 echo "Zsh nvm..."
 sudo rm -rf ~/.zsh-nvm
-ln -s ~/.dotfiles/zsh-nvim ~/.zsh-nvm
+ln -s ~/.dotfiles/zsh-nvm ~/.zsh-nvm
