@@ -7,6 +7,7 @@
 [branch]
   sort = -committerdate
 [commit]
+  gpsign = true
   verbose = true
 [column]
   ui = auto
@@ -38,6 +39,10 @@
   smudge = git-lfs smudge -- %f
 [gc]
   writeCommitGraph = true
+[gpg]
+  format = ssh
+[gpg "ssh"]
+  program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 [help]
 	autocorrect = 1
 [init]
