@@ -54,8 +54,6 @@ brew "mas"
 brew "ncurses"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
-# Platform built on V8 to build network applications
-brew "node"
 # Theme for zsh
 brew "powerlevel10k"
 # Interpreted, interactive, object-oriented programming language
@@ -170,8 +168,6 @@ cask "spotify"
 cask "the-unarchiver"
 # Helper application for Things
 cask "thingsmacsandboxhelper"
-# Utility to change the default backup interval of Time Machine
-cask "timemachineeditor"
 # Open-source BitTorrent client
 cask "transmission"
 # PKG software package uninstall tool
@@ -198,7 +194,6 @@ mas "Pages", id: 409201541
 mas "Sokoban", id: 6469252576
 mas "SponsorBlock", id: 1573461917
 mas "Things", id: 904280696
-mas "Tomito", id: 1526042938
 mas "Wipr", id: 1662217862
 mas "Xcode", id: 497799835
 vscode "bradlc.vscode-tailwindcss"
