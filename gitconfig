@@ -45,8 +45,6 @@
   program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 [help]
 	autocorrect = 1
-[includeIf "gitdir:~/Developer/Work/"]
-  path = ~/.gitconfig-work
 [init]
   defaultBranch = main
 [interactive]
@@ -73,3 +71,5 @@
 [user]
   email = 4984853+janosorcsik@users.noreply.github.com
   name = János Orcsik
+[includeIf "gitdir:~/Developer/Work/"]
+  path = ~/.gitconfig-work
