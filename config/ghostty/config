@@ -21,4 +21,4 @@ quit-after-last-window-closed = true
 window-inherit-working-directory = false
 working-directory = home
 
-keybind = global:option+space=toggle_quick_terminal
+keybind = global:option+t=toggle_quick_terminal
