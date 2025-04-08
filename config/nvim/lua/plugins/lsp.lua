@@ -16,7 +16,9 @@ lspzero.on_attach(function(_, bufnr)
 	vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
 end)
 
-require("mason").setup()
+require("mason").setup({
+	auto_install = true,
+})
 require("mason-lspconfig").setup({
 	ensure_installed = {
 		"bashls",
@@ -38,6 +40,7 @@ require("mason-lspconfig").setup({
 			lspconfig.omnisharp.setup({
 				handlers = {
 					["textDocument/definition"] = require("omnisharp_extended").handler,
+					["textDocument/typeDefinition"] = require("omnisharp_extended").handler,
 				},
 			})
 		end,
@@ -50,8 +53,17 @@ cmp.setup({
 			select = true,
 		}),
 	},
+	sources = {
+		{ name = "nvim_lsp" },
+		{ name = "path" },
+		{ name = "buffer" },
+		{ name = "vsnip" },
+	},
 })
 
 vim.diagnostic.config({
 	virtual_text = true,
+	float = {
+		source = "always",
+	},
 })
