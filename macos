@@ -367,6 +367,7 @@ defaults write company.thebrowser.Browser AppleEnableSwipeNavigateWithScrolls -b
 for app in "Activity Monitor" \
   "cfprefsd" \
   "Contacts" \
+  "ControlCenter" \
   "Dock" \
   "Finder" \
   "Mail" \
