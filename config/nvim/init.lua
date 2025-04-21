@@ -34,7 +34,7 @@ require("lazy").setup({
 		"nvim-telescope/telescope.nvim",
 		cmd = "Telescope",
 		event = "VeryLazy",
-		dependencies = "nvim-lua/plenary.nvim",
+		dependencies = { "nvim-telescope/telescope-ui-select.nvim", "nvim-lua/plenary.nvim" },
 		config = function()
 			require("plugins.telescope")
 		end,
