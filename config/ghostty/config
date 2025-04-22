@@ -21,4 +21,6 @@ quit-after-last-window-closed = true
 window-inherit-working-directory = false
 working-directory = home
 
+macos-option-as-alt = left
+
 keybind = global:option+t=toggle_quick_terminal
