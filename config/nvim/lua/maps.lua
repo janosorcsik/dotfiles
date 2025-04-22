@@ -2,12 +2,9 @@
 local netrw = require("netrw")
 vim.keymap.set("n", "<leader>e", netrw.toggle_netrw, { desc = "Toggle Netrw" })
 
--- Move text up/down in visual mode
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move down" })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move up" })
-
--- Join lines and keep cursor position
-vim.keymap.set("n", "J", "mzJ`z")
+-- Move text up/down in normal mode
+vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { noremap = true, silent = true, desc = "Move down" })
+vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { noremap = true, silent = true, desc = "Move up" })
 
 -- Scrolling with center alignment
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
