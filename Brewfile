@@ -1,21 +1,17 @@
+tap "aerobounce/tap"
 tap "azure/functions"
 tap "beeftornado/rmtree"
 tap "buo/cask-upgrade"
 tap "epk/epk"
-tap "homebrew/bundle"
+tap "felixkratz/formulae"
 tap "homebrew/command-not-found"
 tap "isen-ng/dotnet-sdk-versions"
-tap "kreuzwerker/taps"
 tap "lihaoyun6/tap"
-tap "mocki-toki/formulae"
 tap "nikitabobko/tap"
+tap "rien7/apps"
 tap "smudge/smudge"
 tap "viva64/pvs-studio"
 tap "warrensbox/tap"
-# New file format for still image compression
-brew "jpeg-xl"
-# Cryptography and SSL/TLS Toolkit
-brew "openssl@3"
 # Microsoft Azure CLI 2.0
 brew "azure-cli"
 # Clone of cat(1) with syntax highlighting and Git integration
@@ -26,12 +22,12 @@ brew "blueutil"
 brew "carapace"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
-# Get a file from an HTTP, HTTPS or FTP server
-brew "curl"
 # Utility to configure multi-display resolutions and arrangements
 brew "displayplacer"
 # Pack, ship and run any application as a lightweight container
 brew "docker"
+# Isolated development environments using Docker
+brew "docker-compose"
 # Modern, maintained replacement for ls
 brew "eza"
 # Play, record, convert, and stream audio and video
@@ -48,16 +44,14 @@ brew "git-delta"
 brew "git-lfs"
 # Command-line benchmarking tool
 brew "hyperfine"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
 # Mac App Store command-line interface
 brew "mas"
-# Text-based UI library
-brew "ncurses"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Theme for zsh
 brew "powerlevel10k"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.11"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # HTTP regression testing and benchmarking utility
@@ -84,10 +78,12 @@ brew "zsh-autosuggestions"
 brew "zsh-completions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
+# User Defaults Plist → Shell Script converter with Regex filtering
+brew "aerobounce/tap/ds"
 # Azure Functions Core Tools 4.0
 brew "azure/functions/azure-functions-core-tools@4"
-# CLI to support with downloading and compiling terraform providers for Mac with M1 chip.
-brew "kreuzwerker/taps/m1-terraform-provider-helper"
+# A window border system for macOS
+brew "felixkratz/formulae/borders"
 # A CLI for configuring 'Night Shift' on macOS 🌕🌖🌗🌘🌑
 brew "smudge/smudge/nightlight"
 brew "viva64/pvs-studio/pvs-studio"
@@ -98,6 +94,8 @@ brew "warrensbox/tap/tfswitch"
 cask "1password"
 # Command-line interface for 1Password
 cask "1password-cli"
+# Application to indicate the aerospace workspace
+cask "aeroindicator"
 # AeroSpace is an i3-like tiling window manager for macOS
 cask "aerospace"
 # Professional graphic design software
@@ -110,8 +108,10 @@ cask "airbattery"
 cask "aldente"
 # Chromium based browser
 cask "arc"
-# Barik is a macOS menu bar replacement, with yabai and AeroSpace support
-cask "barik"
+# Compare files and folders
+cask "beyond-compare"
+# OpenAI's official ChatGPT desktop app
+cask "chatgpt"
 # Trains AIs to understand and translate texts
 cask "deepl"
 # Translate words without ever opening a dictionary
@@ -128,6 +128,8 @@ cask "dotnet-sdk8-0-400"
 cask "dotnet-sdk9"
 # This cask follows releases from https://github.com/dotnet/core/tree/master
 cask "dotnet-sdk9-0-200"
+# Find files, folders, or contents in any file
+cask "easyfind"
 # Change the behavior of the fn keys depending on the active application
 cask "fluor"
 cask "font-inter"
@@ -189,13 +191,13 @@ mas "iMovie", id: 408981434
 mas "iPreview", id: 1519213509
 mas "Keynote", id: 409183694
 mas "NextDNS", id: 1464122853
+mas "NiceCopy", id: 6737711441
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
-mas "Sokoban", id: 6469252576
 mas "SponsorBlock", id: 1573461917
 mas "Things", id: 904280696
+mas "Tomito", id: 1526042938
 mas "Wipr", id: 1662217862
-mas "Xcode", id: 497799835
 vscode "bradlc.vscode-tailwindcss"
 vscode "christian-kohler.path-intellisense"
 vscode "darkriszty.markdown-table-prettify"
@@ -208,6 +210,7 @@ vscode "ibm.output-colorizer"
 vscode "jackfranklin.vscode-go-to-file"
 vscode "mikestead.dotenv"
 vscode "ms-dotnettools.csharp"
+vscode "ms-dotnettools.vscode-dotnet-runtime"
 vscode "ms-vscode.test-adapter-converter"
 vscode "pascalsenn.keyboard-quickfix"
 vscode "pflannery.vscode-versionlens"
