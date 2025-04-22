@@ -2,10 +2,7 @@
 let mapleader = ' '
 
 " sync Vim clipboard with OS clipboard
-set clipboard+=unnamed
 set clipboard+=unnamedplus
-" highlight search results
-set hlsearch
 " case-insensitive search
 set ignorecase
 " enable case-sensitive search when uppercased letter is present
@@ -47,3 +44,6 @@ set commentary
 set highlightedyank
 set NERDTree
 set surround
+set which-key
+map <Leader>o <Action>(OptimizeImports)
+nnoremap gi :action GotoImplementation<CR>
