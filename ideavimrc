@@ -1,49 +1,76 @@
 " leader key
 let mapleader = ' '
 
+nmap <Space> <Nop>
+vmap <Space> <Nop>
+
+" relative line numbers
+set number
+set relativenumber
+
+set scrolloff=8
+set timeoutlen=50
+set timeoutlen=300
+
 " sync Vim clipboard with OS clipboard
 set clipboard+=unnamedplus
+
+nnoremap <Esc> :nohlsearch<CR>
+
 " case-insensitive search
 set ignorecase
 " enable case-sensitive search when uppercased letter is present
 set smartcase
 " search while typing
 set incsearch
+
+set cursorline
+
 " smart line joining
 set ideajoin
-" relative line numbers
-set number
-set relativenumber
-
-" sent to the black hole register
-nnoremap d "_d
-nnoremap D "_D
-nnoremap dd "_dd
-nnoremap ciw "_ciw
-nnoremap caw "_caw
-nnoremap C "_C
-nnoremap cc "_cc
-nnoremap Y y$
-
-" reselect in Visual mode
-vnoremap < <gv
-vnoremap > >gv
-vnoremap = =gv
-
-" center the content
-nnoremap <C-u> <C-u>zz
-nnoremap <C-d> <C-d>zz
-nnoremap n nzz
-nnoremap N Nzz
 
 " move line up/down
 nnoremap <a-j> :m .+1<cr>==
 nnoremap <a-k> :m .-2<cr>==
 
-set commentary
+" center the content
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+nnoremap <S-h> :bp<CR>
+nnoremap <S-l> :bn<CR>
+
+map <leader>f <Action>(GotoFile)
+map <leader>b <Action>(Switcher)
+
 set highlightedyank
 set NERDTree
 set surround
 set which-key
-map <Leader>o <Action>(OptimizeImports)
-nnoremap gi :action GotoImplementation<CR>
+
+nmap ds <Plug>Dsurround
+nmap cs <Plug>Csurround
+nmap ys <Plug>Ysurround
+
+nmap gc <Action>(CommentByLineComment)
+vmap gc <Action>(CommentByLineComment)
+
+" Code actions
+nmap <leader>c <Action>(ShowIntentionActions)
+
+" Rename symbol
+nmap <leader>r <Action>(RenameElement)
+
+" Go to definition
+nmap gd <Action>(GotoDeclaration)
+
+" Go to implementation
+nmap gi <Action>(GotoImplementation)
+
+" Go to references
+nmap gr <Action>(FindUsages)
+
+" Go to type definition
+nmap gt <Action>(GotoTypeDeclaration)
