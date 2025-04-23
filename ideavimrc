@@ -1,19 +1,13 @@
 " leader key
 let mapleader = ' '
-
-nmap <Space> <Nop>
-vmap <Space> <Nop>
+nnoremap <Space> <Nop>
 
 " relative line numbers
 set number
 set relativenumber
 
 set scrolloff=8
-set timeoutlen=50
-set timeoutlen=300
-
-" sync Vim clipboard with OS clipboard
-set clipboard+=unnamedplus
+set notimeout
 
 nnoremap <Esc> :nohlsearch<CR>
 
@@ -74,3 +68,5 @@ nmap gr <Action>(FindUsages)
 
 " Go to type definition
 nmap gt <Action>(GotoTypeDeclaration)
+
+set functiontextobj
