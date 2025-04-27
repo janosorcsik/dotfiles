@@ -26,6 +26,7 @@
   true-color = always
 [diff]
   colorMoved = default
+  renames = copies
 [feature]
   manyFiles = true
 [fetch]
@@ -38,6 +39,7 @@
   required = true
   smudge = git-lfs smudge -- %f
 [gc]
+  auto = 1
   writeCommitGraph = true
 [gpg]
   format = ssh
@@ -51,6 +53,7 @@
   diffFilter = delta --color-only
 [log]
   abbrevCommit = true
+  date = iso
   decorate = short
 [merge]
   conflictstyle = diff3
@@ -61,15 +64,21 @@
 [push]
   autoSetupRemote = true
   default = current
+  followTags = true
 [rebase]
   autoStash = true
 [rerere]
   autoUpdate = true
   enabled = true
 [status]
+  branch = true
   showStash = true
+  showUntrackedFiles = all
+[submodule]
+  fetchJobs = 16
 [user]
   email = 4984853+janosorcsik@users.noreply.github.com
   name = János Orcsik
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAM9nzsL5OWk2vEXjiT4aZZpa1xDbL3GiuQwc7Enpcjj
 [includeIf "gitdir:~/Developer/Work/"]
   path = ~/.gitconfig-work
