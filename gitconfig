@@ -24,6 +24,7 @@
   line-numbers = true
   navigate = true    # use n and N to move between diff sections
   true-color = always
+  features = catppuccin-mocha
 [diff]
   colorMoved = default
   renames = copies
@@ -82,3 +83,5 @@
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAM9nzsL5OWk2vEXjiT4aZZpa1xDbL3GiuQwc7Enpcjj
 [includeIf "gitdir:~/Developer/Work/"]
   path = ~/.gitconfig-work
+[include]
+	path = ~/catppuccin.gitconfig
