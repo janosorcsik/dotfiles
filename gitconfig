@@ -31,6 +31,7 @@
   side-by-side = true
   true-color = always
 [diff]
+  algorithm = histogram
   colorMoved = default
   renames = copies
 [feature]
@@ -44,6 +45,8 @@
   process = git-lfs filter-process
   required = true
   smudge = git-lfs smudge -- %f
+[format]
+  signOff = false
 [gc]
   auto = 1
   writeCommitGraph = true
@@ -52,7 +55,7 @@
 [gpg "ssh"]
   program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 [help]
-	autocorrect = 1
+  autocorrect = 1
 [init]
   defaultBranch = main
 [interactive]
@@ -75,6 +78,7 @@
   followTags = true
 [rebase]
   autoStash = true
+  updateRefs = true
 [remote]
   pushDefault = origin
 [rerere]
@@ -86,11 +90,13 @@
   showUntrackedFiles = all
 [submodule]
   fetchJobs = 16
+[tag]
+  gpgsign = true
 [user]
   email = 4984853+janosorcsik@users.noreply.github.com
   name = János Orcsik
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAM9nzsL5OWk2vEXjiT4aZZpa1xDbL3GiuQwc7Enpcjj
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAM9nzsL5OWk2vEXjiT4aZZpa1xDbL3GiuQwc7Enpcjj
 [includeIf "gitdir:~/Developer/Work/"]
   path = ~/.gitconfig-work
 [include]
-	path = ~/catppuccin.gitconfig
+  path = ~/catppuccin.gitconfig
