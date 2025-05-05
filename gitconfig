@@ -5,10 +5,16 @@
 [apply]
   ignoreWhitespace = change
 [branch]
+  autosetuprebase = always
   sort = -committerdate
 [commit]
   gpgsign = true
   verbose = true
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+  ui = auto
 [column]
   ui = auto
 [core]
@@ -20,11 +26,10 @@
 [credential]
   helper = osxkeychain
 [delta]
-  features = diff-so-fancy
-  line-numbers = true
-  navigate = true    # use n and N to move between diff sections
-  true-color = always
   features = catppuccin-mocha
+  line-numbers = true
+  side-by-side = true
+  true-color = always
 [diff]
   colorMoved = default
   renames = copies
@@ -57,17 +62,21 @@
   date = iso
   decorate = short
 [merge]
-  conflictstyle = diff3
+  branchdesc = true
+  conflictstyle = zdiff3
+  log = true
 [pull]
   all = true
-  rebase = true
   ff = only
+  rebase = true
 [push]
   autoSetupRemote = true
   default = current
   followTags = true
 [rebase]
   autoStash = true
+[remote]
+  pushDefault = origin
 [rerere]
   autoUpdate = true
   enabled = true
