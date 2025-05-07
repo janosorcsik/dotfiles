@@ -7,7 +7,7 @@ alias rm="trash"
 
 # Git aliases
 alias ga="git add"
-alias gcl="git clone --recursive"
+alias gcl="git clone"
 alias gcm="git commit --message"
 alias gco="git checkout"
 alias gd="git diff"
@@ -15,7 +15,7 @@ alias gf="git fetch"
 alias gm="git merge"
 alias glg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gnb="git checkout -b"
-alias gpl="git pull --recurse-submodules"
+alias gpl="git pull"
 alias gps="git push"
 alias gs="git status --branch --short"
 

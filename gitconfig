@@ -27,6 +27,7 @@
 [fetch]
   all = true
   prune = true
+  recurseSubmodules = on-demand
   writeCommitGraph = true
 [gc]
   writeCommitGraph = true
@@ -74,6 +75,7 @@
   showUntrackedFiles = all
 [submodule]
   fetchJobs = 16
+  recurse = true
 [tag]
   gpgsign = true
 [user]
