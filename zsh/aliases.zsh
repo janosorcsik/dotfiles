@@ -26,4 +26,4 @@ alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && 
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
 # NPM update alias
-alias nu="npm install npm --location=global && npm update --location=global"
+alias nu="npm i npm -g && npm up -g"
