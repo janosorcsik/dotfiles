@@ -1,22 +1,5 @@
-[add.interactive]
-  useBuiltin = false # required for git 2.37.0
-[am]
-  threeWay = true
-[apply]
-  ignoreWhitespace = change
-[branch]
-  autosetuprebase = always
-  sort = -committerdate
 [commit]
   gpgsign = true
-  verbose = true
-[color]
-  branch = auto
-  diff = auto
-  status = auto
-  ui = auto
-[column]
-  ui = auto
 [core]
   commitGraph = true
   fsmonitor = true
@@ -33,22 +16,14 @@
 [diff]
   algorithm = histogram
   colorMoved = default
-  renames = copies
+  wsErrorHighlight = all
 [feature]
   manyFiles = true
 [fetch]
   all = true
   prune = true
   writeCommitGraph = true
-[filter "lfs"]
-  clean = git-lfs clean -- %f
-  process = git-lfs filter-process
-  required = true
-  smudge = git-lfs smudge -- %f
-[format]
-  signOff = false
 [gc]
-  auto = 1
   writeCommitGraph = true
 [gpg]
   format = ssh
@@ -64,10 +39,13 @@
   abbrevCommit = true
   date = iso
   decorate = short
+  follow = true
 [merge]
   branchdesc = true
   conflictstyle = zdiff3
   log = true
+[pack]
+  threads = 0
 [pull]
   all = true
   ff = only
@@ -78,6 +56,7 @@
   followTags = true
 [rebase]
   autoStash = true
+  missingCommitsCheck = warn
   updateRefs = true
 [remote]
   pushDefault = origin
@@ -94,7 +73,7 @@
   gpgsign = true
 [user]
   email = 4984853+janosorcsik@users.noreply.github.com
-  name = János Orcsik
+  name = János Orcsik
   signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAM9nzsL5OWk2vEXjiT4aZZpa1xDbL3GiuQwc7Enpcjj
 [includeIf "gitdir:~/Developer/Work/"]
   path = ~/.gitconfig-work
