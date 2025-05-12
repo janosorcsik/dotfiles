@@ -11,28 +11,70 @@ function bu {
 
 # Clean up remote-tracking merged branches and local orphan branches
 function gclean {
-  echo "Cleaning remote-tracking merged branches..."
-  git branch -r --merged | grep -Ev '\*|main|master|develop|release' | sed 's/origin\///' | while read -r branch; do
-    echo " $branch (remote - deleted)"
-    git push --delete origin "$branch"
-  done
+  echo "Looking for remote-tracking merged branches..."
+  merged_remotes=$(git branch -r --merged | grep -Ev '\*|main|master|develop|release|wikiMaster' | sed 's/origin\///')
 
-  echo "Cleaning gone-tracking local branches..."
+  if [[ -n "$merged_remotes" ]]; then
+    echo "The following remote branches would be deleted:"
+    echo "$merged_remotes" | while read -r branch; do
+      echo " $branch (remote merged)"
+    done
+
+    read -p "Delete these remote merged branches? (y/n) " confirm_remote
+    if [[ "$confirm_remote" == [yY] ]]; then
+      echo "$merged_remotes" | while read -r branch; do
+        echo " Deleting $branch (remote)"
+        git push --delete origin "$branch"
+      done
+    else
+      echo "Remote branches were not deleted."
+    fi
+  else
+    echo "No remote-tracking merged branches found."
+  fi
+
+  echo "Pruning references to deleted remote branches..."
   git fetch --prune
-  git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | while read -r branch; do
-    echo " $branch (gone - local deleted)"
-    git branch -D "$branch"
-  done
+
+  echo "Looking for gone-tracking local branches..."
+  gone_locals=$(git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}')
+
+  if [[ -n "$gone_locals" ]]; then
+    echo "The following local branches track deleted remote branches:"
+    echo "$gone_locals" | while read -r branch; do
+      echo " $branch (tracking deleted remote)"
+    done
+
+    read -p "Delete these local branches tracking deleted remotes? (y/n) " confirm_gone
+    if [[ "$confirm_gone" == [yY] ]]; then
+      echo "$gone_locals" | while read -r branch; do
+        echo " Deleting $branch (local tracking deleted remote)"
+        git branch -D "$branch"
+      done
+    else
+      echo "Local branches tracking deleted remotes were not deleted."
+    fi
+  else
+    echo "No local branches tracking deleted remotes found."
+  fi
 
   echo "Looking for local orphan branches..."
   orphans=$(git for-each-ref --format='%(refname:short) %(upstream:short)' refs/heads | awk '$2 == "" {print $1}')
+
   if [[ -n "$orphans" ]]; then
+    echo "The following local branches have no remote tracking:"
     echo "$orphans" | while read -r branch; do
-      echo " $branch (orphan)"
+      echo " $branch (orphan)"
     done
-    read "confirm?Delete local orphan branches? (y/n) "
-    if [[ "$confirm" == [yY] ]]; then
-      echo "$orphans" | xargs -r git branch -D
+
+    read -p "Delete these local orphan branches? (y/n) " confirm_orphan
+    if [[ "$confirm_orphan" == [yY] ]]; then
+      echo "$orphans" | while read -r branch; do
+        echo " Deleting $branch (orphan)"
+        git branch -D "$branch"
+      done
+    else
+      echo "Local orphan branches were not deleted."
     fi
   else
     echo "No local orphan branches found."
