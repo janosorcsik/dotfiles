@@ -1,104 +1,193 @@
-# Brew and Cask update
+# Comprehensive Brew and App Store Update
 function bu {
+  echo "🍺 Starting System Package Updates"
+  echo "═════════════════════════════════════════════════════"
+
+  # App Store updates
+  echo "📱 Checking Mac App Store updates..."
   mas upgrade
+
+  # Homebrew updates
+  echo "🔄 Updating Homebrew formulae..."
   brew update
+
+  echo "⬆️ Upgrading Homebrew packages..."
   brew upgrade --fetch-HEAD
+
+  echo "🖥️ Upgrading Homebrew Casks (applications)..."
   brew cu --all --yes --quiet --no-brew-update
+
+  echo "🧹 Cleaning up Homebrew files..."
   brew cleanup -s
+
+  echo "🗑️ Removing Homebrew cache..."
   rm -rf "$(brew --cache)"
+
+  echo "📦 Creating Brewfile snapshot of installed packages..."
   brew bundle dump --global --force --describe
+
+  echo "═════════════════════════════════════════════════════"
+  echo "✨ System updates complete!"
+
+  # Optional: display a summary
+  echo "📊 Current system status:"
+  echo "• Homebrew: $(brew --version | head -n 1)"
+  echo "• Packages: $(brew list --formula | wc -l | xargs) formula, $(brew list --cask | wc -l | xargs) casks"
+  echo "• Brewfile: ~/.Brewfile"
 }
 
-# Clean up remote-tracking merged branches and local orphan branches
+# Clean up Git branches safely with confirmations
 function gclean {
-  echo "Looking for remote-tracking merged branches..."
-  merged_remotes=$(git branch -r --merged | grep -Ev '\*|main|master|develop|release|wikiMaster' | sed 's/origin\///')
+  # Get current repo name and branch for display
+  current_repo=$(basename "$(pwd)")
+  current_branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+
+  # Show clear header with repo info
+  echo "🧹 Git Branch Cleanup: $current_repo ($current_branch)"
+  echo "═════════════════════════════════════════════════════"
+
+  # Verify we're in a git repo before proceeding
+  if [ ! -d ".git" ]; then
+    echo "❌ Error: Not in a Git repository. Please run this from a Git repo."
+    return 1
+  fi
+
+  # 1. Remote merged branches
+  echo "🔍 Checking remote-tracking merged branches..."
+  merged_remotes=$(git branch -r --merged | grep -Ev '\*|main|master|develop|release' | sed 's/origin\///')
 
   if [[ -n "$merged_remotes" ]]; then
-    echo "The following remote branches would be deleted:"
+    echo "   Found merged remote branches:"
     echo "$merged_remotes" | while read -r branch; do
-      echo " $branch (remote merged)"
+      echo "   • $branch"
     done
 
-    read -p "Delete these remote merged branches? (y/n) " confirm_remote
+    echo -n "❓ Delete these remote merged branches in '$current_repo'? (y/n) "
+    read confirm_remote
     if [[ "$confirm_remote" == [yY] ]]; then
       echo "$merged_remotes" | while read -r branch; do
-        echo " Deleting $branch (remote)"
+        echo "   ✂️ Deleting remote branch: $branch"
         git push --delete origin "$branch"
       done
     else
-      echo "Remote branches were not deleted."
+      echo "   ✅ Remote branches were kept."
     fi
   else
-    echo "No remote-tracking merged branches found."
+    echo "   ✅ No remote-tracking merged branches found."
   fi
 
-  echo "Pruning references to deleted remote branches..."
+  # 2. Prune and check for gone branches
+  echo "🔄 Pruning references to deleted remote branches..."
   git fetch --prune
 
-  echo "Looking for gone-tracking local branches..."
-  gone_locals=$(git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}')
+  echo "🔍 Checking for gone-tracking local branches..."
+  # Módosított sor - kizárjuk az aktuális ágat (ami *-gal jelölt)
+  gone_locals=$(git branch -vv | grep -v '^\*' | grep 'origin/.*: gone]' | awk '{print $1}')
 
   if [[ -n "$gone_locals" ]]; then
-    echo "The following local branches track deleted remote branches:"
+    echo "   Found local branches tracking deleted remotes:"
     echo "$gone_locals" | while read -r branch; do
-      echo " $branch (tracking deleted remote)"
+      echo "   • $branch"
     done
 
-    read -p "Delete these local branches tracking deleted remotes? (y/n) " confirm_gone
+    echo -n "❓ Delete these local branches in '$current_repo'? (y/n) "
+    read confirm_gone
     if [[ "$confirm_gone" == [yY] ]]; then
       echo "$gone_locals" | while read -r branch; do
-        echo " Deleting $branch (local tracking deleted remote)"
+        echo "   ✂️ Deleting local branch: $branch"
         git branch -D "$branch"
       done
     else
-      echo "Local branches tracking deleted remotes were not deleted."
+      echo "   ✅ Local branches were kept."
     fi
   else
-    echo "No local branches tracking deleted remotes found."
+    echo "   ✅ No local branches tracking deleted remotes."
   fi
 
-  echo "Looking for local orphan branches..."
-  orphans=$(git for-each-ref --format='%(refname:short) %(upstream:short)' refs/heads | awk '$2 == "" {print $1}')
+  # 3. Orphan branches
+  echo "🔍 Checking for local orphan branches..."
+  # Módosított sor - kizárjuk az aktuális ágat
+  orphans=$(git for-each-ref --format='%(refname:short) %(upstream:short)' refs/heads |
+            awk -v current="$current_branch" '$2 == "" && $1 != current {print $1}')
 
   if [[ -n "$orphans" ]]; then
-    echo "The following local branches have no remote tracking:"
+    echo "   Found local branches with no remote tracking:"
     echo "$orphans" | while read -r branch; do
-      echo " $branch (orphan)"
+      echo "   • $branch"
     done
 
-    read -p "Delete these local orphan branches? (y/n) " confirm_orphan
+    echo -n "❓ Delete these orphan branches in '$current_repo'? (y/n) "
+    read confirm_orphan
     if [[ "$confirm_orphan" == [yY] ]]; then
       echo "$orphans" | while read -r branch; do
-        echo " Deleting $branch (orphan)"
+        echo "   ✂️ Deleting orphan branch: $branch"
         git branch -D "$branch"
       done
     else
-      echo "Local orphan branches were not deleted."
+      echo "   ✅ Orphan branches were kept."
     fi
   else
-    echo "No local orphan branches found."
+    echo "   ✅ No orphan branches found."
   fi
+
+  echo "═════════════════════════════════════════════════════"
+  echo "✨ Git branch cleanup complete for $current_repo"
+}
+
+# Clean all Git repositories in subfolders
+function gcleanall {
+  for dir in */; do
+    if [ -d "$dir/.git" ]; then
+      # Get repo branch info
+      branch=$(git -C "$dir" rev-parse --abbrev-ref HEAD 2>/dev/null)
+      echo "🔍 Checking repo: $dir ($branch)"
+
+      echo -n "❓ Clean branches in '$dir'? (y/n) "
+      read confirm
+      if [[ "$confirm" == [yY] ]]; then
+        # Change to directory and run the cleaning
+        (cd "$dir" && gclean)
+        echo ""
+      else
+        echo "   ⏩ Skipping $dir"
+        echo ""
+      fi
+    fi
+  done
+
+  echo "✅ Finished cleaning all repositories"
 }
 
 # Fetch all Git repositories in subfolders
 function gfall {
+  echo "🔄 Fetching updates for all repositories"
+  echo "═════════════════════════════════════════════════════"
+
   for dir in */; do
     if [ -d "$dir/.git" ]; then
       branch=$(git -C "$dir" rev-parse --abbrev-ref HEAD 2>/dev/null)
-      echo "$dir  $branch"
+      echo "• $dir ($branch)"
       git -C "$dir" fetch
     fi
   done
+
+  echo "═════════════════════════════════════════════════════"
+  echo "✅ Fetch complete for all repositories"
 }
 
 # Pull all Git repositories in subfolders
 function gpall {
+  echo "⬇️ Pulling updates for all repositories"
+  echo "═════════════════════════════════════════════════════"
+
   for dir in */; do
     if [ -d "$dir/.git" ]; then
       branch=$(git -C "$dir" rev-parse --abbrev-ref HEAD 2>/dev/null)
-      echo "$dir  $branch"
+      echo "• $dir ($branch)"
       git -C "$dir" pull
     fi
   done
+
+  echo "═════════════════════════════════════════════════════"
+  echo "✅ Pull complete for all repositories"
 }
