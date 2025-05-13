@@ -22,6 +22,8 @@ brew "blueutil"
 brew "carapace"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
+# Power of curl, ease of use of httpie
+brew "curlie"
 # Utility to configure multi-display resolutions and arrangements
 brew "displayplacer"
 # Pack, ship and run any application as a lightweight container
@@ -54,6 +56,8 @@ brew "neovim"
 brew "powerlevel10k"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# Simple terminal UI for search and replace
+brew "serpl"
 # HTTP regression testing and benchmarking utility
 brew "siege"
 # Command-line tool for Stripe
@@ -140,6 +144,8 @@ cask "ghostty"
 cask "jetbrains-toolbox"
 # Open-source keystroke visualiser
 cask "keycastr"
+# Custom Discord client
+cask "legcord"
 # Open-source Dropbox client
 cask "maestral"
 # Native desktop app for Messenger (formerly Facebook Messenger)
@@ -183,6 +189,7 @@ cask "visual-studio-code"
 # REST, GraphQL and gRPC client
 cask "yaak"
 mas "1Password for Safari", id: 1569813296
+mas "Couverture", id: 1552415914
 mas "Day One", id: 1055511498
 mas "Finances", id: 1218241304
 mas "GarageBand", id: 682658836
