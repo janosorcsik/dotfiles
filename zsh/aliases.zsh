@@ -1,5 +1,4 @@
 # Aliases - common commands
-alias cat="bat"
 alias ls="eza -a --group-directories-first"
 alias ll="eza -al --group-directories-first"
 alias ..="cd .."
