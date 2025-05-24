@@ -15,7 +15,7 @@
   true-color = always
 [diff]
   algorithm = histogram
-  colorMoved = default
+  colorMoved = plain
   wsErrorHighlight = all
 [filter "lfs"]
   process = git-lfs filter-process
@@ -27,16 +27,15 @@
 [fetch]
   all = true
   prune = true
+  pruneTags = true
   recurseSubmodules = on-demand
-  writeCommitGraph = true
-[gc]
   writeCommitGraph = true
 [gpg]
   format = ssh
 [gpg "ssh"]
   program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 [help]
-  autocorrect = 1
+  autocorrect = prompt
 [init]
   defaultBranch = main
 [interactive]
@@ -61,13 +60,14 @@
   default = current
   followTags = true
 [rebase]
+  autoSquash = true
   autoStash = true
   missingCommitsCheck = warn
   updateRefs = true
 [remote]
   pushDefault = origin
 [rerere]
-  autoUpdate = true
+  autoupdate = true
   enabled = true
 [status]
   branch = true
