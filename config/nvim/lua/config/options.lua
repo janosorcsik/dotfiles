@@ -1,8 +1,6 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 
-vim.opt.mouse = "a"
-
 vim.opt.showmode = false
 
 vim.schedule(function()
@@ -10,17 +8,11 @@ vim.schedule(function()
 end)
 
 vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undofile = true
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
-vim.opt.signcolumn = "yes"
-
 vim.opt.scrolloff = 8
-
-vim.opt.updatetime = 50
 
 vim.opt.confirm = true
 
