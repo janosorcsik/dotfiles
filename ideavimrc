@@ -26,6 +26,10 @@ set ideajoin
 " move line up/down
 nnoremap <a-j> :m .+1<cr>==
 nnoremap <a-k> :m .-2<cr>==
+inoremap <a-j> <esc>:m .+1<cr>==gi
+inoremap <a-k> <esc>:m .-2<cr>==gi
+vnoremap <a-k> :m '<-2<cr>gv=gv
+noremap <a-j> :m '>+1<cr>gv=gv
 
 " center the content
 nnoremap <C-d> <C-d>zz
@@ -36,8 +40,18 @@ nnoremap N Nzzzv
 nnoremap <S-h> :bp<CR>
 nnoremap <S-l> :bn<CR>
 
-map <leader>f <Action>(GotoFile)
+" window navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" file navigation (matching nvim snacks.nvim)
+map <leader>ff <Action>(GotoFile)
+map <leader>fg <Action>(RecentFiles)
 map <leader>b <Action>(Switcher)
+map <leader>e <Action>(SelectInProjectView)
+map <leader>sg <Action>(FindInPath)
 
 set highlightedyank
 set NERDTree
@@ -48,8 +62,8 @@ nmap ds <Plug>Dsurround
 nmap cs <Plug>Csurround
 nmap ys <Plug>Ysurround
 
-nmap gc <Action>(CommentByLineComment)
-vmap gc <Action>(CommentByLineComment)
+nmap gcc <Action>(CommentByLineComment)
+vmap gcc <Action>(CommentByLineComment)
 
 " Code actions
 nmap <leader>c <Action>(ShowIntentionActions)
