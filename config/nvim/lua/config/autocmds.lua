@@ -36,11 +36,13 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
-	callback = function(event)
-		local opts = { buffer = event.buf }
-		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-		vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+	callback = function()
+		-- |grn| in Normal mode maps to |vim.lsp.buf.rename()|
+		-- |grr| in Normal mode maps to |vim.lsp.buf.references()|
+		-- |gri| in Normal mode maps to |vim.lsp.buf.implementation()|
+		-- |gO| in Normal mode maps to |vim.lsp.buf.document_symbol()|
+		-- |gra| in Normal and Visual mode maps to |vim.lsp.buf.code_action()|
+		-- |CTRL-S| in Insert and Select mode maps to |vim.lsp.buf.signature_help()|
+		vim.keymap.set("n", "grd", vim.lsp.buf.definition)
 	end,
 })
