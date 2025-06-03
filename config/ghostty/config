@@ -24,3 +24,5 @@ working-directory = home
 macos-option-as-alt = left
 
 keybind = global:option+t=toggle_quick_terminal
+# open the current screen in the default editor
+keybind = super+alt+shift+j=write_screen_file:open

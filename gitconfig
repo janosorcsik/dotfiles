@@ -6,6 +6,7 @@
   pager = delta
   quotepath = false
   untrackedcache = true
+	autocrlf = input
 [credential]
   helper = osxkeychain
 [delta]
