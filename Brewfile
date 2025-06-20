@@ -54,6 +54,8 @@ brew "git"
 brew "git-delta"
 # Git extension for versioning large files
 brew "git-lfs"
+# Easy plain text accounting with command-line, terminal and web UIs
+brew "hledger"
 # Command-line benchmarking tool
 brew "hyperfine"
 # Lightweight and flexible command-line JSON processor
@@ -72,6 +74,8 @@ brew "ninja"
 brew "node", link: false
 # Theme for zsh
 brew "powerlevel10k"
+# Perl-powered file rename script with many helpful built-ins
+brew "rename"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Simple terminal UI for search and replace
@@ -155,19 +159,12 @@ cask "dotnet-sdk8-0-400"
 # This cask follows releases from https://github.com/dotnet/core/tree/master
 cask "dotnet-sdk9"
 # This cask follows releases from https://github.com/dotnet/core/tree/master
-cask "dotnet-sdk9-0-200"
-# This cask follows releases from https://github.com/dotnet/core/tree/master
 cask "dotnet-sdk9-0-300"
-# Find files, folders, or contents in any file
-cask "easyfind"
 # Change the behavior of the fn keys depending on the active application
 cask "fluor"
-cask "font-inter"
 cask "font-sf-mono-nerd-font"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
-# Terminal emulator as alternative to Apple's Terminal app
-cask "iterm2"
 # JetBrains tools manager
 cask "jetbrains-toolbox"
 # Open-source keystroke visualiser
@@ -228,8 +225,8 @@ mas "Keynote", id: 409183694
 mas "NextDNS", id: 1464122853
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
+mas "PreviewText", id: 1660037028
 mas "SponsorBlock", id: 1573461917
-mas "TestFlight", id: 899247664
 mas "Things", id: 904280696
 mas "Tomito", id: 1526042938
 mas "Wipr", id: 1662217862
@@ -245,14 +242,11 @@ vscode "hbenl.vscode-test-explorer"
 vscode "ibm.output-colorizer"
 vscode "jackfranklin.vscode-go-to-file"
 vscode "mikestead.dotenv"
-vscode "ms-dotnettools.csharp"
-vscode "ms-dotnettools.vscode-dotnet-runtime"
 vscode "ms-vscode.test-adapter-converter"
 vscode "pascalsenn.keyboard-quickfix"
 vscode "pflannery.vscode-versionlens"
 vscode "tamasfe.even-better-toml"
 vscode "usernamehw.errorlens"
-vscode "visualstudioexptteam.intellicode-api-usage-examples"
 vscode "visualstudioexptteam.vscodeintellicode"
 vscode "vitest.explorer"
 vscode "vscodevim.vim"
