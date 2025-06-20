@@ -1,5 +1,5 @@
 background-blur-radius = 40
-background-opacity = 0.96
+background-opacity = 0.7
 
 alpha-blending = linear-corrected
 window-colorspace = display-p3
@@ -9,19 +9,11 @@ font-size = 16
 
 theme = catppuccin-mocha
 
-adjust-cell-height = 35%
-adjust-cursor-thickness = 3
-window-padding-x = 8
-window-padding-y = 4
-window-padding-balance = true
-
 confirm-close-surface = false
 quit-after-last-window-closed = true
 
 window-inherit-working-directory = false
 working-directory = home
-
-macos-option-as-alt = left
 
 keybind = global:option+t=toggle_quick_terminal
 # open the current screen in the default editor
