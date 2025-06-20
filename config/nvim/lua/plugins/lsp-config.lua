@@ -8,7 +8,7 @@ return {
 			},
 			ui = {
 				border = "rounded",
-			}
+			},
 		},
 	},
 	{
