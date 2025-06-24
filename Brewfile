@@ -1,14 +1,10 @@
-tap "aerobounce/tap"
 tap "azure/functions"
 tap "beeftornado/rmtree"
 tap "buo/cask-upgrade"
 tap "epk/epk"
-tap "felixkratz/formulae"
 tap "homebrew/command-not-found"
 tap "isen-ng/dotnet-sdk-versions"
 tap "lihaoyun6/tap"
-tap "nikitabobko/tap"
-tap "rien7/apps"
 tap "smudge/smudge"
 tap "viva64/pvs-studio"
 tap "warrensbox/tap"
@@ -54,10 +50,6 @@ brew "git"
 brew "git-delta"
 # Git extension for versioning large files
 brew "git-lfs"
-# Easy plain text accounting with command-line, terminal and web UIs
-brew "hledger"
-# Command-line benchmarking tool
-brew "hyperfine"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Interpreted, interactive, object-oriented programming language
@@ -88,8 +80,6 @@ brew "stripe-cli"
 brew "stylua"
 # CLI for generating a Software Bill of Materials from container images
 brew "syft"
-# Enables extra languages support for Tesseract
-brew "tesseract-lang"
 # Static analysis security scanner for your terraform code
 brew "tfsec"
 # CLI tool that moves files or folder to the trash
@@ -100,8 +90,6 @@ brew "uv"
 brew "vivid"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
-# General-purpose lossless data-compression library
-brew "zlib"
 # UNIX shell (command interpreter)
 brew "zsh"
 # Fish-like fast/unobtrusive autosuggestions for zsh
@@ -110,12 +98,8 @@ brew "zsh-autosuggestions"
 brew "zsh-completions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
-# User Defaults Plist → Shell Script converter with Regex filtering
-brew "aerobounce/tap/ds"
 # Azure Functions Core Tools 4.0
 brew "azure/functions/azure-functions-core-tools@4"
-# A window border system for macOS
-brew "felixkratz/formulae/borders"
 # A CLI for configuring 'Night Shift' on macOS 🌕🌖🌗🌘🌑
 brew "smudge/smudge/nightlight"
 brew "viva64/pvs-studio/pvs-studio"
@@ -126,10 +110,6 @@ brew "warrensbox/tap/tfswitch"
 cask "1password"
 # Command-line interface for 1Password
 cask "1password-cli"
-# Application to indicate the aerospace workspace
-cask "aeroindicator"
-# AeroSpace is an i3-like tiling window manager for macOS
-cask "aerospace"
 # Professional graphic design software
 cask "affinity-designer"
 # Professional image editing software
@@ -144,7 +124,7 @@ cask "arc"
 cask "beyond-compare"
 # OpenAI's official ChatGPT desktop app
 cask "chatgpt"
-# Trains AIs to understand and translate texts
+# AI-powered translator
 cask "deepl"
 # Translate words without ever opening a dictionary
 cask "dictionaries"
@@ -160,6 +140,8 @@ cask "dotnet-sdk8-0-400"
 cask "dotnet-sdk9"
 # This cask follows releases from https://github.com/dotnet/core/tree/master
 cask "dotnet-sdk9-0-300"
+# Virtual workspace manager
+cask "flashspace"
 # Change the behavior of the fn keys depending on the active application
 cask "fluor"
 cask "font-sf-mono-nerd-font"
@@ -167,6 +149,8 @@ cask "font-sf-mono-nerd-font"
 cask "ghostty"
 # JetBrains tools manager
 cask "jetbrains-toolbox"
+# Menu bar manager
+cask "jordanbaird-ice"
 # Open-source keystroke visualiser
 cask "keycastr"
 # Custom Discord client
