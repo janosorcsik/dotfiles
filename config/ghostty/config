@@ -7,6 +7,9 @@ window-colorspace = display-p3
 font-family = SFMono Nerd Font
 font-size = 16
 
+window-height = 30
+window-width = 100
+
 theme = catppuccin-mocha
 
 confirm-close-surface = false
