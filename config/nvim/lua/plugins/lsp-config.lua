@@ -18,6 +18,7 @@ return {
 			ensure_installed = {
 				"bashls",
 				"eslint",
+				"gopls",
 				"jsonls",
 				"lua_ls",
 				"tailwindcss",

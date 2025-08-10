@@ -13,6 +13,7 @@ return {
 			"bash",
 			"c_sharp",
 			"diff",
+			"go",
 			"html",
 			"javascript",
 			"json",
