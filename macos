@@ -327,6 +327,9 @@ chmod u+rw ~/Screenshots
 # Change screenshots location
 defaults write com.apple.screencapture location ~/Screenshots
 
+# Change screenshots type
+defaults write com.apple.screencapture "type" -string "heic"
+
 ###############################################################################
 # Mac App Store                                                               #
 ###############################################################################
