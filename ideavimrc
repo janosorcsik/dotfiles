@@ -24,12 +24,12 @@ set cursorline
 set ideajoin
 
 " move line up/down
-nnoremap <a-j> :m .+1<cr>==
-nnoremap <a-k> :m .-2<cr>==
-inoremap <a-j> <esc>:m .+1<cr>==gi
-inoremap <a-k> <esc>:m .-2<cr>==gi
-vnoremap <a-k> :m '<-2<cr>gv=gv
-noremap <a-j> :m '>+1<cr>gv=gv
+nnoremap <D-j> :m .+1<CR>==
+nnoremap <D-k> :m .-2<CR>==
+inoremap <D-j> <Esc>:m .+1<CR>==gi
+inoremap <D-k> <Esc>:m .-2<CR>==gi
+vnoremap <D-j> :m '>+1<CR>gv=gv
+vnoremap <D-k> :m '<-2<CR>gv=gv
 
 " center the content
 nnoremap <C-d> <C-d>zz
@@ -47,11 +47,11 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " file navigation (matching nvim snacks.nvim)
-map <leader>ff <Action>(GotoFile)
-map <leader>fg <Action>(RecentFiles)
-map <leader>b <Action>(Switcher)
-map <leader>e <Action>(SelectInProjectView)
-map <leader>sg <Action>(FindInPath)
+map <Leader>ff <Action>(GotoFile)
+map <Leader>fg <Action>(RecentFiles)
+map <Leader>b <Action>(Switcher)
+map <Leader>e <Action>(SelectInProjectView)
+map <Leader>sg <Action>(FindInPath)
 
 set highlightedyank
 set NERDTree
@@ -66,10 +66,10 @@ nmap gcc <Action>(CommentByLineComment)
 vmap gcc <Action>(CommentByLineComment)
 
 " Code actions
-nmap <leader>c <Action>(ShowIntentionActions)
+nmap <Leader>c <Action>(ShowIntentionActions)
 
 " Rename symbol
-nmap <leader>r <Action>(RenameElement)
+nmap <Leader>r <Action>(RenameElement)
 
 " Go to definition
 nmap gd <Action>(GotoDeclaration)
