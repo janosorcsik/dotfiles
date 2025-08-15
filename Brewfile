@@ -5,9 +5,7 @@ tap "epk/epk"
 tap "homebrew/command-not-found"
 tap "isen-ng/dotnet-sdk-versions"
 tap "lihaoyun6/tap"
-tap "smudge/smudge"
 tap "viva64/pvs-studio"
-tap "warrensbox/tap"
 # General-purpose data compression with high compression ratio
 brew "xz"
 # Library for command-line editing
@@ -16,8 +14,6 @@ brew "readline"
 brew "azure-cli"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-# Get/set bluetooth power and discoverable state
-brew "blueutil"
 # Multi-shell multi-command argument completer
 brew "carapace"
 # GNU File, Shell, and Text utilities
@@ -30,14 +26,10 @@ brew "displayplacer"
 brew "docker"
 # Isolated development environments using Docker
 brew "docker-compose"
-# Disk Usage/Free Utility - a better 'df' alternative
-brew "duf"
 # Modern, maintained replacement for ls
 brew "eza"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
-# OCR (Optical Character Recognition) engine
-brew "tesseract"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
 # Command-line fuzzy finder written in Go
@@ -52,40 +44,26 @@ brew "git-delta"
 brew "git-lfs"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.13"
-# Next-gen compiler infrastructure
-brew "llvm"
 # Mac App Store command-line interface
 brew "mas"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
-# Small build system for use with gyp or CMake
-brew "ninja"
 # Platform built on V8 to build network applications
-brew "node", link: false
+brew "node"
 # Theme for zsh
 brew "powerlevel10k"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.13"
 # Perl-powered file rename script with many helpful built-ins
 brew "rename"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Simple terminal UI for search and replace
 brew "serpl"
-# HTTP regression testing and benchmarking utility
-brew "siege"
-# Command-line tool for Stripe
-brew "stripe-cli"
 # Opinionated Lua code formatter
 brew "stylua"
-# CLI for generating a Software Bill of Materials from container images
-brew "syft"
-# Static analysis security scanner for your terraform code
-brew "tfsec"
 # CLI tool that moves files or folder to the trash
 brew "trash", link: true
-# Extremely fast Python package installer and resolver, written in Rust
-brew "uv"
 # Generator for LS_COLORS with support for multiple color themes
 brew "vivid"
 # Feature-rich command-line audio/video downloader
@@ -100,12 +78,8 @@ brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 # Azure Functions Core Tools 4.0
 brew "azure/functions/azure-functions-core-tools@4"
-# A CLI for configuring 'Night Shift' on macOS 🌕🌖🌗🌘🌑
-brew "smudge/smudge/nightlight"
 brew "viva64/pvs-studio/pvs-studio"
 brew "viva64/pvs-studio/pvs-studio-dotnet"
-# The tfswitch command lets you switch between terraform versions.
-brew "warrensbox/tap/tfswitch"
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
 # Command-line interface for 1Password
@@ -144,9 +118,12 @@ cask "dotnet-sdk9-0-300"
 cask "flashspace"
 # Change the behavior of the fn keys depending on the active application
 cask "fluor"
+cask "font-inter"
 cask "font-sf-mono-nerd-font"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
+# AI-powered notepad for meetings
+cask "granola"
 # JetBrains tools manager
 cask "jetbrains-toolbox"
 # Menu bar manager
@@ -155,10 +132,12 @@ cask "jordanbaird-ice"
 cask "keycastr"
 # Custom Discord client
 cask "legcord"
-# Open-source Dropbox client
-cask "maestral"
 # Native desktop app for Messenger (formerly Facebook Messenger)
 cask "messenger"
+# Provides updates to various Microsoft products
+cask "microsoft-auto-update"
+# Meet, chat, call, and collaborate in just one place
+cask "microsoft-teams"
 # Media player
 cask "movist-pro"
 # Replacement for Docker Desktop
@@ -179,6 +158,8 @@ cask "raycast"
 cask "shottr"
 # Team communication and collaboration software
 cask "slack"
+# Application designed to help you manage and optimize your workspace
+cask "spacesaver"
 # Music streaming service
 cask "spotify"
 # Unpacks archive files
@@ -203,24 +184,29 @@ mas "Day One", id: 1055511498
 mas "Finances", id: 1218241304
 mas "GarageBand", id: 682658836
 mas "Grammarly for Safari", id: 1462114288
+mas "Hush", id: 1544743900
 mas "iMovie", id: 408981434
 mas "iPreview", id: 1519213509
 mas "Keynote", id: 409183694
 mas "NextDNS", id: 1464122853
+mas "Notes Web Clipper", id: 6742116437
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "PreviewText", id: 1660037028
+mas "ReadKit", id: 1615798039
 mas "SponsorBlock", id: 1573461917
+mas "Tampermonkey Classic", id: 1482490089
 mas "Things", id: 904280696
 mas "Tomito", id: 1526042938
 mas "Wipr", id: 1662217862
-mas "Xcode", id: 497799835
 vscode "bradlc.vscode-tailwindcss"
 vscode "christian-kohler.path-intellisense"
 vscode "darkriszty.markdown-table-prettify"
 vscode "dbaeumer.vscode-eslint"
 vscode "esbenp.prettier-vscode"
 vscode "ghmcadams.lintlens"
+vscode "github.copilot"
+vscode "github.copilot-chat"
 vscode "github.vscode-github-actions"
 vscode "hbenl.vscode-test-explorer"
 vscode "ibm.output-colorizer"
