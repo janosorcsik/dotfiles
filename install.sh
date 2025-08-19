@@ -43,6 +43,7 @@ sudo rm -rf ~/.config/ghostty
 mkdir -p  ~/.config/ghostty
 ln -s ~/Developer/dotfiles/catpuccin/ghostty/themes ~/.config/ghostty/themes
 ln -s ~/Developer/dotfiles/config/ghostty/config ~/.config/ghostty/config
+sudo rm -rf ~/Library/Application\ Support/com.mitchellh.ghostty/config
 
 echo "Nvim..."
 sudo rm -rf ~/.config/nvim
