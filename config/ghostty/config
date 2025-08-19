@@ -4,7 +4,7 @@ background-opacity = 0.9
 alpha-blending = linear-corrected
 window-colorspace = display-p3
 
-font-family = SFMono Nerd Font
+font-family = LigaSFMonoNerdFont
 font-size = 16
 font-thicken = true
 
