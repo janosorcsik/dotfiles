@@ -1,15 +1,9 @@
-# Completion system - optimized to run once per day using modification time check
-autoload -Uz compinit
-if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
-  compinit
-else
-  compinit -C
-fi
-
 # Add Homebrew completions to fpath
-FPATH="$BREW_PREFIX/share/zsh/site-functions:$BREW_PREFIX/share/zsh-completions:${FPATH}"
+FPATH="$HOMEBREW_PREFIX/share/zsh/site-functions:$HOMEBREW_PREFIX/share/zsh-completions:${FPATH}"
 
-# Completion styling
+autoload -Uz compinit
+compinit -u
+
 # Completion styling settings
 zstyle ':completion:*' use-cache true  # Enable caching for completion results to speed up repeated completions
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'  # Enable case-insensitive matching for completion

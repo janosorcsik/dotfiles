@@ -2,4 +2,4 @@
 export LS_COLORS="$(vivid generate catppuccin-mocha)"
 
 # Theme should be loaded late in the process
-source "$BREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme"
+source "$HOMEBREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme"
