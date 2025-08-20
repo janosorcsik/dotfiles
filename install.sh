@@ -17,7 +17,6 @@ qlmanage -r
 
 echo "Zsh..."
 sudo rm ~/.zshrc ~/.zprofile
-chsh -s /bin/zsh
 ln -s ~/Developer/dotfiles/zshrc ~/.zshrc
 ln -s ~/Developer/dotfiles/zprofile ~/.zprofile
 sudo rm -rf ~/.zsh
