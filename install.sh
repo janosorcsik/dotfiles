@@ -26,10 +26,6 @@ ln -s ~/Developer/dotfiles/zsh ~/.zsh
 sudo rm ~/.p10k.zsh
 ln -s ~/Developer/dotfiles/p10k.zsh ~/.p10k.zsh
 
-# Install Catppuccin theme
-sudo rm ~/.catppuccin_mocha-zsh-syntax-highlighting.zsh
-ln -s ~/Developer/dotfiles/catpuccin/zsh-syntax-highlighting/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh ~/.catppuccin_mocha-zsh-syntax-highlighting.zsh
-
 # Remove last login text
 touch ~/.hushlogin
 

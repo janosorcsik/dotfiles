@@ -1,9 +1,6 @@
 [submodule "zsh-nvm"]
 	path = zsh-nvm
 	url = https://github.com/lukechilds/zsh-nvm
-[submodule "catpuccin/zsh-syntax-highlighting"]
-	path = catpuccin/zsh-syntax-highlighting
-	url = https://github.com/catppuccin/zsh-syntax-highlighting
 [submodule "catpuccin/bat"]
 	path = catpuccin/bat
 	url = https://github.com/catppuccin/bat.git
