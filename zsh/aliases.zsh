@@ -21,8 +21,6 @@ alias gs="git status --branch --short"
 # macOS Finder aliases
 alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
 alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
-alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
-alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
 # NPM update alias
 alias nu="npm i npm -g && npm up -g"
