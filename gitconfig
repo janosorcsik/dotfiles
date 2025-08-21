@@ -1,84 +1,21 @@
 [commit]
   gpgsign = true
 [core]
-  commitGraph = true
-  fsmonitor = true
   pager = delta
-  quotepath = false
-  untrackedcache = true
-	autocrlf = input
-[credential]
-  helper = osxkeychain
 [delta]
   features = catppuccin-mocha
-  line-numbers = true
   side-by-side = true
-  true-color = always
-[diff]
-  algorithm = histogram
-  colorMoved = plain
-  wsErrorHighlight = all
-[filter "lfs"]
-  process = git-lfs filter-process
-  required = true
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
-[feature]
-  manyFiles = true
 [fetch]
-  all = true
   prune = true
   pruneTags = true
-  recurseSubmodules = on-demand
-  writeCommitGraph = true
 [gpg]
   format = ssh
 [gpg "ssh"]
   program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
-[help]
-  autocorrect = prompt
-[init]
-  defaultBranch = main
-[interactive]
-  diffFilter = delta --color-only
-[log]
-  abbrevCommit = true
-  date = iso
-  decorate = short
-  follow = true
-[merge]
-  branchdesc = true
-  conflictstyle = zdiff3
-  log = true
-[pack]
-  threads = 0
 [pull]
-  all = true
-  ff = only
-  rebase = true
+  rebase = true 
 [push]
   autoSetupRemote = true
-  default = current
-  followTags = true
-[rebase]
-  autoSquash = true
-  autoStash = true
-  missingCommitsCheck = warn
-  updateRefs = true
-[remote]
-  pushDefault = origin
-[rerere]
-  autoupdate = true
-  enabled = true
-[status]
-  branch = true
-  showStash = true
-  showUntrackedFiles = all
-[submodule]
-  fetchJobs = 16
-  recurse = true
-[tag]
-  gpgsign = true
 [user]
   email = 4984853+janosorcsik@users.noreply.github.com
   name = János Orcsik
