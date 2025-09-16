@@ -54,10 +54,6 @@ echo "IdeaVim..."
 sudo rm ~/.ideavimrc
 ln -s ~/Developer/dotfiles/ideavimrc ~/.ideavimrc
 
-echo "Zsh nvm..."
-sudo rm -rf ~/.zsh-nvm
-ln -s ~/Developer/dotfiles/zsh-nvm ~/.zsh-nvm
-
 echo "Delta..."
 sudo rm ~/catppuccin.gitconfig
 ln -s ~/Developer/dotfiles/catpuccin/delta/catppuccin.gitconfig ~/catppuccin.gitconfig
