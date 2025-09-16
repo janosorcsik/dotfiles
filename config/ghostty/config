@@ -11,7 +11,7 @@ font-thicken = true
 window-height = 30
 window-width = 100
 
-theme = catppuccin-mocha
+theme = Catppuccin Mocha
 
 shell-integration = zsh
 confirm-close-surface = false
