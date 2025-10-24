@@ -61,7 +61,7 @@ defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 # Disable the warning when changing a file extension
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
-defaults write com.apple.Finder FXPreferredViewStyle icnv
+defaults write com.apple.finder FXPreferredViewStyle icnv
 
 defaults write com.apple.finder FXArrangeGroupViewBy Name
 defaults write com.apple.finder FXPreferredGroupBy Name
@@ -154,7 +154,7 @@ defaults write org.m0k.transmission AutoSize -bool true
 # IP block list.
 # Source: https://giuliomac.wordpress.com/2014/02/19/best-blocklist-for-transmission/
 defaults write org.m0k.transmission BlocklistNew -bool true
-defaults write org.m0k.transmission BlocklistURL -string "http://list.iblocklist.com/?list=bt_level1&fileformat=p2p&archiveformat=gz"
+defaults write org.m0k.transmission BlocklistURL -string "https://list.iblocklist.com/?list=bt_level1&fileformat=p2p&archiveformat=gz"
 defaults write org.m0k.transmission BlocklistAutoUpdate -bool true
 
 ###############################################################################
