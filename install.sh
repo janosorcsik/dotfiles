@@ -52,7 +52,3 @@ bat cache --build
 echo "IdeaVim..."
 sudo rm ~/.ideavimrc
 ln -s ~/Developer/dotfiles/ideavimrc ~/.ideavimrc
-
-echo "Delta..."
-sudo rm ~/catppuccin.gitconfig
-ln -s ~/Developer/dotfiles/catpuccin/delta/catppuccin.gitconfig ~/catppuccin.gitconfig

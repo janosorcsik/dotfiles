@@ -1,10 +1,11 @@
 [commit]
   gpgsign = true
-[core]
-  pager = delta
-[delta]
-  features = catppuccin-mocha
-  side-by-side = true
+[diff]
+  tool = difftastic
+[difftool]
+  prompt = false
+[difftool "difftastic"]
+  cmd = difft "$LOCAL" "$REMOTE"
 [fetch]
   prune = true
   pruneTags = true
@@ -12,6 +13,8 @@
   format = ssh
 [gpg "ssh"]
   program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[pager]
+	difftool = true
 [pull]
   rebase = true 
 [push]
@@ -22,5 +25,3 @@
   signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAM9nzsL5OWk2vEXjiT4aZZpa1xDbL3GiuQwc7Enpcjj
 [includeIf "gitdir:~/Developer/Work/"]
   path = ~/.gitconfig-work
-[include]
-  path = ~/catppuccin.gitconfig
