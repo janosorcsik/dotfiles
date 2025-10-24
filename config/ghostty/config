@@ -4,12 +4,10 @@ background-opacity = 0.9
 alpha-blending = linear-corrected
 window-colorspace = display-p3
 
-font-family = LigaSFMonoNerdFont
-font-size = 16
+font-family = JetBrains Mono
+font-size = 13
 font-thicken = true
-
-window-height = 30
-window-width = 100
+adjust-cell-height = 20%
 
 theme = Catppuccin Mocha
 
@@ -21,5 +19,4 @@ window-inherit-working-directory = false
 working-directory = home
 
 keybind = global:option+t=toggle_quick_terminal
-# open the current screen in the default editor
-keybind = super+alt+shift+j=write_screen_file:open
+
