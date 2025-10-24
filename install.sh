@@ -46,7 +46,6 @@ ln -s ~/Developer/dotfiles/config/nvim ~/.config/nvim
 echo "Bat..."
 sudo rm -rf ~/.config/bat
 mkdir -p ~/.config/bat
-ln -s ~/Developer/dotfiles/catpuccin/bat/themes ~/.config/bat/themes
 ln -s ~/Developer/dotfiles/config/bat/config ~/.config/bat/config
 bat cache --build
 

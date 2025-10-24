@@ -1,6 +1,3 @@
-[submodule "catpuccin/bat"]
-	path = catpuccin/bat
-	url = https://github.com/catppuccin/bat.git
 [submodule "catpuccin/delta"]
 	path = catpuccin/delta
 	url = https://github.com/catppuccin/delta.git
