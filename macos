@@ -16,9 +16,6 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # General UI/UX                                                               #
 ###############################################################################
 
-# Set sidebar icon size to large
-defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 3
-
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 
@@ -36,7 +33,7 @@ defaults write com.apple.dock tilesize -int 50
 defaults write com.apple.dock largesize -int 100
 
 # Auto hide Dock
-defaults write com.apple.dock autohide -bool false
+defaults write com.apple.dock autohide -bool true
 
 ###############################################################################
 # Finder                                                                      #
@@ -71,22 +68,17 @@ defaults write com.apple.finder "FK_ArrangeBy" Name
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:gridSpacing 80" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:iconSize 100" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:labelOnBottom 0" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:textSize 16" ~/Library/Preferences/com.apple.finder.plist
-
-/usr/libexec/PlistBuddy -c "Set :FK_DefaultIconViewSettings:arrangeBy name" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :FK_DefaultIconViewSettings:gridSpacing 80" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :FK_DefaultIconViewSettings:iconSize 100" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :FK_DefaultIconViewSettings:textSize 16" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:textSize 13" ~/Library/Preferences/com.apple.finder.plist
 
 /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy name" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:gridSpacing 80" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:iconSize 100" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:textSize 16" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:textSize 13" ~/Library/Preferences/com.apple.finder.plist
 
 /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy name" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:gridSpacing 80" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:iconSize 100" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:textSize 16" ~/Library/Preferences/com.apple.finder.plist
+/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:textSize 13" ~/Library/Preferences/com.apple.finder.plist
 
 ###############################################################################
 # Safari.                                                                     #
@@ -126,7 +118,7 @@ defaults write com.apple.screencapture "type" -string "heic"
 defaults write cc.ffitch.shottr defaultFolder ~/Screenshots
 
 # Default filename template
-defaults write cc.ffitch.shottr fileNameTemplate 'Screenshot %Y-%m-%d at %I.%M.%S %p'
+defaults write cc.ffitch.shottr fileNameTemplate 'Screenshot %Y-%m-%d at %H.%M.%S'
 
 ###############################################################################
 # TextEdit                                                                    #
@@ -146,7 +138,7 @@ chmod u+rw ~/Downloads/torrent
 defaults write org.m0k.transmission DownloadFolder -string "~/Downloads/torrent"
 
 # Delete torrent file
-defaults write org.m0k.transmission DeleteOriginalTorrent -bool false
+defaults write org.m0k.transmission DeleteOriginalTorrent -bool true
 
 # Automatically size window
 defaults write org.m0k.transmission AutoSize -bool true
