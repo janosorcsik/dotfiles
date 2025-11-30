@@ -18,6 +18,12 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 # Add node_modules/.bin to PATH
 export PATH="./node_modules/.bin:${PATH}"
 
+# Add Rust tools
+export PATH="$PATH:$HOME/.cargo/bin"
+
+# Add Go tools
+export PATH=$PATH:$HOME/go/bin
+
 # Add .NET Core SDK tools
 export PATH="$PATH:$HOME/.dotnet/tools"
 
