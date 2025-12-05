@@ -162,17 +162,19 @@ defaults write com.apple.TextEdit RichText -int 0
 mkdir -p ~/Downloads/torrent
 chmod u+rw ~/Downloads/torrent
 
-# Change download folder
-defaults write org.m0k.transmission DownloadFolder -string "~/Downloads/torrent"
+# Change download folder - FONTOS: teljes path kell!
+defaults write org.m0k.transmission DownloadFolder -string "${HOME}/Downloads/torrent"
 
-# Delete torrent file
+# Delete torrent file after adding
 defaults write org.m0k.transmission DeleteOriginalTorrent -bool true
 
-# Automatically size window
+# Trash original torrent files (alternatíva a delete helyett)
+defaults write org.m0k.transmission TrashOriginalTorrent -bool true
+
+# Automatically size window to fit transfers
 defaults write org.m0k.transmission AutoSize -bool true
 
-# IP block list.
-# Source: https://giuliomac.wordpress.com/2014/02/19/best-blocklist-for-transmission/
+# IP block list
 defaults write org.m0k.transmission BlocklistNew -bool true
 defaults write org.m0k.transmission BlocklistURL -string "https://list.iblocklist.com/?list=bt_level1&fileformat=p2p&archiveformat=gz"
 defaults write org.m0k.transmission BlocklistAutoUpdate -bool true
