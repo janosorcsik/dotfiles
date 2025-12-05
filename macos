@@ -49,6 +49,9 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 # Finder: show status bar
 defaults write com.apple.finder ShowStatusBar -bool true
 
+# Finder: show path bar
+defaults write com.apple.finder ShowPathbar -bool true
+
 # Keep folders on top when sorting by name
 defaults write com.apple.finder _FXSortFoldersFirst -bool true
 
@@ -58,27 +61,52 @@ defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 # Disable the warning when changing a file extension
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
-defaults write com.apple.finder FXPreferredViewStyle icnv
+# Set icon view as default
+defaults write com.apple.finder FXPreferredViewStyle -string "icnv"
 
-defaults write com.apple.finder FXArrangeGroupViewBy Name
-defaults write com.apple.finder FXPreferredGroupBy Name
-defaults write com.apple.finder "FK_ArrangeBy" Name
+# Default arrangement
+defaults write com.apple.finder FXArrangeGroupViewBy -string "Name"
+defaults write com.apple.finder FXPreferredGroupBy -string "Name"
 
-/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy name" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:gridSpacing 80" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:iconSize 100" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:labelOnBottom 0" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:textSize 13" ~/Library/Preferences/com.apple.finder.plist
+# Desktop icons
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
-/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy name" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:gridSpacing 80" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:iconSize 100" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:textSize 13" ~/Library/Preferences/com.apple.finder.plist
+# Desktop view settings
+defaults write com.apple.finder DesktopViewSettings -dict-add IconViewSettings '
+{
+    arrangeBy = "name";
+    gridSpacing = 80;
+    iconSize = 100;
+    labelOnBottom = 1;
+    textSize = 13;
+    showItemInfo = 0;
+    showIconPreview = 1;
+}'
 
-/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy name" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:gridSpacing 80" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:iconSize 100" ~/Library/Preferences/com.apple.finder.plist
-/usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:textSize 13" ~/Library/Preferences/com.apple.finder.plist
+# Standard view settings for icon view
+defaults write com.apple.finder StandardViewSettings -dict-add IconViewSettings '
+{
+    arrangeBy = "name";
+    gridSpacing = 80;
+    iconSize = 100;
+    labelOnBottom = 1;
+    textSize = 13;
+    showItemInfo = 0;
+    showIconPreview = 1;
+}'
+
+# FK_StandardViewSettings for new windows (if it exists on Tahoe)
+defaults write com.apple.finder FK_StandardViewSettings -dict-add IconViewSettings '
+{
+    arrangeBy = "name";
+    gridSpacing = 80;
+    iconSize = 100;
+    textSize = 13;
+    showItemInfo = 0;
+}'
 
 ###############################################################################
 # Safari.                                                                     #
