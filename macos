@@ -133,7 +133,7 @@ mkdir -p ~/Screenshots
 chmod u+rw ~/Screenshots
 
 # Change screenshots location
-defaults write com.apple.screencapture location ~/Screenshots
+defaults write com.apple.screencapture location "${HOME}/Screenshots"
 
 # Change screenshots type
 defaults write com.apple.screencapture "type" -string "heic"
@@ -143,7 +143,7 @@ defaults write com.apple.screencapture "type" -string "heic"
 ###############################################################################
 
 # Change screenshots location
-defaults write cc.ffitch.shottr defaultFolder ~/Screenshots
+defaults write cc.ffitch.shottr defaultFolder "${HOME}/Screenshots"
 
 # Default filename template
 defaults write cc.ffitch.shottr fileNameTemplate 'Screenshot %Y-%m-%d at %H.%M.%S'
