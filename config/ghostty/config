@@ -4,8 +4,6 @@ background-opacity = 0.9
 alpha-blending = linear-corrected
 window-colorspace = display-p3
 
-font-family = JetBrains Mono
-font-size = 13
 font-thicken = true
 adjust-cell-height = 20%
 
@@ -16,7 +14,5 @@ confirm-close-surface = false
 quit-after-last-window-closed = true
 
 window-inherit-working-directory = false
-working-directory = home
 
-keybind = global:option+t=toggle_quick_terminal
-
+keybind = option+t=toggle_quick_terminal
