@@ -162,13 +162,20 @@ defaults write com.apple.TextEdit RichText -int 0
 mkdir -p ~/Downloads/torrent
 chmod u+rw ~/Downloads/torrent
 
-# Change download folder - FONTOS: teljes path kell!
+# Hide the donate message
+defaults write org.m0k.transmission WarningDonate -bool false
+
+# Hide the legal disclaimer
+defaults write org.m0k.transmission WarningLegal -bool false
+
+# Change download folder
+defaults write org.m0k.transmission DownloadLocationConstant -bool true
 defaults write org.m0k.transmission DownloadFolder -string "${HOME}/Downloads/torrent"
 
 # Delete torrent file after adding
 defaults write org.m0k.transmission DeleteOriginalTorrent -bool true
 
-# Trash original torrent files (alternatíva a delete helyett)
+# Trash original torrent files
 defaults write org.m0k.transmission TrashOriginalTorrent -bool true
 
 # Automatically size window to fit transfers
