@@ -81,7 +81,7 @@ function gclean {
   git fetch --prune
 
   echo "🔍 Checking for gone-tracking local branches..."
-  # Módosított sor - kizárjuk az aktuális ágat (ami *-gal jelölt)
+
   gone_locals=$(git branch -vv | grep -v '^\*' | grep 'origin/.*: gone]' | awk '{print $1}')
 
   if [[ -n "$gone_locals" ]]; then
@@ -106,7 +106,7 @@ function gclean {
 
   # 3. Orphan branches
   echo "🔍 Checking for local orphan branches..."
-  # Módosított sor - kizárjuk az aktuális ágat
+
   orphans=$(git for-each-ref --format='%(refname:short) %(upstream:short)' refs/heads |
             awk -v current="$current_branch" '$2 == "" && $1 != current {print $1}')
 
