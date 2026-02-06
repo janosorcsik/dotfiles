@@ -1,6 +1,5 @@
 " leader key
 let mapleader = ' '
-nnoremap <Space> <Nop>
 
 " relative line numbers
 set number
@@ -65,22 +64,14 @@ nmap ys <Plug>Ysurround
 nmap gcc <Action>(CommentByLineComment)
 vmap gcc <Action>(CommentByLineComment)
 
-" Code actions
-nmap <Leader>c <Action>(ShowIntentionActions)
-
-" Rename symbol
-nmap <Leader>r <Action>(RenameElement)
-
-" Go to definition
+" LSP-like keymaps (matching Neovim 0.11 built-in mappings)
 nmap gd <Action>(GotoDeclaration)
-
-" Go to implementation
-nmap gi <Action>(GotoImplementation)
-
-" Go to references
-nmap gr <Action>(FindUsages)
-
-" Go to type definition
-nmap gt <Action>(GotoTypeDeclaration)
+nmap gD <Action>(GotoDeclaration)
+nmap grn <Action>(RenameElement)
+nmap grr <Action>(FindUsages)
+nmap gri <Action>(GotoImplementation)
+nmap grt <Action>(GotoTypeDeclaration)
+nmap gra <Action>(ShowIntentionActions)
+vmap gra <Action>(ShowIntentionActions)
 
 set functiontextobj
