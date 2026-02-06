@@ -18,8 +18,10 @@ vim.opt.confirm = true
 
 vim.opt.cursorline = true
 
-vim.opt.termguicolors = true
+vim.opt.signcolumn = "yes"
 
 vim.opt.smartindent = true
 
 vim.opt.wrap = false
+
+vim.opt.undofile = true

@@ -35,14 +35,13 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("LspAttach", {
-	callback = function()
-		-- |grn| in Normal mode maps to |vim.lsp.buf.rename()|
-		-- |grr| in Normal mode maps to |vim.lsp.buf.references()|
-		-- |gri| in Normal mode maps to |vim.lsp.buf.implementation()|
-		-- |gO| in Normal mode maps to |vim.lsp.buf.document_symbol()|
-		-- |gra| in Normal and Visual mode maps to |vim.lsp.buf.code_action()|
-		-- |CTRL-S| in Insert and Select mode maps to |vim.lsp.buf.signature_help()|
-		vim.keymap.set("n", "grd", vim.lsp.buf.definition)
-	end,
-})
+-- Built-in LSP keymaps (Neovim 0.11+):
+-- |gd| in Normal mode maps to |vim.lsp.buf.definition()|
+-- |gD| in Normal mode maps to |vim.lsp.buf.declaration()|
+-- |grn| in Normal mode maps to |vim.lsp.buf.rename()|
+-- |grr| in Normal mode maps to |vim.lsp.buf.references()|
+-- |gri| in Normal mode maps to |vim.lsp.buf.implementation()|
+-- |grt| in Normal mode maps to |vim.lsp.buf.type_definition()|
+-- |gO| in Normal mode maps to |vim.lsp.buf.document_symbol()|
+-- |gra| in Normal and Visual mode maps to |vim.lsp.buf.code_action()|
+-- |CTRL-S| in Insert and Select mode maps to |vim.lsp.buf.signature_help()|
