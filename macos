@@ -1,10 +1,8 @@
 #!/usr/bin/env sh
 
-# ~/.macos — https://mths.be/macos
-
-# Close any open System Preferences panes, to prevent them from overriding
-# settings we’re about to change
-osascript -e 'tell application "System Preferences" to quit'
+# Close any open System Settings panes, to prevent them from overriding
+# settings we're about to change
+osascript -e 'tell application "System Settings" to quit'
 
 # Ask for the administrator password upfront
 sudo -v
@@ -32,7 +30,7 @@ defaults write com.apple.dock tilesize -int 50
 # Set the magnification icon size of Dock items
 defaults write com.apple.dock largesize -int 100
 
-# Auto hide Dock
+# Auto-hide the Dock
 defaults write com.apple.dock autohide -bool true
 
 ###############################################################################
@@ -40,7 +38,7 @@ defaults write com.apple.dock autohide -bool true
 ###############################################################################
 
 # Set Downloads as the default location for new Finder windows
-defaults write com.apple.finder NewWindowTarget -string "PfHm"
+defaults write com.apple.finder NewWindowTarget -string "PfLo"
 defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Downloads"
 
 # Finder: show all filename extensions
@@ -98,7 +96,7 @@ defaults write com.apple.finder StandardViewSettings -dict-add IconViewSettings 
     showIconPreview = 1;
 }'
 
-# FK_StandardViewSettings for new windows (if it exists on Tahoe)
+# FK_StandardViewSettings for new windows
 defaults write com.apple.finder FK_StandardViewSettings -dict-add IconViewSettings '
 {
     arrangeBy = "name";
@@ -109,7 +107,7 @@ defaults write com.apple.finder FK_StandardViewSettings -dict-add IconViewSettin
 }'
 
 ###############################################################################
-# Safari.                                                                     #
+# Safari                                                                      #
 ###############################################################################
 
 # Show the full URL in the address bar (note: this still hides the scheme)
@@ -136,7 +134,7 @@ chmod u+rw ~/Screenshots
 defaults write com.apple.screencapture location "${HOME}/Screenshots"
 
 # Change screenshots type
-defaults write com.apple.screencapture "type" -string "heic"
+defaults write com.apple.screencapture type -string "heic"
 
 ###############################################################################
 # Shottr                                                                      #
@@ -194,6 +192,7 @@ for app in "Dock" \
   "Finder" \
   "Safari" \
   "Shottr" \
+  "SystemUIServer" \
   "TextEdit" \
   "Transmission"; do
   killall "${app}" &> /dev/null
