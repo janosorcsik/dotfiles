@@ -1,4 +1,4 @@
-# Aliases - common commands
+# Common aliases
 alias ls="eza -a --group-directories-first"
 alias ll="eza -al --group-directories-first"
 alias ..="cd .."
@@ -22,5 +22,5 @@ alias gs="git status --branch --short"
 alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
 alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
 
-# NPM update alias
+# NPM aliases
 alias nu="npm i npm -g && npm up -g"

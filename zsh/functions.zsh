@@ -1,4 +1,4 @@
-# Comprehensive Brew and App Store Update
+# Update Homebrew packages and App Store apps
 function bu {
   echo "🍺 Starting System Package Updates"
   echo "═════════════════════════════════════════════════════"
@@ -29,7 +29,7 @@ function bu {
   echo "═════════════════════════════════════════════════════"
   echo "✨ System updates complete!"
 
-  # Optional: display a summary
+  # Display a summary
   echo "📊 Current system status:"
   echo "• Homebrew: $(brew --version | head -n 1)"
   echo "• Packages: $(brew list --formula | wc -l | xargs) formula, $(brew list --cask | wc -l | xargs) casks"
@@ -76,11 +76,11 @@ function gclean {
     echo "   ✅ No remote-tracking merged branches found."
   fi
 
-  # 2. Prune and check for gone branches
+  # 2. Prune and check for local branches tracking deleted remotes
   echo "🔄 Pruning references to deleted remote branches..."
   git fetch --prune
 
-  echo "🔍 Checking for gone-tracking local branches..."
+  echo "🔍 Checking for local branches tracking deleted remotes..."
 
   gone_locals=$(git branch -vv | grep -v '^\*' | grep 'origin/.*: gone]' | awk '{print $1}')
 
