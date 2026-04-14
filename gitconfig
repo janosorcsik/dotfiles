@@ -1,7 +1,10 @@
+[branch]
+  sort = -committerdate
 [commit]
   gpgsign = true
 [diff]
   tool = difftastic
+  colorMoved = default
 [difftool]
   prompt = false
 [difftool "difftastic"]
@@ -9,16 +12,28 @@
 [fetch]
   prune = true
   pruneTags = true
+[help]
+  autocorrect = prompt
 [gpg]
   format = ssh
 [gpg "ssh"]
   program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[init]
+	defaultBranch = main
+[merge]
+  conflictStyle = zdiff3
 [pager]
   difftool = true
 [pull]
   rebase = true 
 [push]
+  default = simple
   autoSetupRemote = true
+[rebase]
+  autostash = true
+	autosquash = true
+[rerere]
+  enabled = true
 [tag]
   gpgSign = true
 [user]
