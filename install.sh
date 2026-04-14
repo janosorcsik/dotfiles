@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+set -e
 
 echo "Installing Command Line Tools"
 xcode-select --install
