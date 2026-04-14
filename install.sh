@@ -35,9 +35,7 @@ ln -s ~/Developer/dotfiles/gitconfig ~/.gitconfig
 
 echo "Ghostty..."
 sudo rm -rf ~/.config/ghostty
-mkdir -p  ~/.config/ghostty
-ln -s ~/Developer/dotfiles/config/ghostty/config ~/.config/ghostty/config
-sudo rm -rf ~/Library/Application\ Support/com.mitchellh.ghostty/config
+ln -s ~/Developer/dotfiles/config/ghostty ~/.config/ghostty
 
 echo "Nvim..."
 sudo rm -rf ~/.config/nvim
@@ -45,8 +43,7 @@ ln -s ~/Developer/dotfiles/config/nvim ~/.config/nvim
 
 echo "Bat..."
 sudo rm -rf ~/.config/bat
-mkdir -p ~/.config/bat
-ln -s ~/Developer/dotfiles/config/bat/config ~/.config/bat/config
+ln -s ~/Developer/dotfiles/config/bat ~/.config/bat
 bat cache --build
 
 echo "IdeaVim..."
