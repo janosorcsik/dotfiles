@@ -8,7 +8,7 @@ echo "Installing HomeBrew and apps..."
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 
-sudo rm ~/.Brewfile
+rm -f ~/.Brewfile
 ln -s ~/Developer/dotfiles/Brewfile ~/.Brewfile
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 brew bundle --global
@@ -17,36 +17,36 @@ brew bundle --global
 qlmanage -r
 
 echo "Zsh..."
-sudo rm ~/.zshrc ~/.zprofile
+rm -f ~/.zshrc ~/.zprofile
 ln -s ~/Developer/dotfiles/zshrc ~/.zshrc
 ln -s ~/Developer/dotfiles/zprofile ~/.zprofile
-sudo rm -rf ~/.zsh
+rm -rf ~/.zsh
 ln -s ~/Developer/dotfiles/zsh ~/.zsh
 
 # Install Powerlevel10k Pure prompt
-sudo rm ~/.p10k.zsh
+rm -f ~/.p10k.zsh
 ln -s ~/Developer/dotfiles/p10k.zsh ~/.p10k.zsh
 
 # Remove last login text
 touch ~/.hushlogin
 
 echo "Git..."
-sudo rm ~/.gitconfig
+rm -f ~/.gitconfig
 ln -s ~/Developer/dotfiles/gitconfig ~/.gitconfig
 
 echo "Ghostty..."
-sudo rm -rf ~/.config/ghostty
+rm -rf ~/.config/ghostty
 ln -s ~/Developer/dotfiles/config/ghostty ~/.config/ghostty
 
 echo "Nvim..."
-sudo rm -rf ~/.config/nvim
+rm -rf ~/.config/nvim
 ln -s ~/Developer/dotfiles/config/nvim ~/.config/nvim
 
 echo "Bat..."
-sudo rm -rf ~/.config/bat
+rm -rf ~/.config/bat
 ln -s ~/Developer/dotfiles/config/bat ~/.config/bat
 bat cache --build
 
 echo "IdeaVim..."
-sudo rm ~/.ideavimrc
+rm -f ~/.ideavimrc
 ln -s ~/Developer/dotfiles/ideavimrc ~/.ideavimrc
