@@ -48,13 +48,12 @@ function gclean {
 
   # Verify we're in a git repo before proceeding
   if [ ! -d ".git" ]; then
-    echo "❌ Error: Not in a Git repository. Please run this from a Git repo."
-    return 1
+    return 0
   fi
 
   # 1. Remote merged branches
   echo "🔍 Checking remote-tracking merged branches..."
-  merged_remotes=$(git branch -r --merged | grep -Ev '\*|main|master|develop|release' | sed 's/origin\///')
+  merged_remotes=$(git branch -r --merged main | grep -Ev '\*|main|master|develop|release' | sed 's/origin\///')
 
   if [[ -n "$merged_remotes" ]]; then
     echo "   Found merged remote branches:"
