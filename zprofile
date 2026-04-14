@@ -15,9 +15,6 @@ export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 
-# Add node_modules/.bin to PATH
-export PATH="./node_modules/.bin:${PATH}"
-
 # Add Rust tools
 export PATH="$PATH:$HOME/.cargo/bin"
 
