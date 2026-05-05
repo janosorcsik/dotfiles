@@ -10,7 +10,7 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 
 rm -f ~/.Brewfile
 ln -s ~/Developer/dotfiles/Brewfile ~/.Brewfile
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew bundle --global
 
 # Reload QuickLook
