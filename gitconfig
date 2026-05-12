@@ -19,7 +19,7 @@
 [gpg "ssh"]
   program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [merge]
   conflictStyle = zdiff3
 [pager]
@@ -31,7 +31,7 @@
   autoSetupRemote = true
 [rebase]
   autostash = true
-	autosquash = true
+  autosquash = true
 [rerere]
   enabled = true
 [tag]
