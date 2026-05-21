@@ -17,7 +17,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 
-# Disable “natural” (Lion-style) scrolling
+# Disable "natural" (Lion-style) scrolling
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
 ###############################################################################
@@ -113,10 +113,10 @@ defaults write com.apple.finder FK_StandardViewSettings -dict-add IconViewSettin
 # Show the full URL in the address bar (note: this still hides the scheme)
 defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
 
-# Prevent Safari from opening ‘safe’ files automatically after downloading
+# Prevent Safari from opening 'safe' files automatically after downloading
 defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
 
-# Make Safari’s search banners default to Contains instead of Starts With
+# Make Safari's search banners default to Contains instead of Starts With
 defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
 
 # Enable the Develop menu and the Web Inspector in Safari
@@ -145,6 +145,17 @@ defaults write cc.ffitch.shottr defaultFolder "${HOME}/Screenshots"
 
 # Default filename template
 defaults write cc.ffitch.shottr fileNameTemplate 'Screenshot %Y-%m-%d at %H.%M.%S'
+
+# Area capture:      Ctrl+Shift+4
+defaults write cc.ffitch.shottr KeyboardShortcuts_area -string '{"carbonModifiers":768,"carbonKeyCode":21}'
+# Fullscreen:        Ctrl+Shift+3
+defaults write cc.ffitch.shottr KeyboardShortcuts_fullscreen -string '{"carbonModifiers":768,"carbonKeyCode":20}'
+# Window capture:    Ctrl+Shift+5
+defaults write cc.ffitch.shottr KeyboardShortcuts_anyWindow -string '{"carbonModifiers":768,"carbonKeyCode":23}'
+# Scrolling capture: Ctrl+Shift+7
+defaults write cc.ffitch.shottr KeyboardShortcuts_scrolling -string '{"carbonModifiers":768,"carbonKeyCode":26}'
+# OCR:               Ctrl+Option+Cmd+O
+defaults write cc.ffitch.shottr KeyboardShortcuts_ocr -string '{"carbonModifiers":6400,"carbonKeyCode":31}'
 
 ###############################################################################
 # TextEdit                                                                    #
@@ -185,11 +196,31 @@ defaults write org.m0k.transmission BlocklistURL -string "https://list.iblocklis
 defaults write org.m0k.transmission BlocklistAutoUpdate -bool true
 
 ###############################################################################
+# Arc                                                                         #
+###############################################################################
+
+# Disable "New Little Arc Window" global hotkey (conflicts with Rider Option+Cmd+N)
+defaults write company.thebrowser.Browser globalLittleBrowserHotkeyEnabled -bool false
+
+###############################################################################
+# Keyboard Shortcuts                                                          #
+###############################################################################
+
+# "Paste and Match Style" = Cmd+Shift+V
+# "Share..." = Option+Ctrl+S
+defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add \
+    "Paste and Match Style" "@\$v" \
+    "Share..." "~^s"
+
+###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 
-for app in "Dock" \
+for app in "Arc" \
+  "cfprefsd" \
+  "Dock" \
   "Finder" \
+  "Raycast" \
   "Safari" \
   "Shottr" \
   "SystemUIServer" \
