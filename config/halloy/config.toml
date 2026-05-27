@@ -1,0 +1,32 @@
+# Halloy config.
+#
+# For a complete list of available options,
+# please visit https://halloy.chat/configuration.html
+
+[servers.liberachat]
+nickname = "gianni1986"
+username = "gianni86/liberachat"
+realname = "gianni1986"
+server = "bnc.nastycode.com"
+port = 31337
+password_command = "/opt/homebrew/bin/op read op://Personal/k4wqymnbyezvaaq32ttulfawqa/password"
+channels = ["#pty.hu"]
+use_tls = true
+
+[buffer.server_messages.join]
+enabled = false
+
+[buffer.server_messages.part]
+enabled = false
+
+[buffer.server_messages.quit]
+enabled = false
+
+[buffer.server_messages.change_topic]
+enabled = false
+
+[buffer.server_messages.change_mode]
+enabled = false
+
+[buffer.server_messages.topic]
+enabled = false

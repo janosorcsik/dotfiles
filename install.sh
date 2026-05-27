@@ -50,3 +50,7 @@ bat cache --build
 echo "IdeaVim..."
 rm -f ~/.ideavimrc
 ln -s ~/Developer/dotfiles/ideavimrc ~/.ideavimrc
+
+echo "Halloy..."
+rm -rf ~/.config/halloy
+ln -s ~/Developer/dotfiles/config/halloy ~/.config/halloy
