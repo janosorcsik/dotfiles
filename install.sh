@@ -58,3 +58,7 @@ ln -s ~/Developer/dotfiles/config/halloy ~/.config/halloy
 echo "OpenCode..."
 rm -rf ~/.config/opencode
 ln -s ~/Developer/dotfiles/config/opencode ~/.config/opencode
+
+echo "Dotnet global tools..."
+dotnet tool install -g roslyn-language-server --prerelease
+dotnet tool install -g dotnet-ef
