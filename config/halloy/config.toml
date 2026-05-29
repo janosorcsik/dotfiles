@@ -3,15 +3,32 @@
 # For a complete list of available options,
 # please visit https://halloy.chat/configuration.html
 
-[servers.liberachat]
-nickname = "gianni1986"
-username = "gianni86/liberachat"
-realname = "gianni1986"
-server = "bnc.nastycode.com"
-port = 31337
-password_command = "/opt/homebrew/bin/op read op://Personal/k4wqymnbyezvaaq32ttulfawqa/password"
-channels = ["#pty.hu"]
-use_tls = true
+theme = "catppuccin-mocha"
+
+[actions.sidebar]
+buffer = "replace-pane"
+
+[buffer.internal_messages.error]
+enabled = false
+
+[buffer.internal_messages.success]
+enabled = false
+
+[buffer.nickname]
+away = "none"
+brackets = { left = "<", right = ">" }
+color = { palette = [
+    "#a6e3a1",
+    "#fab387",
+    "#f9e2af",
+    "#cba6f7",
+    "#89dceb",
+    "#eba0ac",
+    "#94e2d5",
+    "#74c7ec",
+    "#a6adc8",
+    "#f2cdcd",
+] }
 
 [buffer.server_messages.join]
 enabled = false
@@ -22,11 +39,18 @@ enabled = false
 [buffer.server_messages.quit]
 enabled = false
 
-[buffer.server_messages.change_topic]
-enabled = false
-
-[buffer.server_messages.change_mode]
-enabled = false
-
 [buffer.server_messages.topic]
 enabled = false
+
+[preview]
+enabled = false
+
+[servers.liberachat]
+nickname = "gianni1986"
+username = "gianni86/liberachat"
+realname = "gianni1986"
+server = "bnc.nastycode.com"
+port = 31337
+password_command = "/opt/homebrew/bin/op read op://Personal/k4wqymnbyezvaaq32ttulfawqa/password"
+channels = ["#pty.hu"]
+use_tls = true
