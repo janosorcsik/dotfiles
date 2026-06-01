@@ -14,6 +14,7 @@ export AZURE_CORE_COLLECT_TELEMETRY=0
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
+export HOMEBREW_NO_REQUIRE_TAP_TRUST=1
 
 # Add Rust tools
 export PATH="$PATH:$HOME/.cargo/bin"
