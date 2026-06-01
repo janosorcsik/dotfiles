@@ -194,18 +194,13 @@ function gmg {
     return 1
   fi
 
-  local diff_content
-  diff_content=$(git diff --staged)
-
-  if [ -z "$diff_content" ]; then
+  if [ -z "$(git diff --staged --name-only)" ]; then
     echo "❌ No staged changes. Use 'git add' first."
     return 1
   fi
 
   local response
-  response=$(opencode run "Generate a short single-line English git commit message based on the following git diff. Output ONLY the commit message, nothing else!
-
-$diff_content")
+  response=$(opencode run "Run 'git diff --staged' to see the staged changes, then generate a short single-line English git commit message. Output ONLY the commit message, nothing else!")
   local exit_code=$?
 
   if [ $exit_code -ne 0 ]; then
