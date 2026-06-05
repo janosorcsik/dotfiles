@@ -2,7 +2,7 @@
 set -e
 
 echo "Installing Command Line Tools"
-xcode-select --install
+xcode-select -p &>/dev/null || xcode-select --install
 
 echo "Installing HomeBrew and apps..."
 export HOMEBREW_NO_ANALYTICS=1
