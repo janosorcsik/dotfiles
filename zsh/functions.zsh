@@ -257,7 +257,7 @@ function fmt {
   echo "═════════════════════════════════════════════════════"
 
   local -a include_args
-  mapfile -t include_args <<< "$staged_files"
+  include_args=("${(f)staged_files}")
   dotnet format "$repo_root" --include "${include_args[@]}"
 
   echo "═════════════════════════════════════════════════════"
