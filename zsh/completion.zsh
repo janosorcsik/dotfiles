@@ -2,7 +2,7 @@
 FPATH="$HOMEBREW_PREFIX/share/zsh/site-functions:$HOMEBREW_PREFIX/share/zsh-completions:${FPATH}"
 
 autoload -Uz compinit
-compinit -u
+compinit -i
 
 # Completion styling
 zstyle ':completion:*' use-cache true
