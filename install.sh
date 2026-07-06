@@ -7,7 +7,6 @@ xcode-select -p &>/dev/null || xcode-select --install
 echo "Installing HomeBrew and apps..."
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
-export HOMEBREW_NO_REQUIRE_TAP_TRUST=1
 
 rm -f ~/.Brewfile
 ln -s ~/Developer/dotfiles/Brewfile ~/.Brewfile
