@@ -227,11 +227,8 @@ defaults write company.thebrowser.Browser globalLittleBrowserHotkeyEnabled -bool
 # Keyboard Shortcuts                                                          #
 ###############################################################################
 
-# "Paste and Match Style" = Cmd+Shift+V
 # "Share..." = Option+Ctrl+S
-defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add \
-    "Paste and Match Style" "@\$v" \
-    "Share..." "~^s"
+defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Share..." "~^s"
 
 ###############################################################################
 # Kill affected applications                                                  #
