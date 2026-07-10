@@ -23,9 +23,9 @@ ln -s ~/Developer/dotfiles/zprofile ~/.zprofile
 rm -rf ~/.zsh
 ln -s ~/Developer/dotfiles/zsh ~/.zsh
 
-# Install Powerlevel10k Pure prompt
-rm -f ~/.p10k.zsh
-ln -s ~/Developer/dotfiles/p10k.zsh ~/.p10k.zsh
+# Install Starship
+rm -f ~/.config/starship.toml
+ln -s ~/Developer/dotfiles/config/starship.toml ~/.config/starship.toml
 
 # Remove last login text
 touch ~/.hushlogin
