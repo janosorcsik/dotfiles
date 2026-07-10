@@ -3,33 +3,24 @@ function bu {
   echo "🍺 Starting System Package Updates"
   echo "═════════════════════════════════════════════════════"
 
-  # App Store updates
   echo "📱 Checking Mac App Store updates..."
   mas upgrade
 
-  # Homebrew updates
   echo "🔄 Updating Homebrew formulae..."
   brew update
 
   echo "⬆️ Upgrading Homebrew packages..."
-  brew upgrade --fetch-HEAD
-
-  echo "🖥️ Upgrading Homebrew Casks (applications)..."
-  brew cu --all --yes --quiet --no-brew-update
+  brew upgrade --yes
 
   echo "🧹 Cleaning up Homebrew files..."
-  brew cleanup -s
-
-  echo "🗑️ Removing Homebrew cache..."
-  rm -rf "$(brew --cache)"
+  brew cleanup
 
   echo "📦 Creating Brewfile snapshot of installed packages..."
-  brew bundle dump --global --force --describe
+  brew bundle dump --global --force
 
   echo "═════════════════════════════════════════════════════"
   echo "✨ System updates complete!"
 
-  # Display a summary
   echo "📊 Current system status:"
   echo "• Homebrew: $(brew --version | head -n 1)"
   echo "• Packages: $(brew list --formula | wc -l | xargs) formula, $(brew list --cask | wc -l | xargs) casks"
