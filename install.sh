@@ -60,5 +60,5 @@ rm -rf ~/.config/opencode
 ln -s ~/Developer/dotfiles/config/opencode ~/.config/opencode
 
 echo "Dotnet global tools..."
-dotnet tool install -g roslyn-language-server --prerelease
-dotnet tool install -g dotnet-ef
+dotnet tool list -g | grep -q 'roslyn-language-server' || dotnet tool install -g roslyn-language-server --prerelease
+dotnet tool list -g | grep -q 'dotnet-ef' || dotnet tool install -g dotnet-ef
