@@ -48,7 +48,10 @@ function gclean {
   echo "🔍 Checking remote-tracking merged branches..."
   git -C "$dir" fetch --prune
   local merged_remotes
-  merged_remotes=$(git -C "$dir" branch -r --merged main | grep -Ev '\*|main|master|develop|release' | sed 's/origin\///')
+  local default_branch
+  default_branch=$(git -C "$dir" symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null | sed 's@^origin/@@')
+  default_branch="${default_branch:-main}"
+  merged_remotes=$(git -C "$dir" branch -r --merged "$default_branch" | sed 's/origin\///' | awk -v def="$default_branch" '$0 != def && $0 != "master" && $0 != "develop" && $0 !~ /^\*/')
 
   if [[ -n "$merged_remotes" ]]; then
     echo "   Found merged remote branches:"
