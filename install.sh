@@ -48,8 +48,8 @@ ln -s ~/Developer/dotfiles/config/bat ~/.config/bat
 bat cache --build
 
 echo "IdeaVim..."
-rm -f ~/.ideavimrc
-ln -s ~/Developer/dotfiles/ideavimrc ~/.ideavimrc
+rm -rf ~/.config/ideavim
+ln -s ~/Developer/dotfiles/config/ideavim ~/.config/ideavim
 
 echo "Halloy..."
 rm -rf ~/.config/halloy
