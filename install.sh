@@ -32,8 +32,8 @@ ln -s ~/Developer/dotfiles/config/starship.toml ~/.config/starship.toml
 touch ~/.hushlogin
 
 echo "Git..."
-rm -f ~/.gitconfig
-ln -s ~/Developer/dotfiles/gitconfig ~/.gitconfig
+rm -rf ~/.config/git
+ln -s ~/Developer/dotfiles/config/git ~/.config/git
 
 echo "Ghostty..."
 rm -rf ~/.config/ghostty

@@ -25,7 +25,7 @@
 [pager]
   difftool = true
 [pull]
-  rebase = true 
+  rebase = true
 [push]
   default = simple
   autoSetupRemote = true
@@ -40,5 +40,5 @@
   email = 4984853+janosorcsik@users.noreply.github.com
   name = János Orcsik
   signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICuHSWtsSPSCTanT9wHZFSZXub/fLDXDf9VRxNwTzDwN
-[includeIf "gitdir:~/Developer/Work/"]
-  path = ~/.gitconfig-work
+# [includeIf "gitdir:~/Developer/Work/"]
+#   path = ~/.gitconfig-work
