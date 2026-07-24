@@ -17,9 +17,10 @@ brew bundle --global
 qlmanage -r
 
 echo "Zsh..."
-rm -f ~/.zshrc ~/.zprofile
+rm -f ~/.zshrc ~/.zprofile ~/.zshenv
 ln -s ~/Developer/dotfiles/zshrc ~/.zshrc
 ln -s ~/Developer/dotfiles/zprofile ~/.zprofile
+ln -s ~/Developer/dotfiles/zshenv ~/.zshenv
 rm -rf ~/.zsh
 ln -s ~/Developer/dotfiles/zsh ~/.zsh
 
