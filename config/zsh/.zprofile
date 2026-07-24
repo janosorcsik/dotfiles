@@ -13,9 +13,9 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 
 # Tool paths
 path+=(
-  "$HOME/.cargo/bin"                                        # Rust
-  "$HOME/go/bin"                                            # Go
-  "$HOME/.dotnet/tools"                                     # .NET SDK
+  "$CARGO_HOME/bin"                                         # Rust
+  "$GOPATH/bin"                                             # Go
+  "$DOTNET_CLI_HOME/.dotnet/tools"                          # .NET SDK
   "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
 )
 export PATH

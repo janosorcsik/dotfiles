@@ -18,11 +18,9 @@ qlmanage -r
 
 echo "Zsh..."
 rm -f ~/.zshrc ~/.zprofile ~/.zshenv
-ln -s ~/Developer/dotfiles/zshrc ~/.zshrc
-ln -s ~/Developer/dotfiles/zprofile ~/.zprofile
 ln -s ~/Developer/dotfiles/zshenv ~/.zshenv
-rm -rf ~/.zsh
-ln -s ~/Developer/dotfiles/zsh ~/.zsh
+rm -rf ~/.config/zsh
+ln -s ~/Developer/dotfiles/config/zsh ~/.config/zsh
 
 # Install Starship
 rm -f ~/.config/starship.toml
