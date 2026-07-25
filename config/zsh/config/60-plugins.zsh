@@ -1,5 +1,4 @@
-# Source plugins
-source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+# Source plugins (zsh-syntax-highlighting lives in its own file, sourced last)
 source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # FZF configuration

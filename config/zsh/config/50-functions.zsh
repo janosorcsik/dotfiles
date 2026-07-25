@@ -27,6 +27,11 @@ function bu {
   echo "• Brewfile: ~/.Brewfile"
 }
 
+# Check whether a directory is inside a git repository (handles worktrees/submodules)
+function _git_repo {
+  git -C "$1" rev-parse --git-dir &>/dev/null
+}
+
 # Clean up Git branches safely with confirmations
 # Optional argument: path to the repository (defaults to current directory)
 function gclean {
@@ -51,7 +56,9 @@ function gclean {
   local default_branch
   default_branch=$(git -C "$dir" symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null | sed 's@^origin/@@')
   default_branch="${default_branch:-main}"
-  merged_remotes=$(git -C "$dir" branch -r --merged "$default_branch" | sed 's/origin\///' | awk -v def="$default_branch" '$0 != def && $0 != "master" && $0 != "develop" && $0 !~ /^\*/')
+  merged_remotes=$(git -C "$dir" for-each-ref --format='%(refname:strip=3)' \
+    --merged "refs/remotes/origin/$default_branch" refs/remotes/origin |
+    awk -v def="$default_branch" '$0 != "HEAD" && $0 != def && $0 != "master" && $0 != "develop"')
 
   if [[ -n "$merged_remotes" ]]; then
     echo "   Found merged remote branches:"
@@ -60,7 +67,7 @@ function gclean {
     done
 
     echo -n "❓ Delete these remote merged branches in '$current_repo'? (y/n) "
-    read confirm_remote
+    read -r confirm_remote
     if [[ "$confirm_remote" == [yY] ]]; then
       echo "$merged_remotes" | while read -r branch; do
         echo "   ✂️ Deleting remote branch: $branch"
@@ -85,7 +92,7 @@ function gclean {
     done
 
     echo -n "❓ Delete these local branches in '$current_repo'? (y/n) "
-    read confirm_gone
+    read -r confirm_gone
     if [[ "$confirm_gone" == [yY] ]]; then
       echo "$gone_locals" | while read -r branch; do
         echo "   ✂️ Deleting local branch: $branch"
@@ -111,7 +118,7 @@ function gclean {
     done
 
     echo -n "❓ Delete these orphan branches in '$current_repo'? (y/n) "
-    read confirm_orphan
+    read -r confirm_orphan
     if [[ "$confirm_orphan" == [yY] ]]; then
       echo "$orphans" | while read -r branch; do
         echo "   ✂️ Deleting orphan branch: $branch"
@@ -136,7 +143,7 @@ function gcleanall {
   echo "═════════════════════════════════════════════════════"
 
   for dir in */; do
-    [ -d "$dir/.git" ] && gclean "$dir"
+    _git_repo "$dir" && gclean "$dir"
   done
 
   echo "═════════════════════════════════════════════════════"
@@ -151,7 +158,7 @@ function gfall {
   echo "═════════════════════════════════════════════════════"
 
   for dir in */; do
-    if [ -d "$dir/.git" ]; then
+    if _git_repo "$dir"; then
       branch=$(git -C "$dir" rev-parse --abbrev-ref HEAD 2>/dev/null)
       echo "• $(basename "$dir") ($branch)"
       git -C "$dir" fetch
@@ -170,7 +177,7 @@ function gpall {
   echo "═════════════════════════════════════════════════════"
 
   for dir in */; do
-    if [ -d "$dir/.git" ]; then
+    if _git_repo "$dir"; then
       branch=$(git -C "$dir" rev-parse --abbrev-ref HEAD 2>/dev/null)
       echo "• $(basename "$dir") ($branch)"
       git -C "$dir" pull
@@ -202,7 +209,7 @@ function gmg {
     return 1
   fi
 
-  echo "gcm \"$response\""
+  print -z "gcm \"$response\""
 }
 
 # Convert GitHub HTTPS remotes to SSH for all repos in subfolders
@@ -213,7 +220,7 @@ function gsshall {
   echo "═════════════════════════════════════════════════════"
 
   for dir in */; do
-    if [ -d "$dir/.git" ]; then
+    if _git_repo "$dir"; then
       current_url=$(git -C "$dir" config --get remote.origin.url 2>/dev/null)
 
       if [[ "$current_url" == https://github.com/* ]]; then
@@ -241,7 +248,7 @@ function fmt {
 
   staged_files=$(git diff --staged --name-only --diff-filter=AM | grep -E -i '\.(cs|csproj)$')
   if [ -z "$staged_files" ]; then
-    echo "❌ No staged .cs or .csproj files."
+    echo "ℹ️ No staged .cs or .csproj files."
     return 0
   fi
 
@@ -269,13 +276,13 @@ function jfmt {
 
   staged_files=$(git diff --staged --name-only --diff-filter=AM | grep -E -i '\.(cs|csproj)$')
   if [ -z "$staged_files" ]; then
-    echo "❌ No staged .cs or .csproj files."
+    echo "ℹ️ No staged .cs or .csproj files."
     return 0
   fi
 
-  sln_file=$(find "$(git rev-parse --show-toplevel)" -maxdepth 1 -name "*.sln" | head -1)
+  sln_file=$(find "$(git rev-parse --show-toplevel)" -maxdepth 1 \( -name "*.sln" -o -name "*.slnx" \) | head -1)
   if [ -z "$sln_file" ]; then
-    echo "❌ No .sln file found in repo root."
+    echo "❌ No .sln or .slnx file found in repo root."
     return 1
   fi
 

@@ -1,11 +1,16 @@
 # Add Homebrew completions to fpath
 FPATH="$HOMEBREW_PREFIX/share/zsh/site-functions:$HOMEBREW_PREFIX/share/zsh-completions:${FPATH}"
 
+# Keep the completion dump in the cache dir instead of $ZDOTDIR (this repo)
 autoload -Uz compinit
-compinit -i
+zcompdump="$XDG_CACHE_HOME/zsh/zcompdump"
+mkdir -p "${zcompdump:h}"
+compinit -d "$zcompdump"
+unset zcompdump
 
 # Completion styling
 zstyle ':completion:*' use-cache true
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*:*:*:default' menu yes select
 

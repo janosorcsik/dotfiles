@@ -1,6 +1,6 @@
 # History configuration
 HISTFILE="$XDG_STATE_HOME/zsh/history"   # Where to save history to disk
-HISTSIZE=5000                            # How many lines of history to keep in memory
+HISTSIZE=100000                          # How many lines of history to keep in memory
 SAVEHIST=$HISTSIZE                       # Number of history entries to save to disk
 mkdir -p "${HISTFILE:h}"                 # zsh won't create the parent directory itself
 
