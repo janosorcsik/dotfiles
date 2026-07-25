@@ -1,15 +1,20 @@
 #!/usr/bin/env sh
 set -e
 
-echo "Installing Command Line Tools"
-xcode-select -p &>/dev/null || xcode-select --install
+DOTFILES="$HOME/Developer/dotfiles"
 
-echo "Installing HomeBrew and apps..."
+echo "Installing Command Line Tools..."
+if ! xcode-select -p >/dev/null 2>&1; then
+  xcode-select --install
+  echo "Waiting for Command Line Tools to finish installing..."
+  until xcode-select -p >/dev/null 2>&1; do sleep 5; done
+fi
+
+echo "Installing Homebrew and apps..."
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
 
-rm -f ~/.Brewfile
-ln -s ~/Developer/dotfiles/Brewfile ~/.Brewfile
+ln -sfn "$DOTFILES/Brewfile" "$HOME/.Brewfile"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew bundle --global
 
@@ -17,47 +22,21 @@ brew bundle --global
 qlmanage -r
 
 echo "Zsh..."
-rm -f ~/.zshrc ~/.zprofile ~/.zshenv
-ln -s ~/Developer/dotfiles/zshenv ~/.zshenv
-rm -rf ~/.config/zsh
-ln -s ~/Developer/dotfiles/config/zsh ~/.config/zsh
-
-# Install Starship
-rm -f ~/.config/starship.toml
-ln -s ~/Developer/dotfiles/config/starship.toml ~/.config/starship.toml
+# zshenv sets ZDOTDIR=~/.config/zsh, so zsh loads .zshrc/.zprofile from there
+ln -sfn "$DOTFILES/zshenv" "$HOME/.zshenv"
 
 # Remove last login text
-touch ~/.hushlogin
+touch "$HOME/.hushlogin"
 
-echo "Git..."
-rm -rf ~/.config/git
-ln -s ~/Developer/dotfiles/config/git ~/.config/git
+echo "Linking config directories..."
+mkdir -p "$HOME/.config"
+for target in "$DOTFILES"/config/*; do
+  ln -sfn "$target" "$HOME/.config/$(basename "$target")"
+done
 
-echo "Ghostty..."
-rm -rf ~/.config/ghostty
-ln -s ~/Developer/dotfiles/config/ghostty ~/.config/ghostty
-
-echo "Nvim..."
-rm -rf ~/.config/nvim
-ln -s ~/Developer/dotfiles/config/nvim ~/.config/nvim
-
-echo "Bat..."
-rm -rf ~/.config/bat
-ln -s ~/Developer/dotfiles/config/bat ~/.config/bat
+# Build bat's syntax/theme cache
 bat cache --build
 
-echo "IdeaVim..."
-rm -rf ~/.config/ideavim
-ln -s ~/Developer/dotfiles/config/ideavim ~/.config/ideavim
-
-echo "Halloy..."
-rm -rf ~/.config/halloy
-ln -s ~/Developer/dotfiles/config/halloy ~/.config/halloy
-
-echo "OpenCode..."
-rm -rf ~/.config/opencode
-ln -s ~/Developer/dotfiles/config/opencode ~/.config/opencode
-
 echo "Dotnet global tools..."
-dotnet tool list -g | grep -q 'roslyn-language-server' || dotnet tool install -g roslyn-language-server --prerelease
-dotnet tool list -g | grep -q 'dotnet-ef' || dotnet tool install -g dotnet-ef
+dotnet tool install -g roslyn-language-server --prerelease
+dotnet tool install -g dotnet-ef
