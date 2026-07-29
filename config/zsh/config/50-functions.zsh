@@ -33,6 +33,38 @@ function _git_repo {
   [[ -e "$1/.git" ]]
 }
 
+# One cleanup pass: list branches, confirm, delete. Shared by gclean's three passes.
+# Usage: _gclean_pass <dir> <repo> <noun> <desc> <deleter-fn> <newline-separated-branches>
+function _gclean_pass {
+  local dir="$1" repo="$2" noun="$3" desc="$4" deleter="$5" branches="$6"
+  local confirm branch
+
+  if [[ -z "$branches" ]]; then
+    echo "   ✅ No $desc found."
+    return 0
+  fi
+
+  echo "   Found $desc:"
+  for branch in ${(f)branches}; do
+    echo "   • $branch"
+  done
+
+  echo -n "❓ Delete these $noun in '$repo'? (y/n) "
+  read -r confirm
+  if [[ "$confirm" != [yY] ]]; then
+    echo "   ✅ Kept $noun."
+    return 0
+  fi
+
+  for branch in ${(f)branches}; do
+    echo "   ✂️ Deleting: $branch"
+    "$deleter" "$dir" "$branch"
+  done
+}
+
+function _gclean_drop_remote { git -C "$1" push --delete origin "$2" }
+function _gclean_drop_local { git -C "$1" branch -D "$2" }
+
 # Clean up Git branches safely with confirmations
 # Optional argument: path to the repository (defaults to current directory)
 function gclean {
@@ -61,50 +93,16 @@ function gclean {
     --merged "refs/remotes/origin/$default_branch" refs/remotes/origin |
     awk -v def="$default_branch" '$0 != "HEAD" && $0 != def && $0 != "master" && $0 != "develop"')
 
-  if [[ -n "$merged_remotes" ]]; then
-    echo "   Found merged remote branches:"
-    echo "$merged_remotes" | while read -r branch; do
-      echo "   • $branch"
-    done
-
-    echo -n "❓ Delete these remote merged branches in '$current_repo'? (y/n) "
-    read -r confirm_remote
-    if [[ "$confirm_remote" == [yY] ]]; then
-      echo "$merged_remotes" | while read -r branch; do
-        echo "   ✂️ Deleting remote branch: $branch"
-        git -C "$dir" push --delete origin "$branch"
-      done
-    else
-      echo "   ✅ Remote branches were kept."
-    fi
-  else
-    echo "   ✅ No remote-tracking merged branches found."
-  fi
+  _gclean_pass "$dir" "$current_repo" "remote merged branches" "merged remote branches" \
+    _gclean_drop_remote "$merged_remotes"
 
   # 2. Local branches tracking deleted remotes
   echo "🔍 Checking for local branches tracking deleted remotes..."
   local gone_locals
   gone_locals=$(git -C "$dir" branch -vv | grep -v '^\*' | grep 'origin/.*: gone]' | awk '{print $1}')
 
-  if [[ -n "$gone_locals" ]]; then
-    echo "   Found local branches tracking deleted remotes:"
-    echo "$gone_locals" | while read -r branch; do
-      echo "   • $branch"
-    done
-
-    echo -n "❓ Delete these local branches in '$current_repo'? (y/n) "
-    read -r confirm_gone
-    if [[ "$confirm_gone" == [yY] ]]; then
-      echo "$gone_locals" | while read -r branch; do
-        echo "   ✂️ Deleting local branch: $branch"
-        git -C "$dir" branch -D "$branch"
-      done
-    else
-      echo "   ✅ Local branches were kept."
-    fi
-  else
-    echo "   ✅ No local branches tracking deleted remotes."
-  fi
+  _gclean_pass "$dir" "$current_repo" "local branches" "local branches tracking deleted remotes" \
+    _gclean_drop_local "$gone_locals"
 
   # 3. Orphan branches
   echo "🔍 Checking for local orphan branches..."
@@ -112,25 +110,8 @@ function gclean {
   orphans=$(git -C "$dir" for-each-ref --format='%(refname:short) %(upstream:short)' refs/heads |
             awk -v current="$current_branch" '$2 == "" && $1 != current {print $1}')
 
-  if [[ -n "$orphans" ]]; then
-    echo "   Found local branches with no remote tracking:"
-    echo "$orphans" | while read -r branch; do
-      echo "   • $branch"
-    done
-
-    echo -n "❓ Delete these orphan branches in '$current_repo'? (y/n) "
-    read -r confirm_orphan
-    if [[ "$confirm_orphan" == [yY] ]]; then
-      echo "$orphans" | while read -r branch; do
-        echo "   ✂️ Deleting orphan branch: $branch"
-        git -C "$dir" branch -D "$branch"
-      done
-    else
-      echo "   ✅ Orphan branches were kept."
-    fi
-  else
-    echo "   ✅ No orphan branches found."
-  fi
+  _gclean_pass "$dir" "$current_repo" "orphan branches" "orphan branches" \
+    _gclean_drop_local "$orphans"
 
   echo "═════════════════════════════════════════════════════"
   echo "✨ Git branch cleanup complete for $current_repo"
