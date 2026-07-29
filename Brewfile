@@ -1,15 +1,7 @@
 tap "azure/functions", trusted: true
-tap "bingokingo/bingokingo", trusted: true
-tap "flewgg/tap", trusted: true
 tap "isen-ng/dotnet-sdk-versions", trusted: true
-tap "janosorcsik/rmtree", trusted: true
 tap "janosorcsik/tap", trusted: true
-tap "janosorcsik/tap-lihaoyun6", trusted: true
-tap "ptaru/tap", trusted: true
-tap "smudge/smudge", trusted: true
-tap "vigo/quicknfo", trusted: true
 tap "viva64/pvs-studio", trusted: true
-tap "xykong/tap", trusted: true
 # Automatic configure script builder
 brew "autoconf"
 # Tool for generating GNU Standards-compliant Makefiles
@@ -99,12 +91,12 @@ brew "zsh-completions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
 # Azure Functions Core Tools 4.0
-brew "azure/functions/azure-functions-core-tools@4", trusted: true
-brew "janosorcsik/rmtree/brew-rmtree", trusted: true
+brew "azure/functions/azure-functions-core-tools@4"
+brew "janosorcsik/tap/brew-rmtree"
 # A CLI for configuring 'Night Shift' on macOS 🌕🌖🌗🌘🌑
-brew "smudge/smudge/nightlight", trusted: true
-brew "viva64/pvs-studio/pvs-studio", trusted: true
-brew "viva64/pvs-studio/pvs-studio-dotnet", trusted: true
+brew "janosorcsik/tap/nightlight"
+brew "viva64/pvs-studio/pvs-studio"
+brew "viva64/pvs-studio/pvs-studio-dotnet"
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
 # Command-line interface for 1Password
@@ -112,7 +104,7 @@ cask "1password-cli"
 # Image editing and design software
 cask "affinity"
 # Get the battery level of all your devices on your Mac.
-cask "janosorcsik/tap-lihaoyun6/airbattery", trusted: true
+cask "janosorcsik/tap/airbattery"
 # Menu bar tool to limit maximum charging percentage
 cask "aldente"
 # Memory training application
@@ -120,7 +112,7 @@ cask "anki"
 # Chromium based browser
 cask "arc"
 # Picture-in-Picture mode when switching tab in Safari
-cask "janosorcsik/tap/autopip", trusted: true
+cask "janosorcsik/tap/autopip"
 # Screen recorder
 cask "bettercapture"
 # Compare files and folders
@@ -132,13 +124,13 @@ cask "daisydisk"
 # Translate words without ever opening a dictionary
 cask "dictionaries"
 # This cask follows releases from https://github.com/dotnet/core/tree/master
-cask "isen-ng/dotnet-sdk-versions/dotnet-sdk10", trusted: true
+cask "isen-ng/dotnet-sdk-versions/dotnet-sdk10"
 # This cask follows releases from https://github.com/dotnet/core/tree/master
-cask "isen-ng/dotnet-sdk-versions/dotnet-sdk10-0-300", trusted: true
+cask "isen-ng/dotnet-sdk-versions/dotnet-sdk10-0-300"
 # Change the behavior of the fn keys depending on the active application
 cask "fluor"
 # Markdown previews in Finder QuickLook with diagrams and math
-cask "xykong/tap/flux-markdown", trusted: true
+cask "janosorcsik/tap/flux-markdown"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 # AI-powered notepad for meetings
@@ -164,11 +156,11 @@ cask "paragon-ntfs"
 # Utility to uninstall apps and remove leftover files from old/uninstalled apps
 cask "pearcleaner"
 # Increase the text size of iPhone and iPad apps
-cask "janosorcsik/tap/pixelperfect", trusted: true
+cask "janosorcsik/tap/pixelperfect"
 # Quick Look preview for subtitle files such as srt, vtt or ass files
-cask "bingokingo/bingokingo/qlsubtitles", trusted: true
+cask "janosorcsik/tap/qlsubtitles"
 # QuickLook preview extension for NFO files
-cask "vigo/quicknfo/quicknfo", trusted: true
+cask "janosorcsik/tap/quicknfo"
 # Screenshot measurement and annotation tool
 cask "shottr"
 # Team communication and collaboration software
@@ -184,7 +176,7 @@ cask "vial"
 # Calling and messaging application focusing on security
 cask "viber"
 # QuickLook extension for native video preview
-cask "ptaru/tap/vidpreview", trusted: true
+cask "janosorcsik/tap/vidpreview"
 # Open-source code editor
 cask "visual-studio-code"
 # REST, GraphQL and gRPC client
