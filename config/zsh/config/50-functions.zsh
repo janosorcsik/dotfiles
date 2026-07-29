@@ -177,16 +177,22 @@ function gmg {
     return 1
   fi
 
-  if [ -z "$(git diff --staged --name-only)" ]; then
+  local staged_diff
+  staged_diff=$(git diff --staged)
+  if [[ -z "$staged_diff" ]]; then
     echo "❌ No staged changes. Use 'git add' first."
     return 1
   fi
 
+  # Inline the diff instead of letting the model fetch it: saves a tool-call round
+  # trip. --pure skips the rtk plugin and MCP servers, which this task never needs.
+  # A small model is plenty for a one-line message; drop --model to use the default.
   local response
-  response=$(opencode run "Run 'git diff --staged' to see the staged changes, then generate a short single-line English git commit message. Output ONLY the commit message, nothing else!")
-  local exit_code=$?
+  if ! response=$(opencode run --pure --model anthropic/claude-haiku-4-5 \
+    "Generate a short single-line English git commit message for this diff.
+Output ONLY the commit message, nothing else!
 
-  if [ $exit_code -ne 0 ]; then
+$staged_diff"); then
     echo "❌ opencode failed."
     return 1
   fi
