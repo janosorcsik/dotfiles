@@ -55,3 +55,4 @@ done
 echo "Dotnet global tools..."
 dotnet tool install -g roslyn-language-server --prerelease
 dotnet tool install -g dotnet-ef
+dotnet tool install -g JetBrains.ReSharper.GlobalTools
