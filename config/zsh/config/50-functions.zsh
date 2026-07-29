@@ -27,9 +27,10 @@ function bu {
   echo "• Brewfile: ~/.Brewfile"
 }
 
-# Check whether a directory is inside a git repository (handles worktrees/submodules)
+# Check whether a directory is a git repository root (.git is a file in worktrees/submodules).
+# Deliberately not `git rev-parse`, which walks up and reports true for any subdirectory.
 function _git_repo {
-  git -C "$1" rev-parse --git-dir &>/dev/null
+  [[ -e "$1/.git" ]]
 }
 
 # Clean up Git branches safely with confirmations
@@ -209,7 +210,7 @@ function gmg {
     return 1
   fi
 
-  print -z "gcm \"$response\""
+  print -z "gcm ${(qq)response}"
 }
 
 # Convert GitHub HTTPS remotes to SSH for all repos in subfolders
@@ -257,9 +258,9 @@ function fmt {
   echo "🧹 Formatting staged files..."
   echo "═════════════════════════════════════════════════════"
 
-  local -a include_args
-  include_args=("${(f)staged_files}")
-  dotnet format "$repo_root" --include "${include_args[@]}"
+  # --include resolves paths against the CWD, but git reports them relative to the
+  # repo root, so run from there. The subshell keeps the caller's directory intact.
+  ( cd "$repo_root" && dotnet format --include "${(@f)staged_files}" )
 
   echo "═════════════════════════════════════════════════════"
   echo "✨ Format complete! Stage the changes manually."
