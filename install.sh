@@ -53,6 +53,6 @@ for target in "$DOTFILES"/config/*; do
 done
 
 echo "Dotnet global tools..."
-dotnet tool install -g roslyn-language-server --prerelease
-dotnet tool install -g dotnet-ef
-dotnet tool install -g JetBrains.ReSharper.GlobalTools
+dotnet tool update -g roslyn-language-server --prerelease
+dotnet tool update -g dotnet-ef
+dotnet tool update -g JetBrains.ReSharper.GlobalTools
