@@ -5,4 +5,4 @@ bindkey -v
 bindkey "^[[91;5u" vi-cmd-mode
 
 # Faster Esc
-export KEYTIMEOUT=1
+KEYTIMEOUT=1
