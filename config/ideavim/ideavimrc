@@ -46,23 +46,17 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " file navigation (matching nvim snacks.nvim)
-map <Leader>ff <Action>(GotoFile)
-map <Leader>fg <Action>(RecentFiles)
-map <Leader>b <Action>(Switcher)
-map <Leader>e <Action>(SelectInProjectView)
-map <Leader>sg <Action>(FindInPath)
+nmap <Leader>ff <Action>(GotoFile)
+nmap <Leader>fg <Action>(RecentFiles)
+nmap <Leader>b <Action>(Switcher)
+nmap <Leader>e <Action>(SelectInProjectView)
+nmap <Leader>sg <Action>(FindInPath)
 
 set highlightedyank
 set NERDTree
 set surround
 set which-key
-
-nmap ds <Plug>Dsurround
-nmap cs <Plug>Csurround
-nmap ys <Plug>Ysurround
-
-nmap gcc <Action>(CommentByLineComment)
-vmap gcc <Action>(CommentByLineComment)
+set commentary
 
 " LSP-like keymaps (matching Neovim 0.11 built-in mappings)
 nmap gd <Action>(GotoDeclaration)
