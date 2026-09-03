@@ -11,7 +11,7 @@ unset zcompdump
 # Completion styling
 zstyle ':completion:*' use-cache true
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*:*:*:default' menu yes select
 
 # Completion formatting
