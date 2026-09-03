@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 
 # Close any open System Settings panes, to prevent them from overriding
 # settings we're about to change
@@ -19,6 +19,15 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 
 # Disable "natural" (Lion-style) scrolling
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+
+# Hide icons in menu bar menus
+defaults write -g NSMenuEnableActionImages -bool NO
+
+# Disable floating (transparent) sidebar appearance
+defaults write -g NSSplitViewItemSidebarDefaultsToFloatingAppearance -bool false
+
+# Disable Big Sur-style window tabs (Solarium)
+defaults write -g NSSolariumWindowTabs -bool NO
 
 ###############################################################################
 # Dock                                                                        #
@@ -149,7 +158,6 @@ defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool 
 ###############################################################################
 
 mkdir -p ~/Screenshots
-chmod u+rw ~/Screenshots
 
 # Change screenshots location
 defaults write com.apple.screencapture location "${HOME}/Screenshots"
@@ -190,7 +198,6 @@ defaults write com.apple.TextEdit RichText -int 0
 ###############################################################################
 
 mkdir -p ~/Downloads/torrent
-chmod u+rw ~/Downloads/torrent
 
 # Hide the donate message
 defaults write org.m0k.transmission WarningDonate -bool false
@@ -238,7 +245,6 @@ for app in "Arc" \
   "cfprefsd" \
   "Dock" \
   "Finder" \
-  "Raycast" \
   "Safari" \
   "Shottr" \
   "SystemUIServer" \

@@ -13,7 +13,7 @@ git clone https://github.com/janosorcsik/dotfiles.git ~/Developer/dotfiles
 ### Run the installer
 
 ```sh
-sh ~/Developer/dotfiles/install.sh
+zsh ~/Developer/dotfiles/install.zsh
 ```
 
 ### Drink a beer 🍺
@@ -21,5 +21,5 @@ sh ~/Developer/dotfiles/install.sh
 ### Change macOS settings
 
 ```sh
-sh ~/Developer/dotfiles/macos
+zsh ~/Developer/dotfiles/macos.zsh
 ```

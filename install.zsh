@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 set -e
 
 DOTFILES="$HOME/Developer/dotfiles"
