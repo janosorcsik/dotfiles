@@ -288,13 +288,13 @@ defaults write cc.ffitch.shottr defaultFolder "${HOME}/Screenshots"
 # Default filename template
 defaults write cc.ffitch.shottr fileNameTemplate 'Screenshot %Y-%m-%d at %H.%M.%S'
 
-# Area capture:      Ctrl+Shift+4
+# Area capture:      Cmd+Shift+4
 defaults write cc.ffitch.shottr KeyboardShortcuts_area -string '{"carbonModifiers":768,"carbonKeyCode":21}'
-# Fullscreen:        Ctrl+Shift+3
+# Fullscreen:        Cmd+Shift+3
 defaults write cc.ffitch.shottr KeyboardShortcuts_fullscreen -string '{"carbonModifiers":768,"carbonKeyCode":20}'
-# Window capture:    Ctrl+Shift+5
+# Window capture:    Cmd+Shift+5
 defaults write cc.ffitch.shottr KeyboardShortcuts_anyWindow -string '{"carbonModifiers":768,"carbonKeyCode":23}'
-# Scrolling capture: Ctrl+Shift+7
+# Scrolling capture: Cmd+Shift+7
 defaults write cc.ffitch.shottr KeyboardShortcuts_scrolling -string '{"carbonModifiers":768,"carbonKeyCode":26}'
 # OCR:               Ctrl+Option+Cmd+O
 defaults write cc.ffitch.shottr KeyboardShortcuts_ocr -string '{"carbonModifiers":6400,"carbonKeyCode":31}'
@@ -591,6 +591,40 @@ defaults write com.alienator88.Pearcleaner alinfoundation.updater.updateFrequenc
 
 # "Share..." = Option+Ctrl+S
 defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Share..." "~^s"
+
+# Disable system hotkeys.
+# Usage: disable_hotkey <id> <ascii-code> <key-code> <modifiers>
+# The parameters must match the system's own values for that ID, otherwise the
+# entry is ignored. ascii-code is 65535 for non-character keys (arrows).
+disable_hotkey() {
+  defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add "$1" \
+    "<dict><key>enabled</key><false/><key>value</key><dict><key>type</key><string>standard</string><key>parameters</key><array><integer>$2</integer><integer>$3</integer><integer>$4</integer></array></dict></dict>"
+}
+
+# Screenshots - Shottr uses the same shortcuts
+disable_hotkey 28  51 20 1179648      # Cmd+Shift+3        Save picture of screen as a file
+disable_hotkey 29  51 20 1441792      # Cmd+Ctrl+Shift+3   Copy picture of screen to the clipboard
+disable_hotkey 30  52 21 1179648      # Cmd+Shift+4        Save picture of selected area as a file
+disable_hotkey 31  52 21 1441792      # Cmd+Ctrl+Shift+4   Copy picture of selected area to the clipboard
+disable_hotkey 184 53 23 1179648      # Cmd+Shift+5        Screenshot and recording options
+
+# Input sources - Ctrl+Space is Things Quick Entry, the Fn key switches layouts instead (below)
+disable_hotkey 60  32 49 262144       # Ctrl+Space         Select the previous input source
+disable_hotkey 61  32 49 786432       # Ctrl+Option+Space  Select next source in Input menu
+
+# Spotlight - Raycast uses Cmd+Space
+disable_hotkey 64  32 49 1048576      # Cmd+Space          Show Spotlight search
+disable_hotkey 65  32 49 1572864      # Cmd+Option+Space   Show Finder search window
+
+# Mission Control
+disable_hotkey 79  65535 123 8650752  # Ctrl+Left          Move left a space
+disable_hotkey 81  65535 124 8650752  # Ctrl+Right         Move right a space
+
+# Fn / Globe key: change input source (0 = nothing, 2 = emoji picker, 3 = dictation)
+defaults write com.apple.HIToolbox AppleFnUsageType -int 1
+
+# Apply the hotkey changes without logging out
+/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
 
 ###############################################################################
 # Kill affected applications                                                  #
