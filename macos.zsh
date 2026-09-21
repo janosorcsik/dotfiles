@@ -23,6 +23,67 @@ defaults write -g NSSplitViewItemSidebarDefaultsToFloatingAppearance -bool false
 # Disable Big Sur-style window tabs (Solarium)
 defaults write -g NSSolariumWindowTabs -bool NO
 
+# Liquid Glass appearance: Tinted
+defaults write NSGlobalDomain NSGlassDiffusionSetting -int 1
+
+# Dark mode
+defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
+
+# Double-click a window title bar to fill the screen
+defaults write NSGlobalDomain AppleActionOnDoubleClick -string "Fill"
+
+# Full keyboard access: Tab moves focus between all controls in dialogs
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
+# Disable auto-capitalization, auto-period and auto-correct (annoying when typing code)
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+defaults write NSGlobalDomain WebAutomaticSpellingCorrectionEnabled -bool false
+
+# No margins between tiled windows
+defaults write com.apple.WindowManager EnableTiledWindowMargins -bool false
+
+# Open dialogs default to list view (macOS has stored this under several keys over time)
+defaults write NSGlobalDomain NSNavPanelFileLastListModeForOpenModeKey -int 2
+defaults write NSGlobalDomain NavPanelFileListModeForOpenMode -int 2
+defaults write NSGlobalDomain NSNavPanelFileListModeForOpenMode2 -int 2
+
+###############################################################################
+# Trackpad & Mouse                                                            #
+###############################################################################
+
+# Disable three-finger tap (Look up & data detectors)
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerTapGesture -int 0
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerTapGesture -int 0
+
+# Magic Mouse: disable smart zoom (one-finger double tap)
+defaults write com.apple.AppleMultitouchMouse MouseOneFingerDoubleTapGesture -int 0
+defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseOneFingerDoubleTapGesture -int 0
+
+###############################################################################
+# Siri                                                                        #
+###############################################################################
+
+# Hide Siri from the menu bar and disable "Hey Siri"
+defaults write com.apple.Siri StatusMenuVisible -bool false
+defaults write com.apple.Siri VoiceTriggerUserEnabled -bool false
+
+###############################################################################
+# Region & Language                                                           #
+###############################################################################
+
+# English UI with Hungarian formats (24h, Monday, metric, Ft)
+defaults write NSGlobalDomain AppleLanguages -array "en-US" "hu-HU"
+defaults write NSGlobalDomain AppleLocale -string "en_US@rg=huzzzz"
+
+###############################################################################
+# Privacy                                                                     #
+###############################################################################
+
+# Disable personalized ads
+defaults write com.apple.AdLib allowApplePersonalizedAdvertising -bool false
+
 ###############################################################################
 # Dock                                                                        #
 ###############################################################################
@@ -57,6 +118,10 @@ defaults write com.apple.dock mru-spaces -bool true
 # Don't show recently used apps in the Dock
 defaults write com.apple.dock show-recents -bool false
 
+# Disable the bottom-right hot corner (Quick Note by default)
+defaults write com.apple.dock wvous-br-corner -int 1
+defaults write com.apple.dock wvous-br-modifier -int 0
+
 ###############################################################################
 # Finder                                                                      #
 ###############################################################################
@@ -74,11 +139,15 @@ defaults write com.apple.finder ShowStatusBar -bool true
 # Finder: show path bar
 defaults write com.apple.finder ShowPathbar -bool true
 
-# Keep folders on top when sorting by name
+# Keep folders on top when sorting by name (in windows and on the Desktop)
 defaults write com.apple.finder _FXSortFoldersFirst -bool true
+defaults write com.apple.finder _FXSortFoldersFirstOnDesktop -bool true
 
 # When performing a search, search the current folder by default
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+# Show search results in list view
+defaults write com.apple.finder FXPreferredSearchViewStyle -string "Nlsv"
 
 # Disable the warning when changing a file extension
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
@@ -130,9 +199,16 @@ defaults write com.apple.finder FK_StandardViewSettings -dict-add IconViewSettin
     showItemInfo = 0;
 }'
 
+# Avoid creating .DS_Store files on network or USB volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
 ###############################################################################
 # Safari                                                                      #
 ###############################################################################
+
+# Show the link URL at the bottom when hovering (status bar)
+defaults write com.apple.Safari ShowOverlayStatusBar -bool true
 
 # Show the full URL in the address bar (note: this still hides the scheme)
 defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
@@ -146,6 +222,49 @@ defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
 # Enable the Develop menu and the Web Inspector in Safari
 defaults write com.apple.Safari IncludeDevelopMenu -bool true
 defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
+
+# Enable the internal Debug menu
+defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+
+# Disable built-in AutoFill (1Password handles it)
+defaults write com.apple.Safari AutoFillFromAddressBook -bool false
+defaults write com.apple.Safari AutoFillCreditCardData -bool false
+defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false
+defaults write com.apple.Safari AutoFillFromiCloudKeychain -bool false
+
+# Blank homepage and empty new tabs
+defaults write com.apple.Safari HomePage -string "about:blank"
+defaults write com.apple.Safari NewTabBehavior -int 4
+
+# Compact tab layout
+defaults write com.apple.Safari ShowStandaloneTabBar -bool false
+defaults write com.apple.Safari EnableNarrowTabs -bool true
+
+# Don't show the sidebar in new windows
+defaults write com.apple.Safari ShowSidebarInNewWindows -bool false
+
+# Show all items in the Reading List
+defaults write com.apple.Safari ShowAllItemsInReadingList -bool true
+
+# Require Touch ID / password to view locked Private Browsing tabs
+defaults write com.apple.Safari PrivateBrowsingRequiresAuthentication -bool true
+
+# Don't print headers and footers
+defaults write com.apple.Safari PrintHeadersAndFooters -bool false
+
+# Don't let websites ask for permission to send notifications
+defaults write com.apple.Safari CanPromptForPushNotifications -bool false
+
+# Search: no top-hit preloading, no website-specific search shortcuts
+defaults write com.apple.Safari PreloadTopHit -bool false
+defaults write com.apple.Safari WebsiteSpecificSearchEnabled -bool false
+
+# Don't open links in apps (Universal Links)
+defaults write com.apple.Safari UniversalLinksEnabled -bool false
+
+# Allow pop-ups, disallow user-installed fonts
+defaults write com.apple.Safari WebKitPreferences.javaScriptCanOpenWindowsAutomatically -bool true
+defaults write com.apple.Safari WebKitPreferences.shouldAllowUserInstalledFonts -bool false
 
 ###############################################################################
 # Screenshot                                                                  #
@@ -179,6 +298,36 @@ defaults write cc.ffitch.shottr KeyboardShortcuts_anyWindow -string '{"carbonMod
 defaults write cc.ffitch.shottr KeyboardShortcuts_scrolling -string '{"carbonModifiers":768,"carbonKeyCode":26}'
 # OCR:               Ctrl+Option+Cmd+O
 defaults write cc.ffitch.shottr KeyboardShortcuts_ocr -string '{"carbonModifiers":6400,"carbonKeyCode":31}'
+
+# After capture: copy to clipboard and save to disk, don't open the editor
+defaults write cc.ffitch.shottr afterGrabCopy -int 1
+defaults write cc.ffitch.shottr afterGrabSave -int 1
+defaults write cc.ffitch.shottr afterGrabShow -int 0
+
+# Area capture shows a preview first
+defaults write cc.ffitch.shottr areaCaptureMode -string "preview"
+
+# Esc in the editor copies and saves
+defaults write cc.ffitch.shottr copyOnEsc -int 1
+defaults write cc.ffitch.shottr saveOnEsc -int 1
+
+# Editor: always on top, expandable canvas, transparent window shadow
+defaults write cc.ffitch.shottr alwaysOnTop -int 1
+defaults write cc.ffitch.shottr expandableCanvas -int 1
+defaults write cc.ffitch.shottr windowShadow -string "transparent"
+
+# Snapping mode
+defaults write cc.ffitch.shottr snappingMode -int 2
+
+# Use system notifications
+defaults write cc.ffitch.shottr notificationType -string "system"
+
+# OCR language
+defaults write cc.ffitch.shottr primaryOCRLang -string "en-US"
+
+# No telemetry, no intro
+defaults write cc.ffitch.shottr allowTelemetry -int 0
+defaults write cc.ffitch.shottr showIntro -int 0
 
 ###############################################################################
 # TextEdit                                                                    #
@@ -217,12 +366,42 @@ defaults write org.m0k.transmission BlocklistNew -bool true
 defaults write org.m0k.transmission BlocklistURL -string "https://list.iblocklist.com/?list=bt_level1&fileformat=p2p&archiveformat=gz"
 defaults write org.m0k.transmission BlocklistAutoUpdate -bool true
 
+# Don't ask for confirmation when quitting with active transfers
+defaults write org.m0k.transmission CheckQuit -bool false
+
+# Local peer discovery
+defaults write org.m0k.transmission LocalPeerDiscoveryGlobal -bool true
+
+# Show the filter bar and status bar
+defaults write org.m0k.transmission FilterBar -bool true
+defaults write org.m0k.transmission StatusBar -bool true
+
 ###############################################################################
 # Arc                                                                         #
 ###############################################################################
 
 # Disable "New Little Arc Window" global hotkey (conflicts with Rider Option+Cmd+N)
 defaults write company.thebrowser.Browser globalLittleBrowserHotkeyEnabled -bool false
+
+# Restore windows on relaunch
+defaults write company.thebrowser.Browser NSQuitAlwaysKeepsWindows -bool true
+defaults write company.thebrowser.Browser arc_quitAlwaysKeepsWindows -bool true
+
+# Don't open external links in Little Arc
+defaults write company.thebrowser.Browser openExternalLinksInLittleBrowserEnabled -bool false
+
+# Disable Arc Max auto opt-in, Instant Links, Tidy Tabs, built-in ad block, Share Quote links
+defaults write company.thebrowser.Browser arcMaxAutoOptInEnabled -bool false
+defaults write company.thebrowser.Browser instantLinksEnabled -bool false
+defaults write company.thebrowser.Browser tidyTabsEnabled -bool false
+defaults write company.thebrowser.Browser nativeAdBlockEnabled -bool false
+defaults write company.thebrowser.Browser shareQuoteLinkEnabled -bool false
+
+# Disable history clusters
+defaults write company.thebrowser.Browser disableHistoryClusters -bool true
+
+# App icon
+defaults write company.thebrowser.Browser currentAppIconName -string "arc.candy"
 
 ###############################################################################
 # Keyboard Shortcuts                                                          #
@@ -236,6 +415,7 @@ defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Share..." "~^s"
 ###############################################################################
 
 for app in "Arc" \
+  "ControlCenter" \
   "Dock" \
   "Finder" \
   "Safari" \
