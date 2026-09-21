@@ -404,6 +404,188 @@ defaults write company.thebrowser.Browser disableHistoryClusters -bool true
 defaults write company.thebrowser.Browser currentAppIconName -string "arc.candy"
 
 ###############################################################################
+# Fluor                                                                       #
+###############################################################################
+
+# Use F-keys as standard function keys in Rider
+defaults write com.pyrolyse.Fluor AppRules -array '{ behavior = 2; id = "com.jetbrains.rider"; path = "/Applications/Rider.app"; }'
+
+# No notifications, no notification permission popup
+defaults write com.pyrolyse.Fluor userNotificationEnablement -int 0
+defaults write com.pyrolyse.Fluor hideNotificationAuthorizationPopup -bool true
+
+###############################################################################
+# AlDente                                                                     #
+###############################################################################
+
+# Charge limit 60% (limits below 80% must be explicitly allowed since 1.39)
+defaults write com.apphousekitchen.aldente-pro allowChargeLimitsBelow80 -bool true
+defaults write com.apphousekitchen.aldente-pro chargeVal -int 60
+
+# Heat protection
+defaults write com.apphousekitchen.aldente-pro heatProtectMode -bool true
+
+# Sailing mode: let the battery drain to 55% before charging again
+defaults write com.apphousekitchen.aldente-pro sailingMode -bool true
+defaults write com.apphousekitchen.aldente-pro sailingLevel -int 5
+
+# Hide the Dock icon
+defaults write com.apphousekitchen.aldente-pro showDockIcon -bool false
+
+# Don't show the main window on startup
+defaults write com.apphousekitchen.aldente-pro showGUIonStartup -bool false
+
+# Use the native macOS (Tahoe) charge limit
+defaults write com.apphousekitchen.aldente-pro useTahoeNativeLimit -bool true
+
+# Discharge automatically down to the limit, but never allow manual discharge
+defaults write com.apphousekitchen.aldente-pro automaticDischarge -bool true
+defaults write com.apphousekitchen.aldente-pro allowDischarge -bool false
+
+# Keep inhibiting charge during sleep and after quitting
+defaults write com.apphousekitchen.aldente-pro sleepInhibitCharge -bool true
+defaults write com.apphousekitchen.aldente-pro exitInhibitCharge -bool true
+
+# Disable sleep completely (turn the display off instead)
+defaults write com.apphousekitchen.aldente-pro completelyDisableSleep -bool true
+defaults write com.apphousekitchen.aldente-pro displayOffWhenSleepDisabled -bool true
+
+# Heat protection threshold (°C)
+defaults write com.apphousekitchen.aldente-pro maxTemperature -int 35
+
+# MagSafe LED control (off when not charging)
+defaults write com.apphousekitchen.aldente-pro magsafeControl -bool true
+defaults write com.apphousekitchen.aldente-pro magsafeOff -int 2
+
+# Menu bar: icon style, percentage, low power mode color, right-click action
+defaults write com.apphousekitchen.aldente-pro menuBarIconStyle -int 2
+defaults write com.apphousekitchen.aldente-pro showPercentage -bool true
+defaults write com.apphousekitchen.aldente-pro lpmMenuBarColor -bool true
+defaults write com.apphousekitchen.aldente-pro menubarRightClickAction -int 2
+
+# Reduce transparency in the UI
+defaults write com.apphousekitchen.aldente-pro reduceTransparency -bool true
+
+# Calibration: charge back to 60% afterwards
+defaults write com.apphousekitchen.aldente-pro calibrationBackupPercentage -int 60
+
+# No data sharing
+defaults write com.apphousekitchen.aldente-pro dataShareConsent -bool false
+
+###############################################################################
+# AirBattery                                                                  #
+###############################################################################
+
+# Show only this Mac's icon in the menu bar, no built-in battery
+defaults write com.lihaoyun6.AirBattery showOn -string "none"
+defaults write com.lihaoyun6.AirBattery showThisMac -string "icon"
+defaults write com.lihaoyun6.AirBattery intBattOnStatusBar -bool false
+
+# Merge left/right earbuds, read Apple Pencil, iDevices over BLE
+defaults write com.lihaoyun6.AirBattery twsMerge -bool true
+defaults write com.lihaoyun6.AirBattery readPencil -bool true
+defaults write com.lihaoyun6.AirBattery ideviceOverBLE -bool true
+
+###############################################################################
+# Movist Pro                                                                  #
+###############################################################################
+
+# Prefer Hungarian audio and subtitles
+defaults write com.movist.MovistPro Movist_audiovisualLanguage -string "hun"
+defaults write com.movist.MovistPro Movist_subtitleLanguage -string "hun"
+
+# Fill the screen, don't autoplay on entering full screen
+defaults write com.movist.MovistPro Movist_fillingType -int 1
+defaults write com.movist.MovistPro Movist_playsWhenEnterFullScreen -bool false
+
+# Always-on-top mode and recent documents behaviour
+defaults write com.movist.MovistPro Movist_topmostMode -int 2
+defaults write com.movist.MovistPro Movist_recentDocumentsMode -int 2
+
+# Don't check for updates automatically
+defaults write com.movist.MovistPro SUEnableAutomaticChecks -bool false
+
+###############################################################################
+# Things                                                                      #
+###############################################################################
+
+# Things is sandboxed and keeps its preferences in its app group container, not in
+# ~/Library/Preferences, so address the plist by path (defaults accepts a path
+# without the .plist extension as the domain).
+things_prefs="$HOME/Library/Group Containers/JLMPQHK86H.com.culturedcode.ThingsMac/Library/Preferences/JLMPQHK86H.com.culturedcode.ThingsMac"
+
+# Quick Entry enabled (default shortcut Ctrl+Space, freed up from input source
+# switching above), new items go to the Inbox
+defaults write "$things_prefs" quickEntryEnabled -bool true
+defaults write "$things_prefs" quickEntryDefaultDestination -int 0
+
+# Show calendar events in Today and Upcoming
+defaults write "$things_prefs" calendarEventsEnabled -bool true
+
+# Dock badge count mode
+defaults write "$things_prefs" badgeCountMode -int 1
+
+# Show Someday items inside Anytime projects
+defaults write "$things_prefs" showSomedayTasksInAnytimeProjects -bool true
+
+# Resizing the sidebar keeps the window width
+defaults write "$things_prefs" preserveWindowWidthWhenResizingSidebar -bool true
+
+# Enable the things:/// URL scheme
+defaults write "$things_prefs" uriSchemeEnabled -bool true
+
+# Shortcuts: don't ask for confirmation when editing or deleting many items
+defaults write "$things_prefs" intentsSkipsConfirmationForEditingOrDeletingLargeAmountsOfData -bool true
+
+###############################################################################
+# BetterCapture                                                               #
+###############################################################################
+
+# Record microphone and system audio, no alpha channel
+defaults write com.sattlerjoshua.BetterCapture captureMicrophone -bool true
+defaults write com.sattlerjoshua.BetterCapture captureSystemAudio -bool true
+defaults write com.sattlerjoshua.BetterCapture captureAlphaChannel -bool false
+
+# MP4 at 30 fps
+defaults write com.sattlerjoshua.BetterCapture containerFormat -string "mp4"
+defaults write com.sattlerjoshua.BetterCapture frameRate -int 30
+
+# Don't install updates automatically
+# (the output directory is a security-scoped bookmark, it can't be set from here)
+defaults write com.sattlerjoshua.BetterCapture SUAutomaticallyUpdate -bool false
+
+###############################################################################
+# Pearcleaner                                                                 #
+###############################################################################
+
+# Search /Applications and ~/Applications
+defaults write com.alienator88.Pearcleaner settings.folders.apps -array "/Applications" "$HOME/Applications"
+
+# Also uninstall the Homebrew cask when removing an app; no CLI helper
+defaults write com.alienator88.Pearcleaner settings.general.brew -bool true
+defaults write com.alienator88.Pearcleaner settings.general.cli -bool false
+
+# Keep the warnings before deleting files and leftovers
+defaults write com.alienator88.Pearcleaner settings.general.filesWarning -bool true
+defaults write com.alienator88.Pearcleaner settings.general.leftoverWarning -bool true
+defaults write com.alienator88.Pearcleaner settings.lipo.warning -bool true
+
+# Sort by path, show real (not allocated) sizes, strict search matching
+defaults write com.alienator88.Pearcleaner settings.general.selectedSort -string "path"
+defaults write com.alienator88.Pearcleaner settings.general.sizeType -string "Real"
+defaults write com.alienator88.Pearcleaner settings.general.searchSensitivity -int 0
+
+# Sentinel: watch the Trash and offer to remove leftovers of trashed apps
+defaults write com.alienator88.Pearcleaner settings.sentinel.enable -bool true
+
+# Interface
+defaults write com.alienator88.Pearcleaner settings.interface.greetingEnabled -bool true
+defaults write com.alienator88.Pearcleaner settings.interface.scrollIndicators -bool true
+
+# Check for updates weekly
+defaults write com.alienator88.Pearcleaner alinfoundation.updater.updateFrequency -string "Weekly"
+
+###############################################################################
 # Keyboard Shortcuts                                                          #
 ###############################################################################
 
@@ -414,14 +596,21 @@ defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Share..." "~^s"
 # Kill affected applications                                                  #
 ###############################################################################
 
-for app in "Arc" \
+for app in "AirBattery" \
+  "AlDente" \
+  "Arc" \
+  "BetterCapture" \
   "ControlCenter" \
   "Dock" \
   "Finder" \
+  "Fluor" \
+  "Movist Pro" \
+  "Pearcleaner" \
   "Safari" \
   "Shottr" \
   "SystemUIServer" \
   "TextEdit" \
+  "Things3" \
   "Transmission"; do
   killall "${app}" &> /dev/null
 done
