@@ -165,39 +165,39 @@ defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
 defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
-# Desktop view settings
-defaults write com.apple.finder DesktopViewSettings -dict-add IconViewSettings '
+# Icon view settings, the same everywhere:
+#   StandardViewSettings     folders without their own saved view
+#   FK_StandardViewSettings  new windows
+#   ICloudViewSettings       iCloud Drive
+icon_view_settings='
 {
     arrangeBy = "name";
     gridSpacing = 80;
     iconSize = 100;
     labelOnBottom = 1;
     textSize = 13;
-    showItemInfo = 0;
+    showItemInfo = 1;
     showIconPreview = 1;
 }'
+for key in StandardViewSettings FK_StandardViewSettings ICloudViewSettings; do
+  defaults write com.apple.finder "$key" -dict-add IconViewSettings "$icon_view_settings"
+done
 
-# Standard view settings for icon view
-defaults write com.apple.finder StandardViewSettings -dict-add IconViewSettings '
-{
-    arrangeBy = "name";
-    gridSpacing = 80;
-    iconSize = 100;
-    labelOnBottom = 1;
-    textSize = 13;
-    showItemInfo = 0;
-    showIconPreview = 1;
-}'
-
-# FK_StandardViewSettings for new windows
-defaults write com.apple.finder FK_StandardViewSettings -dict-add IconViewSettings '
-{
-    arrangeBy = "name";
-    gridSpacing = 80;
-    iconSize = 100;
-    textSize = 13;
-    showItemInfo = 0;
-}'
+# The Desktop lives in iCloud Drive (Desktop & Documents sync), and Finder keeps
+# its view settings in the .DS_Store of the iCloud Drive root, not in the
+# DesktopViewSettings key, which Finder overwrites on launch. The only scriptable
+# way in is Finder's own API. Grid spacing is not exposed there, set it by hand once.
+osascript <<'EOF'
+tell application "Finder"
+  set o to icon view options of window of desktop
+  set arrangement of o to arranged by name
+  set icon size of o to 100
+  set text size of o to 13
+  set label position of o to bottom
+  set shows item info of o to true
+  set shows icon preview of o to true
+end tell
+EOF
 
 # Avoid creating .DS_Store files on network or USB volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
