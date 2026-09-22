@@ -6,8 +6,8 @@
 // @raycast.icon 📋
 // @raycast.description Convert clipboard Markdown to Apple Notes HTML. Paste with ⌘V.
 
-import Foundation
 import AppKit
+import Foundation
 
 private let enDash = "\u{2013}"
 private let nbsp = "\u{00A0}"
@@ -32,8 +32,9 @@ private func normalizeDividers(_ md: String) -> String {
             let ch = (line as NSString).substring(with: m.range(at: 1)).first!
             fence = (fence == nil) ? ch : (fence == ch ? nil : fence)
         } else if fence == nil,
-                  breakRe.firstMatch(in: line, range: range) != nil,
-                  out.last?.trimmingCharacters(in: .whitespaces).isEmpty == false {
+            breakRe.firstMatch(in: line, range: range) != nil,
+            out.last?.trimmingCharacters(in: .whitespaces).isEmpty == false
+        {
             out.append("")
         }
         out.append(line)
@@ -42,7 +43,7 @@ private func normalizeDividers(_ md: String) -> String {
 }
 
 private struct Block {
-    enum Kind: Equatable {
+    enum Kind {
         case paragraph
         case header(Int)
         case codeBlock
@@ -64,16 +65,22 @@ private struct MdRun {
 
 private func classify(_ intent: PresentationIntent?) -> Block {
     var b = Block()
-    var depth = 0, ordered = false, ordinal = 1, markerSet = false
-    var listItemId: Int?, tableId: Int?
-    var row = -1, col = -1, isHeaderRow = false
+    var depth = 0
+    var ordered = false
+    var ordinal = 1
+    var markerSet = false
+    var listItemId: Int?
+    var tableId: Int?
+    var row = -1
+    var col = -1
+    var isHeaderRow = false
 
     for c in intent?.components ?? [] {
         switch c.kind {
         case .paragraph:
             b.id = c.identity
-        case .header(let l):
-            b.kind = .header(min(l, 3))
+        case .header(let level):
+            b.kind = .header(min(level, 3))
             b.id = c.identity
         case .codeBlock:
             b.kind = .codeBlock
@@ -127,7 +134,6 @@ private func classify(_ intent: PresentationIntent?) -> Block {
 private func parse(_ markdown: String) -> [[MdRun]] {
     var opts = AttributedString.MarkdownParsingOptions()
     opts.interpretedSyntax = .full
-    opts.allowsExtendedAttributes = true
 
     guard let attr = try? AttributedString(markdown: normalizeDividers(markdown), options: opts)
     else { return [] }
@@ -157,8 +163,10 @@ private func isBreak(_ r: MdRun) -> Bool {
     r.inline?.contains(.softBreak) == true || r.inline?.contains(.lineBreak) == true
 }
 
-private func assemble(_ chunks: [[MdRun]], gap: String, tight: String,
-                      render: ([MdRun]) -> String?) -> String {
+private func assemble(
+    _ chunks: [[MdRun]], gap: String, tight: String,
+    render: ([MdRun]) -> String?
+) -> String {
     var out = ""
     var previous: Int??
     for chunk in chunks {
@@ -183,12 +191,10 @@ private func inlineHtml(_ r: MdRun) -> String {
         } else if il.contains(.emphasized) {
             t = "<i>\(t)</i>"
         }
-
         if il.contains(.strikethrough) {
             t = "<s>\(t)</s>"
         }
     }
-
     if let url = r.link {
         t = "<a href=\"\(escapeHtml(url.absoluteString))\">\(t)</a>"
     }
@@ -199,7 +205,8 @@ private func tableHtml(_ chunk: [MdRun]) -> String? {
     var grid: [Int: [Int: String]] = [:]
     var headerRows: Set<Int> = []
     for r in chunk {
-        guard case let .tableCell(row, col, isHeader) = r.block.kind, row >= 0, col >= 0 else { continue }
+        guard case .tableCell(let row, let col, let isHeader) = r.block.kind, row >= 0, col >= 0
+        else { continue }
         grid[row, default: [:]][col, default: ""] += inlineHtml(r)
         if isHeader { headerRows.insert(row) }
     }
@@ -225,7 +232,9 @@ private func blockHtml(_ chunk: [MdRun]) -> String? {
     case .codeBlock:
         return "<pre>\(escapeHtml(chunk.map(\.text).joined()))</pre>"
     case .listItem(let depth, let ordered, let ordinal):
-        let prefix = String(repeating: indent, count: depth) + (ordered ? "\(ordinal)." : enDash) + nbsp
+        let prefix =
+            String(repeating: indent, count: depth)
+            + (ordered ? "\(ordinal)." : enDash) + nbsp
         return "<div>\(prefix)\(chunk.map(inlineHtml).joined())</div>"
     case .tableCell:
         return tableHtml(chunk)
@@ -236,43 +245,40 @@ private func blockHtml(_ chunk: [MdRun]) -> String? {
     }
 }
 
-func toNotesHtml(_ markdown: String) -> String {
-    let chunks = parse(markdown)
-    guard !chunks.isEmpty else { return "<div>\(escapeHtml(markdown))</div>" }
-    return assemble(chunks, gap: "<div><br></div>", tight: "", render: blockHtml)
-}
-
 private func blockText(_ chunk: [MdRun]) -> String? {
     guard let kind = chunk.first?.block.kind else { return nil }
+    let text = chunk.map { isBreak($0) ? " " : $0.text }.joined()
 
     switch kind {
-    case .skip:
+    case .skip, .tableCell:
         return nil
     case .listItem(let depth, let ordered, let ordinal):
-        let text = chunk.map { isBreak($0) ? " " : $0.text }.joined()
-        return String(repeating: "  ", count: depth) + (ordered ? "\(ordinal)." : "-") + " " + text
-    case .tableCell:
-        return nil
+        return String(repeating: "  ", count: depth)
+            + (ordered ? "\(ordinal)." : "-") + " " + text
     default:
-        let text = chunk.map { isBreak($0) ? " " : $0.text }.joined()
-            .trimmingCharacters(in: .whitespacesAndNewlines)
-        return text.isEmpty ? nil : text
+        let t = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        return t.isEmpty ? nil : t
     }
 }
 
-func toPlainText(_ markdown: String) -> String {
-    let chunks = parse(markdown)
-    guard !chunks.isEmpty else { return markdown }
-    return assemble(chunks, gap: "\n\n", tight: "\n", render: blockText)
-        .trimmingCharacters(in: .whitespacesAndNewlines)
-}
-
 guard let markdown = NSPasteboard.general.string(forType: .string),
-      !markdown.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+    !markdown.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+else {
     exit(0)
 }
 
+private let chunks = parse(markdown)
+let html =
+    chunks.isEmpty
+    ? "<div>\(escapeHtml(markdown))</div>"
+    : assemble(chunks, gap: "<div><br></div>", tight: "", render: blockHtml)
+let plain =
+    chunks.isEmpty
+    ? markdown
+    : assemble(chunks, gap: "\n\n", tight: "\n", render: blockText)
+        .trimmingCharacters(in: .whitespacesAndNewlines)
+
 let pb = NSPasteboard.general
 pb.clearContents()
-pb.setString("<meta charset=\"utf-8\">" + toNotesHtml(markdown), forType: .html)
-pb.setString(toPlainText(markdown), forType: .string)
+pb.setString("<meta charset=\"utf-8\">" + html, forType: .html)
+pb.setString(plain, forType: .string)
