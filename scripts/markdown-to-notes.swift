@@ -184,10 +184,6 @@ private func inlineHtml(_ r: MdRun) -> String {
             t = "<i>\(t)</i>"
         }
 
-        if il.contains(.code) {
-            t = "<tt>\(t)</tt>"
-        }
-
         if il.contains(.strikethrough) {
             t = "<s>\(t)</s>"
         }
