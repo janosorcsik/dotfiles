@@ -185,10 +185,9 @@ function gmg {
   fi
 
   # Inline the diff instead of letting the model fetch it: saves a tool-call round
-  # trip. --pure skips the rtk plugin and MCP servers, which this task never needs.
-  # A small model is plenty for a one-line message; drop --model to use the default.
+  # trip. A small model is plenty for a one-line message; drop --model to use the default.
   local response
-  if ! response=$(opencode run --pure --model anthropic/claude-haiku-4-5 \
+  if ! response=$(opencode run --model anthropic/claude-haiku-4-5 \
     "Generate a short single-line English git commit message for this diff.
 Output ONLY the commit message, nothing else!
 
