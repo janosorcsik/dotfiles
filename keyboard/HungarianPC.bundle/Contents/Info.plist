@@ -7,13 +7,13 @@
 	<key>CFBundleName</key>
 	<string>HungarianPC</string>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>3</string>
 	<key>KLInfo_Hungarian - PC</key>
 	<dict>
 		<key>TICapsLockLanguageSwitchCapable</key>
 		<false/>
 		<key>TISIconIsTemplate</key>
-		<false/>
+		<true/>
 		<key>TISInputSourceID</key>
 		<string>org.sil.ukelele.keyboardlayout.hungarianpc.hungarian-pc</string>
 		<key>TISIntendedLanguage</key>
