@@ -2,7 +2,9 @@
   sort = -committerdate
 [commit]
   gpgsign = true
+  verbose = true
 [diff]
+  algorithm = histogram
   tool = difftastic
   colorMoved = default
 [difftool]
@@ -27,7 +29,6 @@
 [pull]
   rebase = true
 [push]
-  default = simple
   autoSetupRemote = true
 [rebase]
   autostash = true
