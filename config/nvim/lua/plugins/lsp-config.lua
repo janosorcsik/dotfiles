@@ -1,19 +1,12 @@
 return {
 	{
 		"mason-org/mason.nvim",
-		opts = {
-			registries = {
-				"github:mason-org/mason-registry",
-			},
-		},
+		opts = {},
 	},
 	{
 		"mason-org/mason-lspconfig.nvim",
-		dependencies = { "neovim/nvim-lspconfig", "saghen/blink.cmp" },
+		dependencies = { "neovim/nvim-lspconfig" },
 		config = function()
-			vim.lsp.config("*", {
-				capabilities = require("blink.cmp").get_lsp_capabilities(),
-			})
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"bashls",
