@@ -20,7 +20,7 @@ defaults write -g NSMenuEnableActionImages -bool NO
 # Disable floating (transparent) sidebar appearance
 defaults write -g NSSplitViewItemSidebarDefaultsToFloatingAppearance -bool false
 
-# Disable Big Sur-style window tabs (Solarium)
+# Disable the Liquid Glass (Solarium) style window tabs
 defaults write -g NSSolariumWindowTabs -bool NO
 
 # Liquid Glass appearance: Tinted
@@ -446,7 +446,8 @@ defaults write com.apphousekitchen.aldente-pro allowDischarge -bool false
 defaults write com.apphousekitchen.aldente-pro sleepInhibitCharge -bool true
 defaults write com.apphousekitchen.aldente-pro exitInhibitCharge -bool true
 
-# Disable sleep completely (turn the display off instead)
+# Disable Sleep until Charge Limit: stay awake while plugged in until the limit is
+# reached (sleep is re-enabled when unplugged); turn the display off meanwhile
 defaults write com.apphousekitchen.aldente-pro completelyDisableSleep -bool true
 defaults write com.apphousekitchen.aldente-pro displayOffWhenSleepDisabled -bool true
 
@@ -515,7 +516,7 @@ defaults write com.movist.MovistPro SUEnableAutomaticChecks -bool false
 things_prefs="$HOME/Library/Group Containers/JLMPQHK86H.com.culturedcode.ThingsMac/Library/Preferences/JLMPQHK86H.com.culturedcode.ThingsMac"
 
 # Quick Entry enabled (default shortcut Ctrl+Space, freed up from input source
-# switching above), new items go to the Inbox
+# switching below), new items go to the Inbox
 defaults write "$things_prefs" quickEntryEnabled -bool true
 defaults write "$things_prefs" quickEntryDefaultDestination -int 0
 
