@@ -114,8 +114,8 @@ private func classify(_ intent: PresentationIntent?) -> Block {
             row = 0
         case .tableRow(let r):
             row = r
-        case .tableCell(let c):
-            col = c
+        case .tableCell(let column):
+            col = column
         default:
             break
         }
@@ -186,10 +186,11 @@ private func inlineHtml(_ r: MdRun) -> String {
 
     var t = escapeHtml(r.text)
     if let il = r.inline {
+        if il.contains(.emphasized) {
+            t = "<i>\(t)</i>"
+        }
         if il.contains(.stronglyEmphasized) {
             t = "<b>\(t)</b>"
-        } else if il.contains(.emphasized) {
-            t = "<i>\(t)</i>"
         }
         if il.contains(.strikethrough) {
             t = "<s>\(t)</s>"
