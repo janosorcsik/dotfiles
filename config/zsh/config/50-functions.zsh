@@ -86,20 +86,24 @@ function gclean {
   echo "🔍 Checking remote-tracking merged branches..."
   git -C "$dir" fetch --prune
   local merged_remotes
-  local default_branch
+  local default_branch my_email
   default_branch=$(git -C "$dir" symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null | sed 's@^origin/@@')
   default_branch="${default_branch:-main}"
-  merged_remotes=$(git -C "$dir" for-each-ref --format='%(refname:strip=3)' \
+  my_email=$(git -C "$dir" config user.email)
+  # Only branches whose tip commit is authored by me, so other people's branches are left alone.
+  merged_remotes=$(git -C "$dir" for-each-ref --format='%(refname:strip=3) %(authoremail)' \
     --merged "refs/remotes/origin/$default_branch" refs/remotes/origin |
-    awk -v def="$default_branch" '$0 != "HEAD" && $0 != def && $0 != "master" && $0 != "develop"')
+    awk -v def="$default_branch" -v me="<$my_email>" \
+      '$1 != "HEAD" && $1 != def && $1 != "master" && $1 != "develop" && tolower($2) == tolower(me) {print $1}')
 
-  _gclean_pass "$dir" "$current_repo" "remote merged branches" "merged remote branches" \
+  _gclean_pass "$dir" "$current_repo" "remote branches" "my merged remote branches" \
     _gclean_drop_remote "$merged_remotes"
 
   # 2. Local branches tracking deleted remotes
   echo "🔍 Checking for local branches tracking deleted remotes..."
   local gone_locals
-  gone_locals=$(git -C "$dir" branch -vv | grep -v '^\*' | grep 'origin/.*: gone]' | awk '{print $1}')
+  gone_locals=$(git -C "$dir" for-each-ref --format='%(refname:short) %(upstream:track)' refs/heads |
+                awk -v current="$current_branch" '$2 == "[gone]" && $1 != current {print $1}')
 
   _gclean_pass "$dir" "$current_repo" "local branches" "local branches tracking deleted remotes" \
     _gclean_drop_local "$gone_locals"
@@ -177,21 +181,19 @@ function gmg {
     return 1
   fi
 
-  local staged_diff
-  staged_diff=$(git diff --staged)
-  if [[ -z "$staged_diff" ]]; then
+  if git diff --staged --quiet; then
     echo "❌ No staged changes. Use 'git add' first."
     return 1
   fi
 
-  # Inline the diff instead of letting the model fetch it: saves a tool-call round
-  # trip. A small model is plenty for a one-line message; drop --model to use the default.
+  # Attach the diff as a file instead of inlining it: a large diff passed as an
+  # argument can exceed the macOS ARG_MAX limit. Attaching also saves the model a
+  # tool-call round trip. =(...) is a temp file zsh deletes once the command ends.
+  # A small model is plenty for a one-line message.
   local response
-  if ! response=$(opencode run --model anthropic/claude-haiku-4-5 \
-    "Generate a short single-line English git commit message for this diff.
-Output ONLY the commit message, nothing else!
-
-$staged_diff"); then
+  if ! response=$(opencode run --model anthropic/claude-haiku-4-5 --file =(git diff --staged) \
+    "Generate a short single-line English git commit message for the attached diff.
+Output ONLY the commit message, nothing else!"); then
     echo "❌ opencode failed."
     return 1
   fi
