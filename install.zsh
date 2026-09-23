@@ -3,8 +3,8 @@ set -e
 
 DOTFILES="$HOME/Developer/dotfiles"
 
-# zshenv only runs for interactive zsh, but the steps below (dotnet global tools,
-# XDG paths) depend on the variables it exports, so load it up front.
+# ~/.zshenv is not linked yet on a fresh machine, but the steps below (dotnet
+# global tools, XDG paths) depend on the variables it exports, so load it up front.
 . "$DOTFILES/zshenv"
 
 echo "Installing Command Line Tools..."
