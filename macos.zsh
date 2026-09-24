@@ -32,14 +32,18 @@ defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
 # Double-click a window title bar to fill the screen
 defaults write NSGlobalDomain AppleActionOnDoubleClick -string "Fill"
 
-# Full keyboard access: Tab moves focus between all controls in dialogs
-defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+# Disable keyboard navigation (Tab does not move focus to buttons; avoids the blue ring)
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 0
 
-# Disable auto-capitalization, auto-period and auto-correct (annoying when typing code)
+# Disable auto-capitalization, auto-period, auto-correct, smart quotes, smart dashes and
+# inline predictions (all annoying when typing code)
 defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 defaults write NSGlobalDomain WebAutomaticSpellingCorrectionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticInlinePredictionEnabled -bool false
 
 # No margins between tiled windows
 defaults write com.apple.WindowManager EnableTiledWindowMargins -bool false
@@ -52,6 +56,20 @@ defaults write NSGlobalDomain NSNavPanelFileListModeForOpenMode2 -int 2
 ###############################################################################
 # Trackpad & Mouse                                                            #
 ###############################################################################
+
+# Tap to click (trackpad settings file + login-screen pref)
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+
+# Three-finger drag (disable swipe gestures so three fingers are free for dragging)
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerHorizSwipeGesture -int 0
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerVertSwipeGesture -int 0
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool true
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerHorizSwipeGesture -int 0
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerVertSwipeGesture -int 0
 
 # Disable three-finger tap (Look up & data detectors)
 defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerTapGesture -int 0
@@ -83,6 +101,21 @@ defaults write NSGlobalDomain AppleLocale -string "en_US@rg=huzzzz"
 
 # Disable personalized ads
 defaults write com.apple.AdLib allowApplePersonalizedAdvertising -bool false
+
+###############################################################################
+# Menu Bar                                                                    #
+###############################################################################
+
+# Auto-hide the menu bar only in full screen
+# (0 = always, 1 = on desktop only, 2 = in full screen only, 3 = never)
+defaults write com.apple.controlcenter AutoHideMenuBarOption -int 2
+defaults write NSGlobalDomain AppleMenuBarVisibleInFullscreen -bool false
+
+# Clock: date when space allows (0 = when space allows, 1 = always, 2 = never),
+# day of week, no seconds
+defaults write com.apple.menuextra.clock ShowDate -int 0
+defaults write com.apple.menuextra.clock ShowDayOfWeek -bool true
+defaults write com.apple.menuextra.clock ShowSeconds -bool false
 
 ###############################################################################
 # Dock                                                                        #
@@ -203,6 +236,17 @@ EOF
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
+# Show ~/Library in the Finder
+chflags nohidden ~/Library
+
+# Expanded sections in Get Info (Cmd+I)
+defaults write com.apple.finder FXInfoPanesExpanded -dict \
+  Comments -bool true \
+  MetaData -bool true \
+  Name -bool true \
+  OpenWith -bool true \
+  Privileges -bool true
+
 ###############################################################################
 # Safari                                                                      #
 ###############################################################################
@@ -265,6 +309,40 @@ defaults write com.apple.Safari UniversalLinksEnabled -bool false
 # Allow pop-ups, disallow user-installed fonts
 defaults write com.apple.Safari WebKitPreferences.javaScriptCanOpenWindowsAutomatically -bool true
 defaults write com.apple.Safari WebKitPreferences.shouldAllowUserInstalledFonts -bool false
+
+###############################################################################
+# Printing                                                                    #
+###############################################################################
+
+# Always show the expanded print dialog
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+
+###############################################################################
+# Photos                                                                      #
+###############################################################################
+
+# Prevent Photos from opening automatically when a device is plugged in
+defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
+
+###############################################################################
+# Time Machine                                                                #
+###############################################################################
+
+# Don't offer new disks for Time Machine backup
+defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+
+###############################################################################
+# Activity Monitor                                                            #
+###############################################################################
+
+# Show all processes, open on the Memory tab
+defaults write com.apple.ActivityMonitor ShowCategory -int 100
+defaults write com.apple.ActivityMonitor SelectedTab -int 1
+
+# Memory tab column order: name, anonymous, resident size, threads, ports, PID, UID
+defaults write com.apple.ActivityMonitor "UserColumnsPerTab v6.0" -dict-add \
+  1 '(Command, anonymousMemory, ResidentSize, Threads, Ports, PID, UID)'
 
 ###############################################################################
 # Screenshot                                                                  #
@@ -333,8 +411,10 @@ defaults write cc.ffitch.shottr showIntro -int 0
 # TextEdit                                                                    #
 ###############################################################################
 
-# Use plain text mode for new TextEdit documents
+# Use plain text mode for new TextEdit documents, UTF-8 encoding
 defaults write com.apple.TextEdit RichText -int 0
+defaults write com.apple.TextEdit PlainTextEncoding -int 4
+defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 
 ###############################################################################
 # Transmission                                                                #
@@ -631,7 +711,8 @@ defaults write com.apple.HIToolbox AppleFnUsageType -int 1
 # Kill affected applications                                                  #
 ###############################################################################
 
-for app in "AirBattery" \
+for app in "Activity Monitor" \
+  "AirBattery" \
   "AlDente" \
   "Arc" \
   "BetterCapture" \
