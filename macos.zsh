@@ -188,6 +188,9 @@ defaults write com.apple.finder FXPreferredSearchViewStyle -string "Nlsv"
 # Disable the warning when changing a file extension
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
+# Disable the warning when moving files out of iCloud Drive
+defaults write com.apple.finder FXEnableRemoveFromICloudDriveWarning -bool false
+
 # Set icon view as default
 defaults write com.apple.finder FXPreferredViewStyle -string "icnv"
 
@@ -346,6 +349,13 @@ defaults write com.apple.ActivityMonitor SelectedTab -int 1
 # Memory tab column order: name, anonymous, resident size, threads, ports, PID, UID
 defaults write com.apple.ActivityMonitor "UserColumnsPerTab v6.0" -dict-add \
   1 '(Command, anonymousMemory, ResidentSize, Threads, Ports, PID, UID)'
+
+###############################################################################
+# Disk Utility                                                                #
+###############################################################################
+
+# Show all devices (not just volumes) in the sidebar
+defaults write com.apple.DiskUtility SidebarShowAllDevices -bool true
 
 ###############################################################################
 # Screenshot                                                                  #
@@ -720,6 +730,7 @@ for app in "Activity Monitor" \
   "Arc" \
   "BetterCapture" \
   "ControlCenter" \
+  "Disk Utility" \
   "Dock" \
   "Finder" \
   "Fluor" \
