@@ -29,6 +29,9 @@ defaults write NSGlobalDomain NSGlassDiffusionSetting -int 1
 # Dark mode
 defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
 
+# Disable font smoothing (thinner, sharper text on Retina displays)
+defaults -currentHost write NSGlobalDomain AppleFontSmoothing -int 0
+
 # Double-click a window title bar to fill the screen
 defaults write NSGlobalDomain AppleActionOnDoubleClick -string "Fill"
 
