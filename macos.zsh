@@ -198,39 +198,31 @@ defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
 defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
+# Delete all .DS_Store files in the home folder, so every folder falls back to the
+# default view settings below (this also resets window sizes and icon positions)
+find "$HOME" -name .DS_Store -type f -delete 2>/dev/null
+
 # Icon view settings, the same everywhere:
 #   StandardViewSettings     folders without their own saved view
 #   FK_StandardViewSettings  new windows
 #   ICloudViewSettings       iCloud Drive
-icon_view_settings='
-{
-    arrangeBy = "name";
-    gridSpacing = 80;
-    iconSize = 100;
-    labelOnBottom = 1;
-    textSize = 13;
-    showItemInfo = 1;
-    showIconPreview = 1;
-}'
-for key in StandardViewSettings FK_StandardViewSettings ICloudViewSettings; do
+#   ComputerViewSettings     Computer (Go > Computer)
+#   NetworkViewSettings      Network
+#   TrashViewSettings        Trash
+#   PackageViewSettings      package contents (Show Package Contents)
+icon_view_settings='<dict>
+  <key>arrangeBy</key><string>name</string>
+  <key>gridSpacing</key><real>80</real>
+  <key>iconSize</key><real>100</real>
+  <key>labelOnBottom</key><true/>
+  <key>textSize</key><real>13</real>
+  <key>showItemInfo</key><true/>
+  <key>showIconPreview</key><true/>
+</dict>'
+for key in StandardViewSettings FK_StandardViewSettings ICloudViewSettings \
+  ComputerViewSettings NetworkViewSettings TrashViewSettings PackageViewSettings; do
   defaults write com.apple.finder "$key" -dict-add IconViewSettings "$icon_view_settings"
 done
-
-# The Desktop lives in iCloud Drive (Desktop & Documents sync), and Finder keeps
-# its view settings in the .DS_Store of the iCloud Drive root, not in the
-# DesktopViewSettings key, which Finder overwrites on launch. The only scriptable
-# way in is Finder's own API. Grid spacing is not exposed there, set it by hand once.
-osascript <<'EOF'
-tell application "Finder"
-  set o to icon view options of window of desktop
-  set arrangement of o to arranged by name
-  set icon size of o to 100
-  set text size of o to 13
-  set label position of o to bottom
-  set shows item info of o to true
-  set shows icon preview of o to true
-end tell
-EOF
 
 # Avoid creating .DS_Store files on network or USB volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
