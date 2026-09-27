@@ -17,12 +17,6 @@ defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 # Hide icons in menu bar menus
 defaults write -g NSMenuEnableActionImages -bool NO
 
-# Disable floating (transparent) sidebar appearance
-defaults write -g NSSplitViewItemSidebarDefaultsToFloatingAppearance -bool false
-
-# Disable the Liquid Glass (Solarium) style window tabs
-defaults write -g NSSolariumWindowTabs -bool NO
-
 # Liquid Glass appearance: Tinted
 defaults write NSGlobalDomain NSGlassDiffusionSetting -int 1
 
