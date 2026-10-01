@@ -14,26 +14,29 @@ private let nbsp = "\u{00A0}"
 private let indent = String(repeating: nbsp, count: 4)
 
 private func escapeHtml(_ s: String) -> String {
-    s.replacingOccurrences(of: "&", with: "&amp;")
-        .replacingOccurrences(of: "<", with: "&lt;")
-        .replacingOccurrences(of: ">", with: "&gt;")
-        .replacingOccurrences(of: "\"", with: "&quot;")
+    s.reduce(into: "") { out, c in
+        switch c {
+        case "&": out += "&amp;"
+        case "<": out += "&lt;"
+        case ">": out += "&gt;"
+        case "\"": out += "&quot;"
+        default: out.append(c)
+        }
+    }
 }
 
 private func normalizeDividers(_ md: String) -> String {
-    let fenceRe = try! NSRegularExpression(pattern: #"^ {0,3}(`{3,}|~{3,})"#)
-    let breakRe = try! NSRegularExpression(
-        pattern: #"^ {0,3}(?:(?:-[ \t]*){3,}|(?:\*[ \t]*){3,}|(?:_[ \t]*){3,})$"#)
+    let fenceRe = #/ {0,3}(`{3,}|~{3,})/#
+    let breakRe = #/ {0,3}(?:(?:-[ \t]*){3,}|(?:\*[ \t]*){3,}|(?:_[ \t]*){3,})\r?/#
     var out: [String] = []
     var fence: Character?
     for line in md.components(separatedBy: "\n") {
-        let range = NSRange(line.startIndex..., in: line)
-        if let m = fenceRe.firstMatch(in: line, range: range) {
-            let ch = (line as NSString).substring(with: m.range(at: 1)).first!
-            fence = (fence == nil) ? ch : (fence == ch ? nil : fence)
+        if let m = line.prefixMatch(of: fenceRe) {
+            let ch = m.1.first!
+            if fence == nil { fence = ch } else if fence == ch { fence = nil }
         } else if fence == nil,
-            breakRe.firstMatch(in: line, range: range) != nil,
-            out.last?.trimmingCharacters(in: .whitespaces).isEmpty == false
+            line.wholeMatch(of: breakRe) != nil,
+            out.last?.allSatisfy(\.isWhitespace) == false
         {
             out.append("")
         }
@@ -68,7 +71,6 @@ private func classify(_ intent: PresentationIntent?) -> Block {
     var depth = 0
     var ordered = false
     var ordinal = 1
-    var markerSet = false
     var listItemId: Int?
     var tableId: Int?
     var row = -1
@@ -93,19 +95,9 @@ private func classify(_ intent: PresentationIntent?) -> Block {
                 listItemId = c.identity
                 ordinal = o
             }
-        case .unorderedList:
+        case .unorderedList, .orderedList:
+            if depth == 0 { ordered = c.kind == .orderedList }
             depth += 1
-            if !markerSet {
-                ordered = false
-                markerSet = true
-            }
-            b.container = c.identity
-        case .orderedList:
-            depth += 1
-            if !markerSet {
-                ordered = true
-                markerSet = true
-            }
             b.container = c.identity
         case .table:
             tableId = c.identity
@@ -132,10 +124,9 @@ private func classify(_ intent: PresentationIntent?) -> Block {
 }
 
 private func parse(_ markdown: String) -> [[MdRun]] {
-    var opts = AttributedString.MarkdownParsingOptions()
-    opts.interpretedSyntax = .full
-
-    guard let attr = try? AttributedString(markdown: normalizeDividers(markdown), options: opts)
+    guard
+        let attr = try? AttributedString(
+            markdown: normalizeDividers(markdown), options: .init(interpretedSyntax: .full))
     else { return [] }
 
     var chunks: [[MdRun]] = []
@@ -160,7 +151,7 @@ private func parse(_ markdown: String) -> [[MdRun]] {
 }
 
 private func isBreak(_ r: MdRun) -> Bool {
-    r.inline?.contains(.softBreak) == true || r.inline?.contains(.lineBreak) == true
+    r.inline?.isDisjoint(with: [.softBreak, .lineBreak]) == false
 }
 
 private func assemble(
@@ -168,15 +159,13 @@ private func assemble(
     render: ([MdRun]) -> String?
 ) -> String {
     var out = ""
-    var previous: Int??
+    var prev: Int?
     for chunk in chunks {
         guard let first = chunk.first, let body = render(chunk) else { continue }
-        if let prev = previous {
-            let sameList = first.block.container != nil && first.block.container == prev
-            out += sameList ? tight : gap
-        }
+        let container = first.block.container
+        if !out.isEmpty { out += (container != nil && container == prev) ? tight : gap }
         out += body
-        previous = first.block.container
+        prev = container
     }
     return out
 }
@@ -262,11 +251,10 @@ private func blockText(_ chunk: [MdRun]) -> String? {
     }
 }
 
-guard let markdown = NSPasteboard.general.string(forType: .string),
-    !markdown.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-else {
-    exit(0)
-}
+let pb = NSPasteboard.general
+
+guard let markdown = pb.string(forType: .string), !markdown.allSatisfy(\.isWhitespace)
+else { exit(0) }
 
 private let chunks = parse(markdown)
 let html =
@@ -279,7 +267,6 @@ let plain =
     : assemble(chunks, gap: "\n\n", tight: "\n", render: blockText)
         .trimmingCharacters(in: .whitespacesAndNewlines)
 
-let pb = NSPasteboard.general
 pb.clearContents()
 pb.setString("<meta charset=\"utf-8\">" + html, forType: .html)
 pb.setString(plain, forType: .string)
