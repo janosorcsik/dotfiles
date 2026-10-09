@@ -2,3 +2,4 @@
 .idea/*
 lazy-lock.json
 .zcompdump*
+config/opencode/service.json
