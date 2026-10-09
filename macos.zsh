@@ -1,36 +1,86 @@
 #!/usr/bin/env zsh
 
-# Close any open System Settings panes, to prevent them from overriding
-# settings we're about to change
-osascript -e 'tell application "System Settings" to quit'
+# Ask for the administrator password up front (pmset needs it)
+sudo -v
+
+# Quit System Settings so it doesn't override the settings we're about to change,
+# and quit every app whose preferences we write, so it doesn't overwrite them
+# from memory when it exits later
+quit_app() {
+  pgrep -xq "$1" || return 0
+  osascript -e "quit app \"$1\"" 2>/dev/null || killall "$1" 2>/dev/null
+}
+
+for app in "System Settings" \
+  "Activity Monitor" \
+  "AirBattery" \
+  "AlDente" \
+  "App Store" \
+  "Arc" \
+  "BetterCapture" \
+  "Disk Utility" \
+  "Fluor" \
+  "Image Capture" \
+  "Mail" \
+  "Messages" \
+  "Movist Pro" \
+  "Photos" \
+  "Safari" \
+  "Shottr" \
+  "TextEdit" \
+  "Things3" \
+  "Transmission"; do
+  quit_app "$app"
+done
 
 ###############################################################################
-# General UI/UX                                                               #
+#                                                                             #
+# System                                                                      #
+#                                                                             #
 ###############################################################################
 
-# Expand save panel by default
-defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
-
-# Disable "natural" (Lion-style) scrolling
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
-
-# Hide icons in menu bar menus
-defaults write -g NSMenuEnableActionImages -bool NO
-
-# Liquid Glass appearance: Tinted
-defaults write NSGlobalDomain NSGlassDiffusionSetting -int 1
+###############################################################################
+# Appearance & dialogs                                                        #
+###############################################################################
 
 # Dark mode
 defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
 
+# Liquid Glass appearance: Tinted
+defaults write NSGlobalDomain NSGlassDiffusionSetting -int 1
+
 # Disable font smoothing (thinner, sharper text on Retina displays)
 defaults -currentHost write NSGlobalDomain AppleFontSmoothing -int 0
+
+# Hide icons in menu bar menus
+defaults write NSGlobalDomain NSMenuEnableActionImages -bool false
 
 # Double-click a window title bar to fill the screen
 defaults write NSGlobalDomain AppleActionOnDoubleClick -string "Fill"
 
-# Disable keyboard navigation (Tab does not move focus to buttons; avoids the blue ring)
-defaults write NSGlobalDomain AppleKeyboardUIMode -int 0
+# Expand save panel by default
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+
+# Open dialogs default to list view (macOS has stored this under several keys over time)
+defaults write NSGlobalDomain NSNavPanelFileLastListModeForOpenModeKey -int 2
+defaults write NSGlobalDomain NavPanelFileListModeForOpenMode -int 2
+defaults write NSGlobalDomain NSNavPanelFileListModeForOpenMode2 -int 2
+
+# Always show the expanded print dialog
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+
+###############################################################################
+# Language & Region                                                           #
+###############################################################################
+
+# English UI with Hungarian formats (24h, Monday, metric, Ft)
+defaults write NSGlobalDomain AppleLanguages -array "en-US" "hu-HU"
+defaults write NSGlobalDomain AppleLocale -string "en_US@rg=huzzzz"
+
+###############################################################################
+# Keyboard & Text                                                             #
+###############################################################################
 
 # Disable auto-capitalization, auto-period, auto-correct, smart quotes, smart dashes and
 # inline predictions (all annoying when typing code)
@@ -42,17 +92,46 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticInlinePredictionEnabled -bool false
 
-# No margins between tiled windows
-defaults write com.apple.WindowManager EnableTiledWindowMargins -bool false
+# Fn / Globe key: change input source (0 = nothing, 2 = emoji picker, 3 = dictation)
+defaults write com.apple.HIToolbox AppleFnUsageType -int 1
 
-# Open dialogs default to list view (macOS has stored this under several keys over time)
-defaults write NSGlobalDomain NSNavPanelFileLastListModeForOpenModeKey -int 2
-defaults write NSGlobalDomain NavPanelFileListModeForOpenMode -int 2
-defaults write NSGlobalDomain NSNavPanelFileListModeForOpenMode2 -int 2
+# "Share..." = Option+Ctrl+S
+defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Share..." "~^s"
+
+# Disable system hotkeys.
+# Usage: disable_hotkey <id> <ascii-code> <key-code> <modifiers>
+# The parameters must match the system's own values for that ID, otherwise the
+# entry is ignored. ascii-code is 65535 for non-character keys (arrows).
+disable_hotkey() {
+  defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add "$1" \
+    "<dict><key>enabled</key><false/><key>value</key><dict><key>type</key><string>standard</string><key>parameters</key><array><integer>$2</integer><integer>$3</integer><integer>$4</integer></array></dict></dict>"
+}
+
+# Screenshots - Shottr uses the same shortcuts
+disable_hotkey 28  51 20 1179648      # Cmd+Shift+3        Save picture of screen as a file
+disable_hotkey 29  51 20 1441792      # Cmd+Ctrl+Shift+3   Copy picture of screen to the clipboard
+disable_hotkey 30  52 21 1179648      # Cmd+Shift+4        Save picture of selected area as a file
+disable_hotkey 31  52 21 1441792      # Cmd+Ctrl+Shift+4   Copy picture of selected area to the clipboard
+disable_hotkey 184 53 23 1179648      # Cmd+Shift+5        Screenshot and recording options
+
+# Input sources - Ctrl+Space is Things Quick Entry, the Fn key switches layouts instead (above)
+disable_hotkey 60  32 49 262144       # Ctrl+Space         Select the previous input source
+disable_hotkey 61  32 49 786432       # Ctrl+Option+Space  Select next source in Input menu
+
+# Spotlight - Raycast uses Cmd+Space
+disable_hotkey 64  32 49 1048576      # Cmd+Space          Show Spotlight search
+disable_hotkey 65  32 49 1572864      # Cmd+Option+Space   Show Finder search window
+
+# Mission Control
+disable_hotkey 79  65535 123 8650752  # Ctrl+Left          Move left a space
+disable_hotkey 81  65535 124 8650752  # Ctrl+Right         Move right a space
 
 ###############################################################################
 # Trackpad & Mouse                                                            #
 ###############################################################################
+
+# Disable "natural" (Lion-style) scrolling
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
 # Tap to click (trackpad settings file + login-screen pref)
 defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
@@ -68,54 +147,28 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeF
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerHorizSwipeGesture -int 0
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerVertSwipeGesture -int 0
 
-# Disable three-finger tap (Look up & data detectors)
-defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerTapGesture -int 0
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerTapGesture -int 0
-
-# Magic Mouse: disable smart zoom (one-finger double tap)
-defaults write com.apple.AppleMultitouchMouse MouseOneFingerDoubleTapGesture -int 0
-defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseOneFingerDoubleTapGesture -int 0
+# Accessibility: zoom with Ctrl+scroll wheel
+defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
+defaults write com.apple.AppleMultitouchTrackpad HIDScrollZoomModifierMask -int 262144
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad HIDScrollZoomModifierMask -int 262144
 
 ###############################################################################
-# Siri                                                                        #
+# Menu Bar & Control Center                                                   #
 ###############################################################################
 
-# Hide Siri from the menu bar and disable "Hey Siri"
-defaults write com.apple.Siri StatusMenuVisible -bool false
-defaults write com.apple.Siri VoiceTriggerUserEnabled -bool false
+# Show input menu (language switcher) in the menu bar
+defaults write com.apple.TextInputMenu visible -bool true
 
-###############################################################################
-# Region & Language                                                           #
-###############################################################################
-
-# English UI with Hungarian formats (24h, Monday, metric, Ft)
-defaults write NSGlobalDomain AppleLanguages -array "en-US" "hu-HU"
-defaults write NSGlobalDomain AppleLocale -string "en_US@rg=huzzzz"
-
-###############################################################################
-# Privacy                                                                     #
-###############################################################################
-
-# Disable personalized ads
-defaults write com.apple.AdLib allowApplePersonalizedAdvertising -bool false
-
-###############################################################################
-# Menu Bar                                                                    #
-###############################################################################
-
-# Auto-hide the menu bar only in full screen
-# (0 = always, 1 = on desktop only, 2 = in full screen only, 3 = never)
-defaults write com.apple.controlcenter AutoHideMenuBarOption -int 2
-defaults write NSGlobalDomain AppleMenuBarVisibleInFullscreen -bool false
-
-# Clock: date when space allows (0 = when space allows, 1 = always, 2 = never),
-# day of week, no seconds
-defaults write com.apple.menuextra.clock ShowDate -int 0
+# Clock: always show the date and the day of week (0 = when space allows, 1 = always, 2 = never)
+defaults write com.apple.menuextra.clock ShowDate -int 1
 defaults write com.apple.menuextra.clock ShowDayOfWeek -bool true
-defaults write com.apple.menuextra.clock ShowSeconds -bool false
+
+# Hide the Battery menu bar item (AlDente replaces it); show percentage
+defaults -currentHost write com.apple.controlcenter Battery -int 8
+defaults -currentHost write com.apple.controlcenter BatteryShowPercentage -int 1
 
 ###############################################################################
-# Dock                                                                        #
+# Dock & Mission Control                                                      #
 ###############################################################################
 
 # Set the icon size of Dock items
@@ -130,37 +183,113 @@ defaults write com.apple.dock autohide -bool true
 # Enable magnification
 defaults write com.apple.dock magnification -bool true
 
-# Group windows by application in Mission Control
-defaults write com.apple.dock expose-group-apps -bool true
-
-# Enable launch animation
-defaults write com.apple.dock launchanim -bool true
-
 # Minimize windows using Scale effect
 defaults write com.apple.dock mineffect -string "scale"
 
 # Minimize windows into their application's icon
 defaults write com.apple.dock minimize-to-application -bool true
 
-# Automatically rearrange Spaces based on most recent use
-defaults write com.apple.dock mru-spaces -bool true
-
 # Don't show recently used apps in the Dock
 defaults write com.apple.dock show-recents -bool false
+
+# Remove all persistent app icons from the Dock
+defaults write com.apple.dock persistent-apps -array
+
+# Add Downloads folder to the right side of the Dock:
+# arrangement 2 = by date added, displayas 0 = folder, showas 1 = fan
+defaults write com.apple.dock persistent-others -array \
+  '<dict>
+    <key>tile-data</key>
+    <dict>
+      <key>arrangement</key><integer>2</integer>
+      <key>displayas</key><integer>0</integer>
+      <key>file-label</key><string>Downloads</string>
+      <key>file-type</key><integer>2</integer>
+      <key>showas</key><integer>1</integer>
+      <key>file-data</key>
+      <dict>
+        <key>_CFURLString</key><string>file://'"$HOME"'/Downloads/</string>
+        <key>_CFURLStringType</key><integer>15</integer>
+      </dict>
+    </dict>
+    <key>tile-type</key><string>directory-tile</string>
+  </dict>'
+
+# Group windows by application in Mission Control
+defaults write com.apple.dock expose-group-apps -bool true
+
+# Don't automatically switch to a Space that has open windows for an app
+defaults write com.apple.dock workspaces-auto-swoosh -bool false
 
 # Disable the bottom-right hot corner (Quick Note by default)
 defaults write com.apple.dock wvous-br-corner -int 1
 defaults write com.apple.dock wvous-br-modifier -int 0
 
 ###############################################################################
+# Desktop & Windows                                                           #
+###############################################################################
+
+# Hide desktop icons
+defaults write com.apple.WindowManager StandardHideDesktopIcons -bool true
+
+# Don't reveal desktop by clicking the wallpaper
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
+
+# Hide widgets on the desktop and in Stage Manager
+defaults write com.apple.WindowManager StandardHideWidgets -bool true
+defaults write com.apple.WindowManager StageManagerHideWidgets -bool true
+
+###############################################################################
+# Siri, Privacy & Sharing                                                     #
+###############################################################################
+
+# Disable Siri
+defaults write com.apple.assistant.support "Assistant Enabled" -bool false
+
+# Disable personalized ads (on by default when signed in with an Apple Account)
+defaults write com.apple.AdLib allowApplePersonalizedAdvertising -bool false
+
+# Disable people suggestions in the Share menu
+defaults write com.apple.Sharing SharingPeopleSuggestionsDisabled -bool true
+
+###############################################################################
+# Power                                                                       #
+###############################################################################
+
+# Display sleep: 5 minutes on both battery and AC power
+sudo pmset -a displaysleep 5
+
+###############################################################################
+# Screenshots                                                                 #
+###############################################################################
+
+mkdir -p ~/Screenshots
+
+# Change screenshots location
+defaults write com.apple.screencapture location "${HOME}/Screenshots"
+
+# Change screenshots type
+defaults write com.apple.screencapture type -string "heic"
+
+###############################################################################
+# Time Machine                                                                #
+###############################################################################
+
+# Don't offer new disks for Time Machine backup
+defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+
+###############################################################################
+#                                                                             #
 # Finder                                                                      #
+#                                                                             #
 ###############################################################################
 
 # Set Downloads as the default location for new Finder windows
 defaults write com.apple.finder NewWindowTarget -string "PfLo"
 defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Downloads"
 
-# Finder: show all filename extensions
+# Finder: show hidden files and all filename extensions
+defaults write com.apple.finder AppleShowAllFiles -bool true
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 # Finder: show status bar
@@ -169,9 +298,8 @@ defaults write com.apple.finder ShowStatusBar -bool true
 # Finder: show path bar
 defaults write com.apple.finder ShowPathbar -bool true
 
-# Keep folders on top when sorting by name (in windows and on the Desktop)
+# Keep folders on top when sorting by name
 defaults write com.apple.finder _FXSortFoldersFirst -bool true
-defaults write com.apple.finder _FXSortFoldersFirstOnDesktop -bool true
 
 # When performing a search, search the current folder by default
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
@@ -185,18 +313,8 @@ defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 # Disable the warning when moving files out of iCloud Drive
 defaults write com.apple.finder FXEnableRemoveFromICloudDriveWarning -bool false
 
-# Set icon view as default
-defaults write com.apple.finder FXPreferredViewStyle -string "icnv"
-
 # Default arrangement
-defaults write com.apple.finder FXArrangeGroupViewBy -string "Name"
 defaults write com.apple.finder FXPreferredGroupBy -string "Name"
-
-# Desktop icons
-defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
-defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
-defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
-defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
 # Delete all .DS_Store files in the home folder, so every folder falls back to the
 # default view settings below (this also resets window sizes and icon positions)
@@ -240,6 +358,63 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
   Privileges -bool true
 
 ###############################################################################
+#                                                                             #
+# Apple apps                                                                  #
+#                                                                             #
+###############################################################################
+
+###############################################################################
+# Activity Monitor                                                            #
+###############################################################################
+
+# Show all processes, open on the Memory tab
+defaults write com.apple.ActivityMonitor ShowCategory -int 100
+defaults write com.apple.ActivityMonitor SelectedTab -int 1
+
+# Memory tab column order: name, anonymous, resident size, threads, ports, PID, UID
+defaults write com.apple.ActivityMonitor "UserColumnsPerTab v6.0" -dict-add \
+  1 '(Command, anonymousMemory, ResidentSize, Threads, Ports, PID, UID)'
+
+###############################################################################
+# App Store                                                                   #
+###############################################################################
+
+# Don't auto-play video previews in the App Store
+defaults write com.apple.AppStore AutoPlayVideoSetting -string "off"
+defaults write com.apple.AppStore UserSetAutoPlayVideoSetting -bool true
+
+###############################################################################
+# Disk Utility                                                                #
+###############################################################################
+
+# Show all devices (not just volumes) in the sidebar
+defaults write com.apple.DiskUtility SidebarShowAllDevices -bool true
+
+###############################################################################
+# Mail                                                                        #
+###############################################################################
+
+# Don't show contact photos in the message list
+defaults write com.apple.mail EnableContactPhotos -int 0
+
+# Don't warn when sending from an address that doesn't match the account domain
+defaults write com.apple.mail AlertForNonmatchingDomains -bool false
+
+###############################################################################
+# Messages                                                                    #
+###############################################################################
+
+# Automatically delete one-time verification codes after use
+defaults write com.apple.MobileSMS DeleteVerificationCodes -bool true
+
+###############################################################################
+# Photos                                                                      #
+###############################################################################
+
+# Prevent Photos from opening automatically when a device is plugged in
+defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
+
+###############################################################################
 # Safari                                                                      #
 ###############################################################################
 
@@ -259,9 +434,6 @@ defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
 defaults write com.apple.Safari IncludeDevelopMenu -bool true
 defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
 
-# Enable the internal Debug menu
-defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
-
 # Disable built-in AutoFill (1Password handles it)
 defaults write com.apple.Safari AutoFillFromAddressBook -bool false
 defaults write com.apple.Safari AutoFillCreditCardData -bool false
@@ -276,15 +448,6 @@ defaults write com.apple.Safari NewTabBehavior -int 4
 defaults write com.apple.Safari ShowStandaloneTabBar -bool false
 defaults write com.apple.Safari EnableNarrowTabs -bool true
 
-# Don't show the sidebar in new windows
-defaults write com.apple.Safari ShowSidebarInNewWindows -bool false
-
-# Show all items in the Reading List
-defaults write com.apple.Safari ShowAllItemsInReadingList -bool true
-
-# Require Touch ID / password to view locked Private Browsing tabs
-defaults write com.apple.Safari PrivateBrowsingRequiresAuthentication -bool true
-
 # Don't print headers and footers
 defaults write com.apple.Safari PrintHeadersAndFooters -bool false
 
@@ -298,113 +461,8 @@ defaults write com.apple.Safari WebsiteSpecificSearchEnabled -bool false
 # Don't open links in apps (Universal Links)
 defaults write com.apple.Safari UniversalLinksEnabled -bool false
 
-# Allow pop-ups, disallow user-installed fonts
-defaults write com.apple.Safari WebKitPreferences.javaScriptCanOpenWindowsAutomatically -bool true
+# Disallow user-installed fonts
 defaults write com.apple.Safari WebKitPreferences.shouldAllowUserInstalledFonts -bool false
-
-###############################################################################
-# Printing                                                                    #
-###############################################################################
-
-# Always show the expanded print dialog
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
-
-###############################################################################
-# Photos                                                                      #
-###############################################################################
-
-# Prevent Photos from opening automatically when a device is plugged in
-defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
-
-###############################################################################
-# Time Machine                                                                #
-###############################################################################
-
-# Don't offer new disks for Time Machine backup
-defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
-
-###############################################################################
-# Activity Monitor                                                            #
-###############################################################################
-
-# Show all processes, open on the Memory tab
-defaults write com.apple.ActivityMonitor ShowCategory -int 100
-defaults write com.apple.ActivityMonitor SelectedTab -int 1
-
-# Memory tab column order: name, anonymous, resident size, threads, ports, PID, UID
-defaults write com.apple.ActivityMonitor "UserColumnsPerTab v6.0" -dict-add \
-  1 '(Command, anonymousMemory, ResidentSize, Threads, Ports, PID, UID)'
-
-###############################################################################
-# Disk Utility                                                                #
-###############################################################################
-
-# Show all devices (not just volumes) in the sidebar
-defaults write com.apple.DiskUtility SidebarShowAllDevices -bool true
-
-###############################################################################
-# Screenshot                                                                  #
-###############################################################################
-
-mkdir -p ~/Screenshots
-
-# Change screenshots location
-defaults write com.apple.screencapture location "${HOME}/Screenshots"
-
-# Change screenshots type
-defaults write com.apple.screencapture type -string "heic"
-
-###############################################################################
-# Shottr                                                                      #
-###############################################################################
-
-# Change screenshots location
-defaults write cc.ffitch.shottr defaultFolder "${HOME}/Screenshots"
-
-# Default filename template
-defaults write cc.ffitch.shottr fileNameTemplate 'Screenshot %Y-%m-%d at %H.%M.%S'
-
-# Area capture:      Cmd+Shift+4
-defaults write cc.ffitch.shottr KeyboardShortcuts_area -string '{"carbonModifiers":768,"carbonKeyCode":21}'
-# Fullscreen:        Cmd+Shift+3
-defaults write cc.ffitch.shottr KeyboardShortcuts_fullscreen -string '{"carbonModifiers":768,"carbonKeyCode":20}'
-# Window capture:    Cmd+Shift+5
-defaults write cc.ffitch.shottr KeyboardShortcuts_anyWindow -string '{"carbonModifiers":768,"carbonKeyCode":23}'
-# Scrolling capture: Cmd+Shift+7
-defaults write cc.ffitch.shottr KeyboardShortcuts_scrolling -string '{"carbonModifiers":768,"carbonKeyCode":26}'
-# OCR:               Ctrl+Option+Cmd+O
-defaults write cc.ffitch.shottr KeyboardShortcuts_ocr -string '{"carbonModifiers":6400,"carbonKeyCode":31}'
-
-# After capture: copy to clipboard and save to disk, don't open the editor
-defaults write cc.ffitch.shottr afterGrabCopy -int 1
-defaults write cc.ffitch.shottr afterGrabSave -int 1
-defaults write cc.ffitch.shottr afterGrabShow -int 0
-
-# Area capture shows a preview first
-defaults write cc.ffitch.shottr areaCaptureMode -string "preview"
-
-# Esc in the editor copies and saves
-defaults write cc.ffitch.shottr copyOnEsc -int 1
-defaults write cc.ffitch.shottr saveOnEsc -int 1
-
-# Editor: always on top, expandable canvas, transparent window shadow
-defaults write cc.ffitch.shottr alwaysOnTop -int 1
-defaults write cc.ffitch.shottr expandableCanvas -int 1
-defaults write cc.ffitch.shottr windowShadow -string "transparent"
-
-# Snapping mode
-defaults write cc.ffitch.shottr snappingMode -int 2
-
-# Use system notifications
-defaults write cc.ffitch.shottr notificationType -string "system"
-
-# OCR language
-defaults write cc.ffitch.shottr primaryOCRLang -string "en-US"
-
-# No telemetry, no intro
-defaults write cc.ffitch.shottr allowTelemetry -int 0
-defaults write cc.ffitch.shottr showIntro -int 0
 
 ###############################################################################
 # TextEdit                                                                    #
@@ -415,83 +473,26 @@ defaults write com.apple.TextEdit RichText -int 0
 defaults write com.apple.TextEdit PlainTextEncoding -int 4
 defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 
-###############################################################################
-# Transmission                                                                #
-###############################################################################
-
-mkdir -p ~/Downloads/torrent
-
-# Hide the donate message
-defaults write org.m0k.transmission WarningDonate -bool false
-
-# Hide the legal disclaimer
-defaults write org.m0k.transmission WarningLegal -bool false
-
-# Change download folder
-defaults write org.m0k.transmission DownloadLocationConstant -bool true
-defaults write org.m0k.transmission DownloadFolder -string "${HOME}/Downloads/torrent"
-
-# Delete torrent file after adding
-defaults write org.m0k.transmission DeleteOriginalTorrent -bool true
-
-# Trash original torrent files
-defaults write org.m0k.transmission TrashOriginalTorrent -bool true
-
-# Automatically size window to fit transfers
-defaults write org.m0k.transmission AutoSize -bool true
-
-# IP block list
-defaults write org.m0k.transmission BlocklistNew -bool true
-defaults write org.m0k.transmission BlocklistURL -string "https://list.iblocklist.com/?list=bt_level1&fileformat=p2p&archiveformat=gz"
-defaults write org.m0k.transmission BlocklistAutoUpdate -bool true
-
-# Don't ask for confirmation when quitting with active transfers
-defaults write org.m0k.transmission CheckQuit -bool false
-
-# Local peer discovery
-defaults write org.m0k.transmission LocalPeerDiscoveryGlobal -bool true
-
-# Show the filter bar and status bar
-defaults write org.m0k.transmission FilterBar -bool true
-defaults write org.m0k.transmission StatusBar -bool true
+# Always use light background (don't inherit system dark mode)
+defaults write com.apple.TextEdit AlwaysLightBackground -bool true
 
 ###############################################################################
-# Arc                                                                         #
+#                                                                             #
+# Third-party apps                                                            #
+#                                                                             #
 ###############################################################################
 
-# Disable "New Little Arc Window" global hotkey (conflicts with Rider Option+Cmd+N)
-defaults write company.thebrowser.Browser globalLittleBrowserHotkeyEnabled -bool false
-
-# Restore windows on relaunch
-defaults write company.thebrowser.Browser NSQuitAlwaysKeepsWindows -bool true
-defaults write company.thebrowser.Browser arc_quitAlwaysKeepsWindows -bool true
-
-# Don't open external links in Little Arc
-defaults write company.thebrowser.Browser openExternalLinksInLittleBrowserEnabled -bool false
-
-# Disable Arc Max auto opt-in, Instant Links, Tidy Tabs, built-in ad block, Share Quote links
-defaults write company.thebrowser.Browser arcMaxAutoOptInEnabled -bool false
-defaults write company.thebrowser.Browser instantLinksEnabled -bool false
-defaults write company.thebrowser.Browser tidyTabsEnabled -bool false
-defaults write company.thebrowser.Browser nativeAdBlockEnabled -bool false
-defaults write company.thebrowser.Browser shareQuoteLinkEnabled -bool false
-
-# Disable history clusters
-defaults write company.thebrowser.Browser disableHistoryClusters -bool true
-
-# App icon
-defaults write company.thebrowser.Browser currentAppIconName -string "arc.candy"
-
 ###############################################################################
-# Fluor                                                                       #
+# AirBattery                                                                  #
 ###############################################################################
 
-# Use F-keys as standard function keys in Rider
-defaults write com.pyrolyse.Fluor AppRules -array '{ behavior = 2; id = "com.jetbrains.rider"; path = "/Applications/Rider.app"; }'
+# Don't show devices in the menu bar, no built-in battery
+defaults write com.lihaoyun6.AirBattery showOn -string "none"
+defaults write com.lihaoyun6.AirBattery intBattOnStatusBar -bool false
 
-# No notifications, no notification permission popup
-defaults write com.pyrolyse.Fluor userNotificationEnablement -int 0
-defaults write com.pyrolyse.Fluor hideNotificationAuthorizationPopup -bool true
+# Read Apple Pencil, iDevices over BLE
+defaults write com.lihaoyun6.AirBattery readPencil -bool true
+defaults write com.lihaoyun6.AirBattery ideviceOverBLE -bool true
 
 ###############################################################################
 # AlDente                                                                     #
@@ -510,9 +511,6 @@ defaults write com.apphousekitchen.aldente-pro sailingLevel -int 5
 
 # Hide the Dock icon
 defaults write com.apphousekitchen.aldente-pro showDockIcon -bool false
-
-# Don't show the main window on startup
-defaults write com.apphousekitchen.aldente-pro showGUIonStartup -bool false
 
 # Use the native macOS (Tahoe) charge limit
 defaults write com.apphousekitchen.aldente-pro useTahoeNativeLimit -bool true
@@ -546,25 +544,45 @@ defaults write com.apphousekitchen.aldente-pro menubarRightClickAction -int 2
 # Reduce transparency in the UI
 defaults write com.apphousekitchen.aldente-pro reduceTransparency -bool true
 
+# Decline the anonymous data sharing prompt
+defaults write com.apphousekitchen.aldente-pro dataShareConsent -bool false
+
 # Calibration: charge back to 60% afterwards
 defaults write com.apphousekitchen.aldente-pro calibrationBackupPercentage -int 60
 
-# No data sharing
-defaults write com.apphousekitchen.aldente-pro dataShareConsent -bool false
-
 ###############################################################################
-# AirBattery                                                                  #
+# Arc                                                                         #
 ###############################################################################
 
-# Show only this Mac's icon in the menu bar, no built-in battery
-defaults write com.lihaoyun6.AirBattery showOn -string "none"
-defaults write com.lihaoyun6.AirBattery showThisMac -string "icon"
-defaults write com.lihaoyun6.AirBattery intBattOnStatusBar -bool false
+# Disable "New Little Arc Window" global hotkey (conflicts with Rider Option+Cmd+N)
+defaults write company.thebrowser.Browser globalLittleBrowserHotkeyEnabled -bool false
 
-# Merge left/right earbuds, read Apple Pencil, iDevices over BLE
-defaults write com.lihaoyun6.AirBattery twsMerge -bool true
-defaults write com.lihaoyun6.AirBattery readPencil -bool true
-defaults write com.lihaoyun6.AirBattery ideviceOverBLE -bool true
+# Don't open external links in Little Arc
+defaults write company.thebrowser.Browser openExternalLinksInLittleBrowserEnabled -bool false
+
+###############################################################################
+# BetterCapture                                                               #
+###############################################################################
+
+# Record microphone and system audio, no alpha channel
+defaults write com.sattlerjoshua.BetterCapture captureMicrophone -bool true
+defaults write com.sattlerjoshua.BetterCapture captureSystemAudio -bool true
+defaults write com.sattlerjoshua.BetterCapture captureAlphaChannel -bool false
+
+# MP4 at 30 fps
+defaults write com.sattlerjoshua.BetterCapture containerFormat -string "mp4"
+defaults write com.sattlerjoshua.BetterCapture frameRate -int 30
+# (the output directory is a security-scoped bookmark, it can't be set from here)
+
+###############################################################################
+# Fluor                                                                       #
+###############################################################################
+
+# Use F-keys as standard function keys in Rider
+defaults write com.pyrolyse.Fluor AppRules -array '{ behavior = 2; id = "com.jetbrains.rider"; path = "/Applications/Rider.app"; }'
+
+# No notification permission popup
+defaults write com.pyrolyse.Fluor hideNotificationAuthorizationPopup -bool true
 
 ###############################################################################
 # Movist Pro                                                                  #
@@ -582,8 +600,46 @@ defaults write com.movist.MovistPro Movist_playsWhenEnterFullScreen -bool false
 defaults write com.movist.MovistPro Movist_topmostMode -int 2
 defaults write com.movist.MovistPro Movist_recentDocumentsMode -int 2
 
-# Don't check for updates automatically
-defaults write com.movist.MovistPro SUEnableAutomaticChecks -bool false
+###############################################################################
+# Shottr                                                                      #
+###############################################################################
+
+# Change screenshots location (the folder is created in the Screenshots section above)
+defaults write cc.ffitch.shottr defaultFolder "${HOME}/Screenshots"
+
+# Default filename template
+defaults write cc.ffitch.shottr fileNameTemplate 'Screenshot %Y-%m-%d at %H.%M.%S'
+
+# Area capture:      Cmd+Shift+4
+defaults write cc.ffitch.shottr KeyboardShortcuts_area -string '{"carbonModifiers":768,"carbonKeyCode":21}'
+# Fullscreen:        Cmd+Shift+3
+defaults write cc.ffitch.shottr KeyboardShortcuts_fullscreen -string '{"carbonModifiers":768,"carbonKeyCode":20}'
+# Window capture:    Cmd+Shift+5
+defaults write cc.ffitch.shottr KeyboardShortcuts_anyWindow -string '{"carbonModifiers":768,"carbonKeyCode":23}'
+# Scrolling capture: Cmd+Shift+7
+defaults write cc.ffitch.shottr KeyboardShortcuts_scrolling -string '{"carbonModifiers":768,"carbonKeyCode":26}'
+
+# After capture: copy to clipboard and save to disk, don't open the editor
+defaults write cc.ffitch.shottr afterGrabCopy -int 1
+defaults write cc.ffitch.shottr afterGrabSave -int 1
+defaults write cc.ffitch.shottr afterGrabShow -int 0
+
+# Area capture shows a preview first
+defaults write cc.ffitch.shottr areaCaptureMode -string "preview"
+
+# Esc in the editor saves
+defaults write cc.ffitch.shottr saveOnEsc -int 1
+
+# Editor: always on top, expandable canvas
+defaults write cc.ffitch.shottr alwaysOnTop -int 1
+defaults write cc.ffitch.shottr expandableCanvas -int 1
+
+# Use system notifications
+defaults write cc.ffitch.shottr notificationType -string "system"
+
+# No telemetry, no intro
+defaults write cc.ffitch.shottr allowTelemetry -int 0
+defaults write cc.ffitch.shottr showIntro -int 0
 
 ###############################################################################
 # Things                                                                      #
@@ -595,7 +651,7 @@ defaults write com.movist.MovistPro SUEnableAutomaticChecks -bool false
 things_prefs="$HOME/Library/Group Containers/JLMPQHK86H.com.culturedcode.ThingsMac/Library/Preferences/JLMPQHK86H.com.culturedcode.ThingsMac"
 
 # Quick Entry enabled (default shortcut Ctrl+Space, freed up from input source
-# switching below), new items go to the Inbox
+# switching in the Keyboard section), new items go to the Inbox
 defaults write "$things_prefs" quickEntryEnabled -bool true
 defaults write "$things_prefs" quickEntryDefaultDestination -int 0
 
@@ -618,117 +674,40 @@ defaults write "$things_prefs" uriSchemeEnabled -bool true
 defaults write "$things_prefs" intentsSkipsConfirmationForEditingOrDeletingLargeAmountsOfData -bool true
 
 ###############################################################################
-# BetterCapture                                                               #
+# Transmission                                                                #
 ###############################################################################
 
-# Record microphone and system audio, no alpha channel
-defaults write com.sattlerjoshua.BetterCapture captureMicrophone -bool true
-defaults write com.sattlerjoshua.BetterCapture captureSystemAudio -bool true
-defaults write com.sattlerjoshua.BetterCapture captureAlphaChannel -bool false
+mkdir -p ~/Downloads/torrent
 
-# MP4 at 30 fps
-defaults write com.sattlerjoshua.BetterCapture containerFormat -string "mp4"
-defaults write com.sattlerjoshua.BetterCapture frameRate -int 30
+# Don't show the legal warning and the donate message on launch
+defaults write org.m0k.transmission WarningLegal -bool false
+defaults write org.m0k.transmission WarningDonate -bool false
 
-# Don't install updates automatically
-# (the output directory is a security-scoped bookmark, it can't be set from here)
-defaults write com.sattlerjoshua.BetterCapture SUAutomaticallyUpdate -bool false
+# Change download folder
+defaults write org.m0k.transmission DownloadLocationConstant -bool true
+defaults write org.m0k.transmission DownloadFolder -string "${HOME}/Downloads/torrent"
 
-###############################################################################
-# Pearcleaner                                                                 #
-###############################################################################
+# Delete torrent file after adding
+defaults write org.m0k.transmission DeleteOriginalTorrent -bool true
 
-# Search /Applications and ~/Applications
-defaults write com.alienator88.Pearcleaner settings.folders.apps -array "/Applications" "$HOME/Applications"
+# Trash original torrent files
+defaults write org.m0k.transmission TrashOriginalTorrent -bool true
 
-# Also uninstall the Homebrew cask when removing an app; no CLI helper
-defaults write com.alienator88.Pearcleaner settings.general.brew -bool true
-defaults write com.alienator88.Pearcleaner settings.general.cli -bool false
+# Automatically size window to fit transfers
+defaults write org.m0k.transmission AutoSize -bool true
 
-# Keep the warnings before deleting files and leftovers
-defaults write com.alienator88.Pearcleaner settings.general.filesWarning -bool true
-defaults write com.alienator88.Pearcleaner settings.general.leftoverWarning -bool true
-defaults write com.alienator88.Pearcleaner settings.lipo.warning -bool true
+# IP block list
+defaults write org.m0k.transmission BlocklistNew -bool true
+defaults write org.m0k.transmission BlocklistURL -string "https://list.iblocklist.com/?list=bt_level1&fileformat=p2p&archiveformat=gz"
+defaults write org.m0k.transmission BlocklistAutoUpdate -bool true
 
-# Sort by path, show real (not allocated) sizes, strict search matching
-defaults write com.alienator88.Pearcleaner settings.general.selectedSort -string "path"
-defaults write com.alienator88.Pearcleaner settings.general.sizeType -string "Real"
-defaults write com.alienator88.Pearcleaner settings.general.searchSensitivity -int 0
+# Don't ask for confirmation when quitting with active transfers
+defaults write org.m0k.transmission CheckQuit -bool false
 
-# Sentinel: watch the Trash and offer to remove leftovers of trashed apps
-defaults write com.alienator88.Pearcleaner settings.sentinel.enable -bool true
+# Local peer discovery
+defaults write org.m0k.transmission LocalPeerDiscoveryGlobal -bool true
 
-# Interface
-defaults write com.alienator88.Pearcleaner settings.interface.greetingEnabled -bool true
-defaults write com.alienator88.Pearcleaner settings.interface.scrollIndicators -bool true
+# Show the filter bar
+defaults write org.m0k.transmission FilterBar -bool true
 
-# Check for updates weekly
-defaults write com.alienator88.Pearcleaner alinfoundation.updater.updateFrequency -string "Weekly"
-
-###############################################################################
-# Keyboard Shortcuts                                                          #
-###############################################################################
-
-# "Share..." = Option+Ctrl+S
-defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Share..." "~^s"
-
-# Disable system hotkeys.
-# Usage: disable_hotkey <id> <ascii-code> <key-code> <modifiers>
-# The parameters must match the system's own values for that ID, otherwise the
-# entry is ignored. ascii-code is 65535 for non-character keys (arrows).
-disable_hotkey() {
-  defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add "$1" \
-    "<dict><key>enabled</key><false/><key>value</key><dict><key>type</key><string>standard</string><key>parameters</key><array><integer>$2</integer><integer>$3</integer><integer>$4</integer></array></dict></dict>"
-}
-
-# Screenshots - Shottr uses the same shortcuts
-disable_hotkey 28  51 20 1179648      # Cmd+Shift+3        Save picture of screen as a file
-disable_hotkey 29  51 20 1441792      # Cmd+Ctrl+Shift+3   Copy picture of screen to the clipboard
-disable_hotkey 30  52 21 1179648      # Cmd+Shift+4        Save picture of selected area as a file
-disable_hotkey 31  52 21 1441792      # Cmd+Ctrl+Shift+4   Copy picture of selected area to the clipboard
-disable_hotkey 184 53 23 1179648      # Cmd+Shift+5        Screenshot and recording options
-
-# Input sources - Ctrl+Space is Things Quick Entry, the Fn key switches layouts instead (below)
-disable_hotkey 60  32 49 262144       # Ctrl+Space         Select the previous input source
-disable_hotkey 61  32 49 786432       # Ctrl+Option+Space  Select next source in Input menu
-
-# Spotlight - Raycast uses Cmd+Space
-disable_hotkey 64  32 49 1048576      # Cmd+Space          Show Spotlight search
-disable_hotkey 65  32 49 1572864      # Cmd+Option+Space   Show Finder search window
-
-# Mission Control
-disable_hotkey 79  65535 123 8650752  # Ctrl+Left          Move left a space
-disable_hotkey 81  65535 124 8650752  # Ctrl+Right         Move right a space
-
-# Fn / Globe key: change input source (0 = nothing, 2 = emoji picker, 3 = dictation)
-defaults write com.apple.HIToolbox AppleFnUsageType -int 1
-
-# Apply the hotkey changes without logging out
-/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-
-###############################################################################
-# Kill affected applications                                                  #
-###############################################################################
-
-for app in "Activity Monitor" \
-  "AirBattery" \
-  "AlDente" \
-  "Arc" \
-  "BetterCapture" \
-  "ControlCenter" \
-  "Disk Utility" \
-  "Dock" \
-  "Finder" \
-  "Fluor" \
-  "Movist Pro" \
-  "Pearcleaner" \
-  "Safari" \
-  "Shottr" \
-  "SystemUIServer" \
-  "TextEdit" \
-  "Things3" \
-  "Transmission"; do
-  killall "${app}" &> /dev/null
-done
-
-echo "Done. Note that some of these changes require a logout/restart to take effect."
+echo "Done. Restart the Mac to apply the changes."
