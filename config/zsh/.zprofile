@@ -1,3 +1,6 @@
+# Keep PATH-like arrays free of duplicates
+typeset -U path PATH fpath FPATH manpath MANPATH
+
 # Set PATH, MANPATH, etc., for Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
