@@ -311,7 +311,7 @@ defaults write com.apple.finder FXPreferredSearchViewStyle -string "Nlsv"
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
 # Disable the warning when moving files out of iCloud Drive
-defaults write com.apple.finder FXEnableRemoveFromICloudDriveWarning -bool false
+defaults write com.apple.bird com.apple.clouddocs.unshared.moveOut.suppress -int 1
 
 # Default arrangement
 defaults write com.apple.finder FXPreferredGroupBy -string "Name"
@@ -535,9 +535,8 @@ defaults write com.apphousekitchen.aldente-pro maxTemperature -int 35
 defaults write com.apphousekitchen.aldente-pro magsafeControl -bool true
 defaults write com.apphousekitchen.aldente-pro magsafeOff -int 2
 
-# Menu bar: icon style, percentage, low power mode color, right-click action
+# Menu bar: icon style, low power mode color, right-click action
 defaults write com.apphousekitchen.aldente-pro menuBarIconStyle -int 2
-defaults write com.apphousekitchen.aldente-pro showPercentage -bool true
 defaults write com.apphousekitchen.aldente-pro lpmMenuBarColor -bool true
 defaults write com.apphousekitchen.aldente-pro menubarRightClickAction -int 2
 
