@@ -433,6 +433,7 @@ defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
 # Enable the Develop menu and the Web Inspector in Safari
 defaults write com.apple.Safari IncludeDevelopMenu -bool true
 defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
+defaults write com.apple.Safari WebKitPreferences.developerExtrasEnabled -bool true
 
 # Disable built-in AutoFill (1Password handles it)
 defaults write com.apple.Safari AutoFillFromAddressBook -bool false
@@ -463,6 +464,9 @@ defaults write com.apple.Safari UniversalLinksEnabled -bool false
 
 # Disallow user-installed fonts
 defaults write com.apple.Safari WebKitPreferences.shouldAllowUserInstalledFonts -bool false
+
+# Feature flag: don't cap page rendering at 60fps (use full ProMotion refresh rate)
+defaults write com.apple.Safari WebKitExperimentalPreferPageRenderingUpdatesNear60FPSEnabled -bool false
 
 ###############################################################################
 # TextEdit                                                                    #
