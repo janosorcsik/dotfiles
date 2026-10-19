@@ -39,9 +39,6 @@ enabled = false
 [buffer.server_messages.quit]
 enabled = false
 
-[buffer.server_messages.topic]
-enabled = false
-
 [preview]
 enabled = false
 
