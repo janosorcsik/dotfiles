@@ -46,8 +46,8 @@ done
 # Dark mode
 defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
 
-# Liquid Glass appearance: Tinted
-defaults write NSGlobalDomain NSGlassDiffusionSetting -int 1
+# Liquid Glass appearance: Tinted (slider, 0 = clear, 1 = fully tinted)
+defaults write NSGlobalDomain NSGlassTintAmount -float 1
 
 # Disable font smoothing (thinner, sharper text on Retina displays)
 defaults -currentHost write NSGlobalDomain AppleFontSmoothing -int 0
