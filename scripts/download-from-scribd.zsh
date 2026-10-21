@@ -2,6 +2,7 @@
 # @raycast.schemaVersion 1
 # @raycast.title Download Scribd
 # @raycast.mode silent
+# @raycast.icon 📄
 # @raycast.argument1 { "type": "text", "placeholder": "Scribd URL", "optional": true }
 
 url="${1:-$(pbpaste)}"
