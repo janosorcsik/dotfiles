@@ -39,6 +39,14 @@ enabled = false
 [buffer.server_messages.quit]
 enabled = false
 
+[notifications.direct_message]
+show_toast = true
+show_content = true
+
+[notifications.highlight]
+show_toast = true
+show_content = true
+
 [preview]
 enabled = false
 
