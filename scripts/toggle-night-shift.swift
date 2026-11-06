@@ -7,6 +7,26 @@
 
 import Foundation
 
+struct Time {
+    var hour: Int32 = 0
+    var minute: Int32 = 0
+}
+
+struct Schedule {
+    var from = Time()
+    var to = Time()
+}
+
+struct BlueLightStatus {
+    var active: Bool = false
+    var enabled: Bool = false
+    var sunSchedulePermitted: Bool = false
+    var mode: Int32 = 0
+    var schedule = Schedule()
+    var disableFlags: UInt64 = 0
+    var available: Bool = false
+}
+
 guard dlopen("/System/Library/PrivateFrameworks/CoreBrightness.framework/CoreBrightness", RTLD_LAZY) != nil,
       let cls = NSClassFromString("CBBlueLightClient") as? NSObject.Type
 else {
@@ -15,17 +35,24 @@ else {
 }
 
 let client = cls.init()
+let getStatusSel = NSSelectorFromString("getBlueLightStatus:")
+let setEnabledSel = NSSelectorFromString("setEnabled:")
+
 let getStatus = unsafeBitCast(
-    client.method(for: NSSelectorFromString("getBlueLightStatus:")),
+    client.method(for: getStatusSel),
     to: (@convention(c) (AnyObject, Selector, UnsafeMutableRawPointer) -> Bool).self
 )
 let setEnabled = unsafeBitCast(
-    client.method(for: NSSelectorFromString("setEnabled:")),
+    client.method(for: setEnabledSel),
     to: (@convention(c) (AnyObject, Selector, Bool) -> Bool).self
 )
 
-let status = UnsafeMutableRawPointer.allocate(byteCount: 64, alignment: 8)
-status.initializeMemory(as: UInt8.self, repeating: 0, count: 64)
-_ = getStatus(client, NSSelectorFromString("getBlueLightStatus:"), status)
-let enabled = status.load(fromByteOffset: 1, as: Bool.self)
-_ = setEnabled(client, NSSelectorFromString("setEnabled:"), !enabled)
+var status = BlueLightStatus()
+guard withUnsafeMutablePointer(to: &status, { getStatus(client, getStatusSel, $0) }) else {
+    print("Failed to get Night Shift status")
+    exit(1)
+}
+guard setEnabled(client, setEnabledSel, !status.enabled) else {
+    print("Failed to toggle Night Shift")
+    exit(1)
+}
