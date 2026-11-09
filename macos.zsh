@@ -16,8 +16,8 @@ for app in "System Settings" \
   "AirBattery" \
   "AlDente" \
   "App Store" \
-  "Arc" \
   "BetterCapture" \
+  "Dia" \
   "Disk Utility" \
   "Fluor" \
   "Image Capture" \
@@ -554,16 +554,6 @@ defaults write com.apphousekitchen.aldente-pro dataShareConsent -bool false
 defaults write com.apphousekitchen.aldente-pro calibrationBackupPercentage -int 60
 
 ###############################################################################
-# Arc                                                                         #
-###############################################################################
-
-# Disable "New Little Arc Window" global hotkey (conflicts with Rider Option+Cmd+N)
-defaults write company.thebrowser.Browser globalLittleBrowserHotkeyEnabled -bool false
-
-# Don't open external links in Little Arc
-defaults write company.thebrowser.Browser openExternalLinksInLittleBrowserEnabled -bool false
-
-###############################################################################
 # BetterCapture                                                               #
 ###############################################################################
 
@@ -576,6 +566,16 @@ defaults write com.sattlerjoshua.BetterCapture captureAlphaChannel -bool false
 defaults write com.sattlerjoshua.BetterCapture containerFormat -string "mp4"
 defaults write com.sattlerjoshua.BetterCapture frameRate -int 30
 # (the output directory is a security-scoped bookmark, it can't be set from here)
+
+###############################################################################
+# Dia                                                                         #
+###############################################################################
+
+# Disable the global little browser window hotkey (conflicts with Rider Option+Cmd+N)
+defaults write company.thebrowser.dia globalLittleBrowserHotkeyEnabled -bool false
+
+# Don't open external links in the little browser window
+defaults write company.thebrowser.dia openExternalLinksInLittleBrowserEnabled -bool false
 
 ###############################################################################
 # Fluor                                                                       #
