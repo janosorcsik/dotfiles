@@ -56,6 +56,8 @@ function gclean {
 
     if git show-ref --quiet --verify "refs/remotes/origin/$branch"; then
       _merged "origin/$branch" "$default" || continue
+      # Unpushed local commits are not covered by the merge check above
+      git merge-base --is-ancestor "$branch" "origin/$branch" || { echo "⏭️ Skipping '$branch': it has unpushed commits."; continue }
       read -r "reply?❓ Delete local and remote '$branch'? Merged into $default. (y/n) " </dev/tty
       [[ "$reply" == [yY] ]] && git push --delete origin "$branch" && git branch -D "$branch"
       continue
