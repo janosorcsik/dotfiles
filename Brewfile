@@ -130,6 +130,8 @@ cask "maestral"
 cask "microsoft-teams"
 # Media player
 cask "movist-pro"
+# Encrypted DNS client with ad and tracker blocking
+cask "nextdns-app"
 # Replacement for Docker Desktop
 cask "orbstack"
 # Read/write support for NTFS formatted volumes
@@ -164,7 +166,6 @@ mas "1Password for Safari", id: 1569813296
 mas "BlinkMate", id: 6756325660
 mas "Finances", id: 1218241304
 mas "Keynote", id: 361285480
-mas "NextDNS", id: 1464122853
 mas "Numbers", id: 361304891
 mas "Pages", id: 361309726
 mas "Raycast Companion", id: 6738274497
@@ -175,5 +176,7 @@ mas "Things", id: 904280696
 mas "Tomito", id: 1526042938
 mas "Wipr", id: 1662217862
 mas "Xcode", id: 497799835
+go "golang.org/x/tools/cmd/goimports"
+go "golang.org/x/tools/gopls"
 npm "corepack"
 npm "npm-check-updates"
