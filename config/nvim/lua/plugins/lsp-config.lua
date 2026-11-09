@@ -33,7 +33,7 @@ return {
 					},
 				},
 			})
-			vim.lsp.enable("roslyn_ls")
+			vim.lsp.enable({ "roslyn_ls", "gopls" })
 		end,
 	},
 }
