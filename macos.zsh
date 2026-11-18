@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
-# Ask for the administrator password up front (pmset needs it)
+# Ask for the administrator password up front (pmset, the firewall and the system-wide
+# preferences need it)
 sudo -v
 
 # Quit System Settings so it doesn't override the settings we're about to change,
@@ -16,7 +17,9 @@ for app in "System Settings" \
   "AirBattery" \
   "AlDente" \
   "App Store" \
+  "Archive Utility" \
   "BetterCapture" \
+  "Calendar" \
   "Dia" \
   "Disk Utility" \
   "Fluor" \
@@ -52,23 +55,15 @@ defaults write NSGlobalDomain NSGlassTintAmount -float 1
 # Disable font smoothing (thinner, sharper text on Retina displays)
 defaults -currentHost write NSGlobalDomain AppleFontSmoothing -int 0
 
-# Hide icons in menu bar menus
-defaults write NSGlobalDomain NSMenuEnableActionImages -bool false
-
 # Double-click a window title bar to fill the screen
 defaults write NSGlobalDomain AppleActionOnDoubleClick -string "Fill"
 
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 
-# Open dialogs default to list view (macOS has stored this under several keys over time)
+# Open dialogs default to list view
 defaults write NSGlobalDomain NSNavPanelFileLastListModeForOpenModeKey -int 2
-defaults write NSGlobalDomain NavPanelFileListModeForOpenMode -int 2
 defaults write NSGlobalDomain NSNavPanelFileListModeForOpenMode2 -int 2
-
-# Always show the expanded print dialog
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 
 ###############################################################################
 # Language & Region                                                           #
@@ -77,6 +72,9 @@ defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 # English UI with Hungarian formats (24h, Monday, metric, Ft)
 defaults write NSGlobalDomain AppleLanguages -array "en-US" "hu-HU"
 defaults write NSGlobalDomain AppleLocale -string "en_US@rg=huzzzz"
+
+# Show names with the family name first (1 = given name first, 2 = family name first)
+defaults write NSGlobalDomain NSPersonNameDefaultDisplayNameOrder -int 2
 
 ###############################################################################
 # Keyboard & Text                                                             #
@@ -133,10 +131,9 @@ disable_hotkey 81  65535 124 8650752  # Ctrl+Right         Move right a space
 # Disable "natural" (Lion-style) scrolling
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
-# Tap to click (trackpad settings file + login-screen pref)
+# Tap to click on the built-in and Bluetooth trackpads
 defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
 # Three-finger drag (disable swipe gestures so three fingers are free for dragging)
@@ -159,13 +156,18 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad HIDScrollZoomM
 # Show input menu (language switcher) in the menu bar
 defaults write com.apple.TextInputMenu visible -bool true
 
-# Clock: always show the date and the day of week (0 = when space allows, 1 = always, 2 = never)
+# Clock: always show the date (0 = when space allows, 1 = always, 2 = never)
 defaults write com.apple.menuextra.clock ShowDate -int 1
-defaults write com.apple.menuextra.clock ShowDayOfWeek -bool true
 
-# Hide the Battery menu bar item (AlDente replaces it); show percentage
+# Hide the Battery menu bar item (AlDente replaces it)
 defaults -currentHost write com.apple.controlcenter Battery -int 8
-defaults -currentHost write com.apple.controlcenter BatteryShowPercentage -int 1
+
+# Hide other Control Center items from the menu bar (8 = hide; Now Playing: 2 = show
+# when active, 18 = always show, 24 = don't show)
+defaults -currentHost write com.apple.controlcenter NowPlaying -int 24
+defaults -currentHost write com.apple.controlcenter VPN -int 8
+defaults -currentHost write com.apple.controlcenter VoiceControl -int 8
+defaults -currentHost write com.apple.controlcenter Weather -int 8
 
 ###############################################################################
 # Dock & Mission Control                                                      #
@@ -196,7 +198,7 @@ defaults write com.apple.dock show-recents -bool false
 defaults write com.apple.dock persistent-apps -array
 
 # Add Downloads folder to the right side of the Dock:
-# arrangement 2 = by date added, displayas 0 = folder, showas 1 = fan
+# arrangement 2 = by date added, displayas 0 = stack, showas 1 = fan
 defaults write com.apple.dock persistent-others -array \
   '<dict>
     <key>tile-data</key>
@@ -219,7 +221,7 @@ defaults write com.apple.dock persistent-others -array \
 defaults write com.apple.dock expose-group-apps -bool true
 
 # Don't automatically switch to a Space that has open windows for an app
-defaults write com.apple.dock workspaces-auto-swoosh -bool false
+defaults write NSGlobalDomain AppleSpacesSwitchOnActivate -bool false
 
 # Disable the bottom-right hot corner (Quick Note by default)
 defaults write com.apple.dock wvous-br-corner -int 1
@@ -235,9 +237,14 @@ defaults write com.apple.WindowManager StandardHideDesktopIcons -bool true
 # Don't reveal desktop by clicking the wallpaper
 defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
 
-# Hide widgets on the desktop and in Stage Manager
+# Hide widgets on the desktop
 defaults write com.apple.WindowManager StandardHideWidgets -bool true
-defaults write com.apple.WindowManager StageManagerHideWidgets -bool true
+
+# Tiled windows have no margins
+defaults write com.apple.WindowManager EnableTiledWindowMargins -bool false
+
+# Don't reopen windows when logging back in
+defaults write com.apple.loginwindow TALLogoutSavesState -bool false
 
 ###############################################################################
 # Siri, Privacy & Sharing                                                     #
@@ -246,11 +253,47 @@ defaults write com.apple.WindowManager StageManagerHideWidgets -bool true
 # Disable Siri
 defaults write com.apple.assistant.support "Assistant Enabled" -bool false
 
+# Don't share Siri & Dictation audio with Apple (1 = opted in, 2 = opted out)
+defaults write com.apple.assistant.support "Siri Data Sharing Opt-In Status" -int 2
+
+# Don't share search queries with Apple (Help Apple Improve Search; 2 = opted out)
+defaults write com.apple.assistant.support "Search Queries Data Sharing Status" -int 2
+
+# Don't summarize notification previews (Apple Intelligence)
+defaults write com.apple.ncprefs summarize_previews -bool false
+
 # Disable personalized ads (on by default when signed in with an Apple Account)
 defaults write com.apple.AdLib allowApplePersonalizedAdvertising -bool false
 
 # Disable people suggestions in the Share menu
 defaults write com.apple.Sharing SharingPeopleSuggestionsDisabled -bool true
+
+###############################################################################
+# Security                                                                    #
+###############################################################################
+
+# Touch ID for sudo (sudo_local survives system updates)
+if ! grep -q '^auth.*pam_tid.so' /etc/pam.d/sudo_local 2>/dev/null; then
+  sed 's/^#auth/auth/' /etc/pam.d/sudo_local.template | sudo tee /etc/pam.d/sudo_local >/dev/null
+fi
+
+# Enable the firewall with stealth mode
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on >/dev/null
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on >/dev/null
+
+# Require the password 5 minutes after sleep or screen saver begins
+# (asks for the login password, but only when the delay is not set yet)
+if ! sysadminctl -screenLock status 2>&1 | grep -q "screenLock delay is 300 seconds"; then
+  sysadminctl -screenLock 300 -password -
+fi
+
+###############################################################################
+# Software Update                                                             #
+###############################################################################
+
+# Install macOS updates and App Store updates automatically
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticallyInstallMacOSUpdates -bool true
+sudo defaults write /Library/Preferences/com.apple.commerce AutoUpdate -bool true
 
 ###############################################################################
 # Power                                                                       #
@@ -259,14 +302,18 @@ defaults write com.apple.Sharing SharingPeopleSuggestionsDisabled -bool true
 # Display sleep: 5 minutes on both battery and AC power
 sudo pmset -a displaysleep 5
 
+# Never start the screen saver
+defaults -currentHost write com.apple.screensaver idleTime -int 0
+
 ###############################################################################
 # Screenshots                                                                 #
 ###############################################################################
 
 mkdir -p ~/Screenshots
 
-# Change screenshots location
-defaults write com.apple.screencapture location "${HOME}/Screenshots"
+# Change screenshots location (screenshots and screen recordings are stored separately)
+defaults write com.apple.screencapture location-screenshot "${HOME}/Screenshots"
+defaults write com.apple.screencapture location-screenrecording "${HOME}/Screenshots"
 
 # Change screenshots type
 defaults write com.apple.screencapture type -string "heic"
@@ -342,9 +389,8 @@ for key in StandardViewSettings FK_StandardViewSettings ICloudViewSettings \
   defaults write com.apple.finder "$key" -dict-add IconViewSettings "$icon_view_settings"
 done
 
-# Avoid creating .DS_Store files on network or USB volumes
+# Avoid creating .DS_Store files on network volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
-defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
 # Show ~/Library in the Finder
 chflags nohidden ~/Library
@@ -384,11 +430,29 @@ defaults write com.apple.AppStore AutoPlayVideoSetting -string "off"
 defaults write com.apple.AppStore UserSetAutoPlayVideoSetting -bool true
 
 ###############################################################################
+# Archive Utility                                                             #
+###############################################################################
+
+# Move the archive to the Trash after expanding it
+defaults write com.apple.archiveutility dearchive-move-after -string "."
+defaults write com.apple.archiveutility dearchive-move-after-location -dict Selection -string "MoveToTrash"
+
+###############################################################################
+# Calendar                                                                    #
+###############################################################################
+
+# Show declined events
+defaults write com.apple.iCal ShowDeclinedEvents -bool true
+
+###############################################################################
 # Disk Utility                                                                #
 ###############################################################################
 
 # Show all devices (not just volumes) in the sidebar
 defaults write com.apple.DiskUtility SidebarShowAllDevices -bool true
+
+# Show APFS snapshots
+defaults write com.apple.DiskUtility WorkspaceShowAPFSSnapshots -bool true
 
 ###############################################################################
 # Mail                                                                        #
@@ -397,15 +461,25 @@ defaults write com.apple.DiskUtility SidebarShowAllDevices -bool true
 # Don't show contact photos in the message list
 defaults write com.apple.mail EnableContactPhotos -int 0
 
+# No preview lines in the message list, unread messages in bold
+defaults write com.apple.mail NumberOfSnippetLines -int 0
+defaults write com.apple.mail ShouldShowUnreadMessagesInBold -bool true
+
 # Don't warn when sending from an address that doesn't match the account domain
 defaults write com.apple.mail AlertForNonmatchingDomains -bool false
+
+# Custom flag names (2 = yellow, 3 = green, 5 = purple)
+defaults write com.apple.mail FlagNames -dict-add 2 "Set Aside" 3 "Info" 5 "Reply Later"
 
 ###############################################################################
 # Messages                                                                    #
 ###############################################################################
 
 # Automatically delete one-time verification codes after use
-defaults write com.apple.MobileSMS DeleteVerificationCodes -bool true
+defaults write com.apple.onetimepasscodes DeleteVerificationCodes -bool true
+
+# Don't summarize messages (Apple Intelligence)
+defaults write com.apple.MobileSMS messageSummarizationEnabled -bool false
 
 ###############################################################################
 # Photos                                                                      #
@@ -490,13 +564,21 @@ defaults write com.apple.TextEdit AlwaysLightBackground -bool true
 # AirBattery                                                                  #
 ###############################################################################
 
-# Don't show devices in the menu bar, no built-in battery
+# Don't show devices in the Dock or the menu bar
 defaults write com.lihaoyun6.AirBattery showOn -string "none"
-defaults write com.lihaoyun6.AirBattery intBattOnStatusBar -bool false
 
 # Read Apple Pencil, iDevices over BLE
 defaults write com.lihaoyun6.AirBattery readPencil -bool true
 defaults write com.lihaoyun6.AirBattery ideviceOverBLE -bool true
+
+# Read BLE devices
+defaults write com.lihaoyun6.AirBattery readBLEDevice -bool true
+
+# Launch at login
+defaults write com.lihaoyun6.AirBattery launchAtLogin -bool true
+
+# Don't show the third-party device note again
+defaults write com.lihaoyun6.AirBattery neverRemindMe -array "ab.third-party-device.note"
 
 ###############################################################################
 # AlDente                                                                     #
@@ -506,49 +588,36 @@ defaults write com.lihaoyun6.AirBattery ideviceOverBLE -bool true
 defaults write com.apphousekitchen.aldente-pro allowChargeLimitsBelow80 -bool true
 defaults write com.apphousekitchen.aldente-pro chargeVal -int 60
 
+# Warn about a low charge limit
+defaults write com.apphousekitchen.aldente-pro lowChargeLimitWarning -bool true
+
 # Heat protection
 defaults write com.apphousekitchen.aldente-pro heatProtectMode -bool true
-
-# Sailing mode: let the battery drain to 55% before charging again
-defaults write com.apphousekitchen.aldente-pro sailingMode -bool true
-defaults write com.apphousekitchen.aldente-pro sailingLevel -int 5
 
 # Hide the Dock icon
 defaults write com.apphousekitchen.aldente-pro showDockIcon -bool false
 
-# Use the native macOS (Tahoe) charge limit
-defaults write com.apphousekitchen.aldente-pro useTahoeNativeLimit -bool true
-
-# Discharge automatically down to the limit, but never allow manual discharge
+# Discharge automatically down to the limit
 defaults write com.apphousekitchen.aldente-pro automaticDischarge -bool true
-defaults write com.apphousekitchen.aldente-pro allowDischarge -bool false
 
 # Keep inhibiting charge during sleep and after quitting
 defaults write com.apphousekitchen.aldente-pro sleepInhibitCharge -bool true
 defaults write com.apphousekitchen.aldente-pro exitInhibitCharge -bool true
 
-# Disable Sleep until Charge Limit: stay awake while plugged in until the limit is
-# reached (sleep is re-enabled when unplugged); turn the display off meanwhile
-defaults write com.apphousekitchen.aldente-pro completelyDisableSleep -bool true
-defaults write com.apphousekitchen.aldente-pro displayOffWhenSleepDisabled -bool true
-
-# Heat protection threshold (°C)
-defaults write com.apphousekitchen.aldente-pro maxTemperature -int 35
-
-# MagSafe LED control (off when not charging)
-defaults write com.apphousekitchen.aldente-pro magsafeControl -bool true
+# MagSafe LED: off when not charging
 defaults write com.apphousekitchen.aldente-pro magsafeOff -int 2
 
-# Menu bar: icon style, low power mode color, right-click action
+# Menu bar icon style
 defaults write com.apphousekitchen.aldente-pro menuBarIconStyle -int 2
-defaults write com.apphousekitchen.aldente-pro lpmMenuBarColor -bool true
-defaults write com.apphousekitchen.aldente-pro menubarRightClickAction -int 2
+
+# Menu bar: no percentage next to the icon
+defaults write com.apphousekitchen.aldente-pro showPercentage -bool false
 
 # Reduce transparency in the UI
 defaults write com.apphousekitchen.aldente-pro reduceTransparency -bool true
 
-# Decline the anonymous data sharing prompt
-defaults write com.apphousekitchen.aldente-pro dataShareConsent -bool false
+# No "What's New" after updates
+defaults write com.apphousekitchen.aldente-pro showWhatsNewOnUpdate -bool false
 
 # Calibration: charge back to 60% afterwards
 defaults write com.apphousekitchen.aldente-pro calibrationBackupPercentage -int 60
@@ -557,10 +626,8 @@ defaults write com.apphousekitchen.aldente-pro calibrationBackupPercentage -int 
 # BetterCapture                                                               #
 ###############################################################################
 
-# Record microphone and system audio, no alpha channel
+# Record the microphone
 defaults write com.sattlerjoshua.BetterCapture captureMicrophone -bool true
-defaults write com.sattlerjoshua.BetterCapture captureSystemAudio -bool true
-defaults write com.sattlerjoshua.BetterCapture captureAlphaChannel -bool false
 
 # MP4 at 30 fps
 defaults write com.sattlerjoshua.BetterCapture containerFormat -string "mp4"
@@ -571,11 +638,11 @@ defaults write com.sattlerjoshua.BetterCapture frameRate -int 30
 # Dia                                                                         #
 ###############################################################################
 
-# Disable the global little browser window hotkey (conflicts with Rider Option+Cmd+N)
-defaults write company.thebrowser.dia globalLittleBrowserHotkeyEnabled -bool false
+# Don't warn before quitting
+defaults write company.thebrowser.dia shouldWarnBeforeQuitting -bool false
 
-# Don't open external links in the little browser window
-defaults write company.thebrowser.dia openExternalLinksInLittleBrowserEnabled -bool false
+# Don't automatically clean up inactive tabs
+defaults write company.thebrowser.dia autoCleanInactiveTabsEnabled -bool false
 
 ###############################################################################
 # Fluor                                                                       #
@@ -599,9 +666,22 @@ defaults write com.movist.MovistPro Movist_subtitleLanguage -string "hun"
 defaults write com.movist.MovistPro Movist_fillingType -int 1
 defaults write com.movist.MovistPro Movist_playsWhenEnterFullScreen -bool false
 
-# Always-on-top mode and recent documents behaviour
+# Always-on-top mode
 defaults write com.movist.MovistPro Movist_topmostMode -int 2
-defaults write com.movist.MovistPro Movist_recentDocumentsMode -int 2
+
+# Playback: pixel matching, elapsed instead of remaining time
+defaults write com.movist.MovistPro Movist_usesPixelMatching -bool true
+defaults write com.movist.MovistPro Movist_showsRemainedTime -bool false
+
+# Find related media and subtitle files automatically
+defaults write com.movist.MovistPro Movist_findsAllMedia -bool true
+defaults write com.movist.MovistPro Movist_findsAllForOne -bool true
+
+# Audio equalizer preset
+defaults write com.movist.MovistPro Movist_defaultAudioEQPresetId -int 14
+
+# AirPlay: transcode to HEVC
+defaults write com.movist.MovistPro Movist_airPlayTranscodeVideoCodec -string "hevc"
 
 ###############################################################################
 # Shottr                                                                      #
@@ -627,15 +707,14 @@ defaults write cc.ffitch.shottr afterGrabCopy -int 1
 defaults write cc.ffitch.shottr afterGrabSave -int 1
 defaults write cc.ffitch.shottr afterGrabShow -int 0
 
-# Area capture shows a preview first
-defaults write cc.ffitch.shottr areaCaptureMode -string "preview"
-
 # Esc in the editor saves
 defaults write cc.ffitch.shottr saveOnEsc -int 1
 
-# Editor: always on top, expandable canvas
+# Editor: always on top
 defaults write cc.ffitch.shottr alwaysOnTop -int 1
-defaults write cc.ffitch.shottr expandableCanvas -int 1
+
+# Editor: growing toolbar
+defaults write cc.ffitch.shottr growingToolbar -string "1"
 
 # Use system notifications
 defaults write cc.ffitch.shottr notificationType -string "system"
@@ -653,15 +732,14 @@ defaults write cc.ffitch.shottr showIntro -int 0
 # without the .plist extension as the domain).
 things_prefs="$HOME/Library/Group Containers/JLMPQHK86H.com.culturedcode.ThingsMac/Library/Preferences/JLMPQHK86H.com.culturedcode.ThingsMac"
 
-# Quick Entry enabled (default shortcut Ctrl+Space, freed up from input source
-# switching in the Keyboard section), new items go to the Inbox
-defaults write "$things_prefs" quickEntryEnabled -bool true
+# Quick Entry (default shortcut Ctrl+Space, freed up from input source switching
+# in the Keyboard section): new items go to the Inbox
 defaults write "$things_prefs" quickEntryDefaultDestination -int 0
 
 # Show calendar events in Today and Upcoming
 defaults write "$things_prefs" calendarEventsEnabled -bool true
 
-# Dock badge count mode
+# Dock badge count: deadlines only (0 = none, 1 = deadlines only, 2 = Today, 3 = Today + Inbox)
 defaults write "$things_prefs" badgeCountMode -int 1
 
 # Show Someday items inside Anytime projects
@@ -712,5 +790,8 @@ defaults write org.m0k.transmission LocalPeerDiscoveryGlobal -bool true
 
 # Show the filter bar
 defaults write org.m0k.transmission FilterBar -bool true
+
+# Use the compact view
+defaults write org.m0k.transmission SmallView -bool true
 
 echo "Done. Restart the Mac to apply the changes."
